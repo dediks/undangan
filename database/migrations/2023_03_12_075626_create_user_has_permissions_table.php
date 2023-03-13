@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_has_permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->enum('user_type', ['admin', 'user', 'vendor'])->default('user');
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+
+            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user_has_permissions');
     }
 };

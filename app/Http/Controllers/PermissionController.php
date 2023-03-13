@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rule;
-use App\Http\Requests\StoreRuleRequest;
-use App\Http\Requests\UpdateRuleRequest;
+use App\Models\Permission;
+use App\Http\Requests\StorePermissionRequest;
+use App\Http\Requests\UpdatePermissionRequest;
 
-class RuleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class RuleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRuleRequest  $request
+     * @param  \App\Http\Requests\StorePermissionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRuleRequest $request)
+    public function store(StorePermissionRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class RuleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function show(Rule $rule)
+    public function show(Permission $permission)
     {
         //
     }
@@ -53,10 +53,10 @@ class RuleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rule $rule)
+    public function edit(Permission $permission)
     {
         //
     }
@@ -64,11 +64,11 @@ class RuleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRuleRequest  $request
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Http\Requests\UpdatePermissionRequest  $request
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRuleRequest $request, Rule $rule)
+    public function update(UpdatePermissionRequest $request, Permission $permission)
     {
         //
     }
@@ -76,10 +76,10 @@ class RuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rule $rule)
+    public function destroy(Permission $permission)
     {
         //
     }

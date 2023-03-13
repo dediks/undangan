@@ -16,11 +16,15 @@ return new class extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->string('nickname');
-            $table->string('full_name')->nullable();
-            $table->string('location')->nullable();
+            $table->string('fullname')->nullable();
+            $table->string('address')->nullable();
             $table->text('message')->nullable();
             $table->enum('will_attend', ['yes', 'no'])->default('no');
             $table->timestamps();
+
+            $table->unsignedBigInteger('invitation_id');
+
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
     }
 

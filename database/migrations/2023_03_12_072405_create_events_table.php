@@ -13,9 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->string('location');
+            $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->unsignedBigInteger('invitation_id');
+
+            $table->foreign('invitation_id')->references('id')->on('invitations');
         });
     }
 
@@ -26,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('events');
     }
 };

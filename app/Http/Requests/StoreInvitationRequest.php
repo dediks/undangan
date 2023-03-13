@@ -15,7 +15,7 @@ class StoreInvitationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,20 +26,30 @@ class StoreInvitationRequest extends FormRequest
     public function rules()
     {
         return [
-            'bride_photo' => [
-                'required',
-                File::image()
-                    ->min(1024)
-                    ->max(12 * 1024)
-                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-            ],
-            'groom_photo' => [
-                'required',
-                File::image()
-                    ->min(1024)
-                    ->max(12 * 1024)
-                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-            ],
+            "bride_nickname" => ['required'],
+            "groom_nickname" => [''],
+            "groom_fullname" => [''],
+            "bride_fullname" => ['required'],
+            "bride_father" => ['required'],
+            "bride_mother" => ['required'],
+            "groom_mother" => [''],
+            "groom_father" => [''],
+            "bride_as_child_position" => ['required'],
+            "groom_as_child_position" => []
+            // 'bride_photo' => [
+            //     '',
+            //     File::image()
+            //         ->min(1024)
+            //         ->max(12 * 1024)
+            //         ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+            // ],
+            // 'groom_photo' => [
+            //     '',
+            //     File::image()
+            //         ->min(1024)
+            //         ->max(12 * 1024)
+            //         ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+            // ],
         ];
     }
 }

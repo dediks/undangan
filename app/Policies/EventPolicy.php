@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Rule;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RulePolicy
+class EventPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class RulePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Rule $rule)
+    public function view(User $user, Event $event)
     {
         //
     }
@@ -48,10 +48,10 @@ class RulePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Rule $rule)
+    public function update(User $user, Event $event)
     {
         //
     }
@@ -60,10 +60,10 @@ class RulePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Rule $rule)
+    public function delete(User $user, Event $event)
     {
         //
     }
@@ -72,10 +72,10 @@ class RulePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Rule $rule)
+    public function restore(User $user, Event $event)
     {
         //
     }
@@ -84,10 +84,10 @@ class RulePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Rule  $rule
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Rule $rule)
+    public function forceDelete(User $user, Event $event)
     {
         //
     }

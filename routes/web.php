@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,4 +36,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// ourmarry.com/mbul-bojone?to=dedik
+// ourmarry.com/apps
+// ourmarry.com/apps/dashboard
+// ourmarry.com/apps/invitation/1/edit
+// ourmarry.com/apps/invitation/1
+// ourmarry.com/apps/invitation/create
+
+
+Route::prefix('apps')->group(function () {
+    Route::resource('invitation', InvitationController::class);
+});
+
+require __DIR__ . '/auth.php';
