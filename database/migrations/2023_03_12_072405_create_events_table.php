@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title')->nullable();
             $table->dateTime('start');
             $table->dateTime('end');
@@ -22,9 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->unsignedBigInteger('invitation_id');
-
-            $table->foreign('invitation_id')->references('id')->on('invitations');
+            $table->foreignUuid('invitation_id')->references('id')->on('invitations')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

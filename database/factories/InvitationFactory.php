@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class InvitationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'couple_id' => 'dedik-someone',
+            'groom_nickname' => 'dedik',
+            'bride_nickname' => 'someone',
+            'theme_id' => 'Theme_1'
         ];
     }
 }

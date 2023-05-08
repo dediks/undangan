@@ -35,21 +35,21 @@ class StoreInvitationRequest extends FormRequest
             "groom_mother" => [''],
             "groom_father" => [''],
             "bride_as_child_position" => ['required'],
-            "groom_as_child_position" => []
-            // 'bride_photo' => [
-            //     '',
-            //     File::image()
-            //         ->min(1024)
-            //         ->max(12 * 1024)
-            //         ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-            // ],
-            // 'groom_photo' => [
-            //     '',
-            //     File::image()
-            //         ->min(1024)
-            //         ->max(12 * 1024)
-            //         ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-            // ],
+            "groom_as_child_position" => [],
+            'bride_photo' => [
+                '',
+                File::image()
+                    ->min(10)
+                    ->max(1000)
+                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(1000)),
+            ],
+            'groom_photo' => [
+                '',
+                File::image()
+                    ->min(10)
+                    ->max(1000)
+                    ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(1000)),
+            ],
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use Inertia\Inertia;
 
 class EventController extends Controller
 {
@@ -15,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Dashboard/Event/Index');
     }
 
     /**
@@ -25,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Event/Create');
     }
 
     /**

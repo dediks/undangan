@@ -3,14 +3,23 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
+import Alert from "@/Components/Alert";
+
+import { useNotificationCenter } from "react-toastify/addons/use-notification-center";
+import { ToastContainer } from "react-toastify";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+    const { flash, invitation } = usePage().props;
+
+    const { notifications, clear, markAllAsRead, markAsRead } =
+        useNotificationCenter();
+
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="bg-gray-100 min-h-screen">
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -26,12 +35,18 @@ export default function Authenticated({ auth, header, children }) {
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
-                                    Dashboard
+                                    Dashboards
                                 </NavLink>
                             </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
+                            <Link
+                                href={invitation?.couple_id}
+                                className="rounded border-2 px-2 py-1 cursor-pointer hover:bg-gray-300 text-sm"
+                            >
+                                Preview Undangan
+                            </Link>
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -130,7 +145,7 @@ export default function Authenticated({ auth, header, children }) {
                             href={route("dashboard")}
                             active={route().current("dashboard")}
                         >
-                            Dashboard
+                            Dashboards
                         </ResponsiveNavLink>
                     </div>
 
@@ -168,7 +183,15 @@ export default function Authenticated({ auth, header, children }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main>
+                <div>
+                    <ToastContainer autoClose={true} draggable={false} />
+                </div>
+                {/* {flash.message && (
+                    <Alert status={flash.status} message={flash.message} />
+                )} */}
+                {children}
+            </main>
         </div>
     );
 }

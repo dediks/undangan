@@ -18,10 +18,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('permission_id');
-            $table->unsignedBigInteger('user_id');
 
             $table->foreign('permission_id')->references('id')->on('permissions');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignUuid('user_id')->references('id')->on('users');
         });
     }
 

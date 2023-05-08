@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Invitation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class GuestFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nickname' => 'aina',
         ];
     }
 }

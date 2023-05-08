@@ -1,4 +1,5 @@
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import UploadImagePreview from "./UploadImagePreview";
 
 export default forwardRef(function FileInput(
     { type = "file", className = "", isFocused = false, ...props },
@@ -14,12 +15,14 @@ export default forwardRef(function FileInput(
 
     return (
         <div className="flex flex-col items-start">
+            {/* {selectedFile && <UploadImagePreview src={preview} alt="afafa" />} */}
             <label className="block">
                 <span className="sr-only">Choose profile photo</span>
                 <input
                     {...props}
                     type={type}
                     ref={input}
+                    // onChange={onSelectFile}
                     className={
                         `block w-full text-sm text-slate-500
                         file:mr-4 file:py-2 file:px-4

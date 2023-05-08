@@ -1,11 +1,47 @@
-export default function UploadImagePreview({ className = "", ...props }) {
+import { useEffect, useState } from "react";
+
+export default function UploadImagePreview({
+    className = "",
+    src,
+    alt,
+    selectedFile,
+    setSelectedFile,
+    ...props
+}) {
+    const [preview, setPreview] = useState();
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined);
+            return;
+        }
+
+        let url = null;
+        if (typeof selectedFile != "string") {
+            url = URL.createObjectURL(selectedFile);
+        } else {
+            url = "/storage/images/" + selectedFile;
+        }
+
+        setPreview(url);
+
+        return () => {
+            if (typeof selectedFile != "string") {
+                URL.revokeObjectURL(url);
+            } else {
+                url = "";
+            }
+        };
+    }, [selectedFile]);
+
     return (
         <div className="shrink-0">
-            <img
-                className="h-16 w-16 object-cover rounded-full"
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"
-                alt="Current profile photo"
-            />
+            {selectedFile && (
+                <img
+                    className="h-16 w-16 object-cover rounded-full"
+                    src={preview}
+                />
+            )}
         </div>
     );
 }

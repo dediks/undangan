@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('invitations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('couple_id', 56)->unique();
+            $table->string('theme_id', 50)->nullable();
             $table->string('bride_nickname', 100)->nullable();
             $table->string('groom_nickname', 100)->nullable();
             $table->string('bride_fullname')->nullable();
@@ -29,9 +31,7 @@ return new class extends Migration
             $table->integer('groom_as_child_position')->default(0);
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignUuid('user_id')->references('id')->on('users')->cascadeOnUpdate();
         });
     }
 

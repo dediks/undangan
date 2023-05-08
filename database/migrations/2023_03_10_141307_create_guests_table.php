@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('will_attend', ['yes', 'no'])->default('no');
             $table->timestamps();
 
-            $table->unsignedBigInteger('invitation_id');
+            $table->uuid('invitation_id');
 
             $table->foreign('invitation_id')->references('id')->on('invitations');
         });

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInvitationRequest;
+use App\Http\Requests\UpdateInvitationRequest;
 use App\Models\Invitation;
+use App\Models\TemporaryFile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class InvitationController extends Controller
@@ -27,7 +32,13 @@ class InvitationController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Invitation/Create');
+        $invitation_data = null;
+
+        if (Auth::user()->isUser()) {
+            $invitation_data = Auth::user()->invitations()->first();
+        };
+
+        return Inertia::render('Invitation/BrideGroomSection/Create', ["invitation_data" => $invitation_data]);
     }
 
     /**
@@ -38,11 +49,34 @@ class InvitationController extends Controller
      */
     public function store(StoreInvitationRequest $request)
     {
-        $validated = $request->safe()->toArray();
+        $validated_file = $request->safe()->only(['groom_photo', 'bride_photo']);
+        $validated_data = $request->safe()->except(['groom_photo', 'bride_photo']);
 
-        $invitation = Auth::user()->invitations()->create($validated);
+        try {
+            DB::beginTransaction();
 
-        dd($invitation);
+            $invitation = Auth::user()->invitations()->create($validated_data);
+
+            $groom_photo_extension = $validated_file['groom_photo']->getClientOriginalExtension();
+            $bride_photo_extension = $validated_file['bride_photo']->getClientOriginalExtension();
+
+            $validated_file['groom_photo']->storeAs('images/' . $invitation->id, '/groom_photo.' . $groom_photo_extension, 'public');
+            $validated_file['bride_photo']->storeAs('images/' . $invitation->id, '/bride_photo.' . $bride_photo_extension, 'public');
+
+            $invitation->update([
+                'groom_photo' => $invitation->id . '/groom_photo.' . $groom_photo_extension,
+                'bride_photo' => $invitation->id . '/bride_photo.' . $bride_photo_extension
+            ]);
+
+            DB::commit();
+
+            return to_route('invitation.show', $invitation->id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+
+        return back()->with('message', "Gagal disimpan");
     }
 
     /**
@@ -51,9 +85,9 @@ class InvitationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Invitation $invitation)
     {
-        //
+        return Inertia::render('Invitation/Show', ['invitation' => $invitation]);
     }
 
     /**
@@ -64,7 +98,7 @@ class InvitationController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -74,9 +108,44 @@ class InvitationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateInvitationRequest $request, $bridegroomId)
     {
-        //
+        $validated_file = $request->safe()->only(['groom_photo', 'bride_photo']);
+        $validated_data = $request->safe()->except(['groom_photo', 'bride_photo']);
+
+        try {
+            DB::beginTransaction();
+
+            $invitation = Invitation::find($bridegroomId);
+
+            // dd($validated_file["groom_photo"] == null);
+            if (!empty($validated_file)) {
+                foreach ($validated_file as $key => $value) {
+                    //menghapus gambar sebelumnya
+                    Storage::disk('public')->delete('images/' . $invitation[$key]);
+
+                    $folder = 'images/' . $invitation->id;
+                    $filename = '/' . $key . '.' . $value->getClientOriginalExtension();
+
+                    $value->storeAs($folder, $filename, 'public');
+
+                    $invitation->update([
+                        $key => $invitation->id . $filename
+                    ]);
+                }
+            }
+
+            $invitation->update($validated_data);
+
+            DB::commit();
+
+            return back()->with('message', "Berhasil diupdate");
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+
+        return back()->with('message', "Gagal diupdate");
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, HasUuids, Notifiable;
+
+    const ADMIN = "admin";
+    const VENDOR = "vendor";
+    const USER = "user";
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type'
     ];
 
     /**
@@ -46,5 +53,20 @@ class User extends Authenticatable
     public function invitations(): HasMany
     {
         return $this->hasMany(Invitation::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->user_type == $this::ADMIN;
+    }
+
+    public function isUser()
+    {
+        return $this->user_type == $this::USER;
+    }
+
+    public function isVendor()
+    {
+        return $this->user_type == $this::VENDOR;
     }
 }
