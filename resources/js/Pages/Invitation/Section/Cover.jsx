@@ -1,12 +1,15 @@
 import FileInput from "@/Components/FileInput";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
+import PrimaryButton from "@/Components/PrimaryButton";
 import UploadImagePreview from "@/Components/UploadImagePreview";
+import useToast from "@/Hooks/useToast";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Transition } from "@headlessui/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
 import React from "react";
 
-const Cover = ({ auth }) => {
+const Cover = ({ auth, coverData }) => {
     const {
         data,
         setData,
@@ -16,18 +19,18 @@ const Cover = ({ auth }) => {
         processing,
         progress,
         recentlySuccessful,
-    } = useForm("");
+    } = useForm(coverData);
 
     const invitation = usePage().props.invitation;
 
-    console.log(invitation);
+    const showToast = useToast();
 
     const submit = (e) => {
         e.preventDefault();
 
-        if (invitation) {
+        if (invitation && coverData) {
             router.post(
-                `/invitation/section/cover/${invitation["id"]}`,
+                `/invitation/cover/${coverData["id"]}`,
                 {
                     _method: "put",
                     ...data,
@@ -66,29 +69,51 @@ const Cover = ({ auth }) => {
                             <section className="flex flex-col space-y-8">
                                 <div className="flex flex-col space-y-2">
                                     <InputLabel
-                                        htmlFor="cover_background"
+                                        htmlFor="background_image"
                                         value="Upload Cover Background"
                                     />
                                     <UploadImagePreview
-                                        selectedFile={data.cover_background}
+                                        selectedFile={data.background_image}
                                     />
                                     <FileInput
-                                        id="cover_background"
+                                        id="background_image"
                                         className="mt-1 block w-full "
                                         onChange={(e) => {
                                             setData(
-                                                "cover_background",
+                                                "background_image",
                                                 e.target.files[0]
                                             );
                                         }}
                                         isFocused
-                                        autoComplete="cover_background"
+                                        autoComplete="background_image"
                                     />
 
                                     <InputError
                                         className="mt-2"
-                                        message={errors.cover_background}
+                                        message={errors.background_image}
                                     />
+                                </div>
+                                <div className="mt-8 flex items-center gap-4">
+                                    <PrimaryButton disabled={processing}>
+                                        {invitation ? "Update" : "Save"}
+                                    </PrimaryButton>
+
+                                    <Transition
+                                        show={recentlySuccessful}
+                                        enterFrom="opacity-0"
+                                        leaveTo="opacity-0"
+                                        className="transition ease-in-out"
+                                    >
+                                        {invitation ? (
+                                            <p className="text-sm text-gray-600">
+                                                Updated
+                                            </p>
+                                        ) : (
+                                            <p className="text-sm text-gray-600">
+                                                Saved.
+                                            </p>
+                                        )}
+                                    </Transition>
                                 </div>
                             </section>
                         </div>

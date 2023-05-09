@@ -44,4 +44,20 @@ class Invitation extends Model
     {
         return $this->hasMany(Guest::class);
     }
+
+    public function cover()
+    {
+        return $this->hasOne(CoverSection::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($invitation) {
+            $cover = new CoverSection();
+            $cover->title = 'The wedding of';
+            $invitation->cover()->save($cover);
+        });
+    }
 }

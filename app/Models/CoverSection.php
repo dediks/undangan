@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CoverSection extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'background_image',
+    ];
+
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class);
+    }
 }

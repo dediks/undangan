@@ -118,7 +118,6 @@ class InvitationController extends Controller
 
             $invitation = Invitation::find($bridegroomId);
 
-            // dd($validated_file["groom_photo"] == null);
             if (!empty($validated_file)) {
                 foreach ($validated_file as $key => $value) {
                     //menghapus gambar sebelumnya

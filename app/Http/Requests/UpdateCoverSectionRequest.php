@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCoverSectionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateCoverSectionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdateCoverSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'background_image' => [
+                Rule::excludeIf(gettype($this->background_image) == 'string' || gettype($this->background_image) == "NULL")
+            ],
         ];
     }
 }
