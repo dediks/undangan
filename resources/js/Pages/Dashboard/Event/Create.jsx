@@ -5,14 +5,19 @@ import useToast from "@/Hooks/useToast";
 import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
 import InputError from "@/Components/InputError";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { Transition } from "@headlessui/react";
+import id from "date-fns/locale/id";
 
-export default function Create({ auth, event }) {
-    const evemt = event
+export default function Create({ auth, event = null }) {
+    const eventData = event
         ? event
         : {
               title: "",
-              start: "",
-              end: "",
+              start: new Date(),
+              end: new Date(),
               locaton: "",
               description: "",
           };
@@ -26,12 +31,14 @@ export default function Create({ auth, event }) {
         processing,
         progress,
         recentlySuccessful,
-    } = useForm(event);
+    } = useForm(eventData);
 
     const showToast = useToast();
 
     const submit = (e) => {
         e.preventDefault();
+
+        console.log(data.start.toISOString());
 
         if (event) {
             router.post(
@@ -55,7 +62,7 @@ export default function Create({ auth, event }) {
                 }
             );
         } else {
-            post("/event");
+            post("/invitation/event");
         }
     };
 
@@ -71,28 +78,144 @@ export default function Create({ auth, event }) {
             <Head title="Membuat Event" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <div>
-                            <InputLabel htmlFor="title" value="Judul Acara" />
+                    <form onSubmit={submit}>
+                        <div className="flex flex-col space-y-5 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <div>
+                                <InputLabel
+                                    htmlFor="title"
+                                    value="Judul Acara"
+                                />
 
-                            <TextInput
-                                id="title"
-                                className="mt-1 block w-full"
-                                value={data.title ?? ""}
-                                onChange={(e) =>
-                                    setData("title", e.target.value)
-                                }
-                                required
-                                isFocused
-                                autoComplete="title"
-                            />
+                                <TextInput
+                                    id="title"
+                                    className="mt-1 block w-full"
+                                    value={data.title ?? ""}
+                                    onChange={(e) =>
+                                        setData("title", e.target.value)
+                                    }
+                                    required
+                                    isFocused
+                                    autoComplete="title"
+                                    placeholder="cth: Akad Nikah"
+                                />
 
-                            <InputError
-                                className="mt-2"
-                                message={errors.title}
-                            />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.title}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="title"
+                                    value="Tanggal Mulai"
+                                />
+                                <DatePicker
+                                    id="start_date_time"
+                                    className="mt-4 border border-gray-300 text-gray-600 rounded"
+                                    selected={data.start}
+                                    onChange={(date) => {
+                                        setData("start", date);
+
+                                        console.log(date);
+                                    }}
+                                    showTimeSelect
+                                    locale={id}
+                                    timeFormat="HH:mm"
+                                    timeIntervals={15}
+                                    timeCaption="time"
+                                    dateFormat="MMMM d, yyyy h:mm aa"
+                                />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.start}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="title"
+                                    value="Tanggal Selesai"
+                                />
+                                <DatePicker
+                                    id="finish_date_time"
+                                    className="mt-4 border border-gray-300 text-gray-600 rounded"
+                                    selected={data.end}
+                                    onChange={(date) => setData("end", date)}
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={15}
+                                    timeCaption="time"
+                                    dateFormat="MMMM d, yyyy h:mm aa"
+                                />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.end}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel htmlFor="location" value="Lokasi" />
+                                <TextInput
+                                    id="location"
+                                    className="mt-1 block w-full"
+                                    value={data.location ?? ""}
+                                    onChange={(e) =>
+                                        setData("location", e.target.value)
+                                    }
+                                    required
+                                    isFocused
+                                    autoComplete="location"
+                                    placeholder="Masukkan lokasi acara"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.location}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="description"
+                                    value="Deskripsi"
+                                />
+                                <textarea
+                                    className="w-full border-gray-300 rounded"
+                                    id="description"
+                                    onChange={(e) =>
+                                        setData("description", e.target.value)
+                                    }
+                                    autoComplete="description"
+                                    value={data.description ?? ""}
+                                    placeholder="Deskripisi"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.description}
+                                />
+                            </div>
+                            <div className="mt-8 flex items-center gap-4">
+                                <PrimaryButton disabled={processing}>
+                                    {event ? "Update" : "Save"}
+                                </PrimaryButton>
+
+                                <Transition
+                                    show={recentlySuccessful}
+                                    enterFrom="opacity-0"
+                                    leaveTo="opacity-0"
+                                    className="transition ease-in-out"
+                                >
+                                    {event ? (
+                                        <p className="text-sm text-gray-600">
+                                            Updated
+                                        </p>
+                                    ) : (
+                                        <p className="text-sm text-gray-600">
+                                            Saved.
+                                        </p>
+                                    )}
+                                </Transition>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </AuthenticatedLayout>

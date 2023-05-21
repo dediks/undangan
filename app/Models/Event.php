@@ -10,4 +10,17 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory, HasUuids;
+
+    protected $fillable = [
+        'title',
+        'start',
+        'end',
+        'location',
+        'description'
+    ];
+
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class);
+    }
 }

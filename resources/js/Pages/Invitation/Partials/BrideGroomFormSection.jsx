@@ -16,7 +16,6 @@ export default function BrideGroomFormSection({
     className,
     invitation = null,
 }) {
-    console.log(invitation);
     const invitationData = invitation
         ? invitation
         : {

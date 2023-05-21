@@ -50,6 +50,11 @@ class Invitation extends Model
         return $this->hasOne(CoverSection::class);
     }
 
+    public function event()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

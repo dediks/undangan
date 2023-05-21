@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Arslan";
+    src: url("../fonts/arslan.ttf");
+}
+
+@font-face {
+    font-family: "Dream Avenue";
+    src: url("../fonts/dream-avenue.ttf");
+}
+
+@font-face {
+    font-family: "Hazelnuts";
+    src: url("../fonts/hazelnuts.otf");
+}
+
 /* Scrollbar styles */
 
 /* Firefox */

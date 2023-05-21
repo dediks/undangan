@@ -34,11 +34,13 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/events', [EventController::class, 'index']);
-        Route::get('/events/create', [EventController::class, 'create']);
     });
 
     Route::prefix('invitation')->group(function () {
+        Route::get('events', [EventController::class, 'index']);
+        Route::get('event/create', [EventController::class, 'create']);
+        Route::post('/event', [EventController::class, 'store']);
+
         Route::post('bridegroom', [InvitationController::class, 'store']);
         Route::get('bridegroom/create', [InvitationController::class, 'create']);
         Route::get('bridegroom/{bridegroom}/edit', [InvitationController::class, 'edit']);

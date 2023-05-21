@@ -16,12 +16,12 @@ module.exports = {
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
                 hand: ["Corinthia"],
+                arslan: ["Arslan", "Sans-serif"],
+                hazelnuts: ["Hazelnuts", "Sans-serif"],
+                dream_avenue: ["Dream Avenue"],
             },
         },
     },
 
-    plugins: [
-        require("@tailwindcss/forms"),
-        require("tw-elements/dist/plugin"),
-    ],
+    plugins: [require("@tailwindcss/forms")],
 };

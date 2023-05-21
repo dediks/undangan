@@ -2,6 +2,7 @@ import "./bootstrap";
 import "../css/app.css";
 import "filepond/dist/filepond.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";

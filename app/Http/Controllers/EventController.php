@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use Carbon\Carbon;
 use Inertia\Inertia;
 
 class EventController extends Controller
@@ -37,7 +38,20 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $validated = $request->safe();
+        $start = Carbon::parse($validated->start)->setTimezone('Asia/Jakarta');
+        $end = Carbon::parse($validated->end)->setTimezone('Asia/Jakarta');
+
+        $data = ['description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
+
+        $event = auth()->user()->invitations()->first()->event()->create($data);
+        dd($event);
+
+        dd($a->isoFormat('dddd, D MMMM Y'));
+        $date = Carbon::createFromIsoFormat('dddd, D MMMM Y',  $validated->start);
+
+        // dd($validated->start->isoFormat('dddd, D MMMM Y'));
+        dd($date);
     }
 
     /**
