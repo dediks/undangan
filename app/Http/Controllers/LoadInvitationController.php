@@ -10,7 +10,8 @@ class LoadInvitationController extends Controller
 {
     public function __invoke(Request $request, $couple)
     {
-        $invitation = Invitation::where('couple_id', $couple)->with('cover')->firstOrFail();
+        $invitation = Invitation::where('couple_id', $couple)->with('cover')->with('event')->with('guests')->firstOrFail();
+
         if ($request->query('to')) {
             $guest = $invitation->guests()->where('nickname', $request->query('to'))->firstOrFail();
         }

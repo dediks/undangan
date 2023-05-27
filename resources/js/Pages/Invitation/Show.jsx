@@ -7,7 +7,6 @@ import EventSection from "./Partials/EventSection";
 export default function Show({ auth }) {
     const invitation = usePage().props.invitation;
 
-    console.log("heee", invitation);
     return (
         <AuthenticatedLayout
             auth={auth}

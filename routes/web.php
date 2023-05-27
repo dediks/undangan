@@ -1,26 +1,18 @@
 <?php
 
-use App\Http\Controllers\AjaxInvitationController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\InvitationController;
-use App\Http\Controllers\LoadInvitationController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UploadController;
-use App\Http\Controllers\Section\CoverController;
-use App\Models\Invitation;
-use App\Models\User;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\Section\CoverController;
+use App\Http\Controllers\AjaxInvitationController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LoadInvitationController;
 
-Route::get('/test', function () {
-    dd();
-});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -67,13 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-// ourmarry.com/mbul-bojone?to=dedik
-// ourmarry.com/apps
-// ourmarry.com/apps/dashboard
-// ourmarry.com/apps/invitation/1/edit
-// ourmarry.com/apps/invitation/1
-// ourmarry.com/apps/invitation/create
-
 require __DIR__ . '/auth.php';
 
+Route::post('/guestbook/{invitationId}', [GuestController::class, 'store']);
 Route::get('/{couple}', LoadInvitationController::class);

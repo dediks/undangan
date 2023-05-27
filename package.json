@@ -20,13 +20,17 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "clsx": "^1.2.1",
         "filepond": "^4.30.4",
         "filepond-plugin-file-poster": "^2.5.1",
         "filepond-plugin-image-exif-orientation": "^1.0.11",
         "filepond-plugin-image-preview": "^4.6.11",
+        "framer-motion": "^10.12.12",
+        "photoswipe": "^5.3.7",
         "react-datepicker": "^4.11.0",
         "react-filepond": "^7.1.2",
         "react-icons": "^4.8.0",
+        "react-photoswipe-gallery": "^2.2.7",
         "react-toastify": "^9.1.2"
     }
 }
