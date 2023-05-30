@@ -1,9 +1,13 @@
+import { usePage } from "@inertiajs/react";
 import React from "react";
+import { FaEnvelopeOpenText } from "react-icons/fa";
 
-const Cover = () => {
+const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
+    const cover = usePage().props.data.cover;
+
     return (
         <section
-            className="bg-cover bg-center min-h-screen bg-slate-400 flex justify-center items-center"
+            className={`z-50 w-full bg-cover bg-center min-h-screen bg-slate-400 flex justify-center items-center`}
             style={{
                 backgroundImage: `url(/storage/images/${cover.background_image})`,
             }}
@@ -14,22 +18,39 @@ const Cover = () => {
                     className="mb-10 w-full text-center py-4 px-2 flex-col space-y-2
             "
                 >
-                    <div className="font-sans text-gray-300">
+                    <div className="font-hand text-gray-300 font-bold text-2xl md:text-4xl">
                         The Wedding of
                     </div>
                     <div className="text-gray-100 w-full py-6 justify-center flex space-x-2 text-center text-2xl">
-                        <span className="font-hand text-6xl">Naim</span>
-                        <span className="font-hand text-6xl">&</span>
-                        <span className="font-hand text-6xl">Luyyina</span>
+                        <span className="font-dream_avenue text-5xl md:text-9xl">
+                            Naim
+                        </span>
+                        <span className="font-dream_avenue text-5xl md:text-9xl">
+                            &
+                        </span>
+                        <span className="font-dream_avenue text-5xl md:text-9xl">
+                            Luyyina
+                        </span>
                     </div>
                 </div>
                 <div>
-                    <div className="text-gray-100">
+                    <div className="text-gray-100 border border-neutral-400 py-4 rounded-lg">
                         <div>Teruntuk :</div>
-                        <div className="text-2xl">Dedik Sugiharto</div>
+                        <div className="md:mt-5 md:text-3xl text-2xl font-hazelnuts">
+                            Dedik Sugiharto
+                        </div>
                     </div>
-                    <a className="cursor-pointer inline-block mt-10 font-bold text-gray-100 w-100 py-2 px-3 rounded-lg bg-yellow-600">
-                        Buka Undangan
+                    <a
+                        onClick={() => {
+                            setShowCover(false);
+                            toggle();
+                            setIsFullscreen(true);
+                            document.body.requestFullscreen();
+                        }}
+                        className="space-x-2 items-center cursor-pointer inline-flex mt-10 font-bold text-gray-100 w-100 py-2 px-3 rounded-lg bg-yellow-600"
+                    >
+                        <FaEnvelopeOpenText />
+                        <span>Buka Undangan</span>
                     </a>
                 </div>
             </div>

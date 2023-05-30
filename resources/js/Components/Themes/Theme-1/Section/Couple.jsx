@@ -13,7 +13,7 @@ const Couple = ({ data }) => {
                 <span className="mt-4 text-center font-hazelnuts text-lg font-semibold">
                     Assalamu'alaikum Warahmatullahi Wabarakatuh.{" "}
                 </span>
-                <p className="mt-4 text-center text-yellow-500">
+                <p className="leading-tight md:leading-normal md:px-16 md:py-6 mt-4 text-center md:text-xl text-yellow-500">
                     Maha suci Allah yang telah menciptakan mahluk-Nya
                     berpasang-pasangan. Ya Allah, perkenankanlah kami
                     merangkaikan kasih sayang yang Kau ciptakan diantara kami
@@ -21,7 +21,7 @@ const Couple = ({ data }) => {
                     keluarga yang sakinah, mawaddah, warahmah.
                 </p>
 
-                <div className="mt-6 relative flex justify-center items-center w-11/12 h-full">
+                <div className="mt-6 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
                     <img
                         className="absolute z-2 w-11/12 h-full aspect-square"
                         src={`/storage/assets/theme-1/border-2.gif`}
@@ -61,9 +61,13 @@ const Couple = ({ data }) => {
                         <FaTwitter className="w-6 h-6" />
                     </a>
                 </div>
-                <img src="/storage/assets/theme-1/and.png" />
+                <img
+                    src="/storage/assets/theme-1/and.png"
+                    className="md:py-12
+                "
+                />
 
-                <div className="mt-6 relative flex justify-center items-center w-11/12 h-full">
+                <div className="mt-6 md:mt-12 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
                     <img
                         className="absolute z-2 w-11/12 h-full aspect-square"
                         src={`/storage/assets/theme-1/border-2.gif`}

@@ -6,7 +6,7 @@ const DateTimeDisplay = ({ value, type, isDanger }) => {
         <div
             className={clsx(
                 isDanger ? "text-red-800" : "text-black",
-                "flex flex-col items-center font-sans text-gray-300 bg-amber-50 border-2 border-amber-200 p-4 rounded-3xl text-center"
+                "flex flex-col items-center font-sans text-yellow-700 bg-amber-50 border-2 border-amber-200 p-4 rounded-3xl text-center"
             )}
             // className={clsx(
             //   isDanger ? 'text-red-800' : 'text-black',
@@ -14,7 +14,7 @@ const DateTimeDisplay = ({ value, type, isDanger }) => {
             // )}
         >
             <p className="text-3xl font-hazelnuts">{value}</p>
-            <span className="text-xl text-gray-400 font-medium px-5">
+            <span className="text-xl text-neutral-800 font-medium px-5">
                 {type}
             </span>
         </div>

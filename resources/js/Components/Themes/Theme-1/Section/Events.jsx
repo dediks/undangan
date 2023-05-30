@@ -5,7 +5,7 @@ const Events = ({ data }) => {
     console.log(data);
     const events = data.event;
     return (
-        <section className="px-4 flex flex-col space-y-8">
+        <section className="px-4 flex flex-col space-y-8 md:space-y-16 md:px-16 md:py-24">
             {events.map((event, key) => (
                 <div
                     key={event.id}
@@ -46,7 +46,7 @@ const Events = ({ data }) => {
                                 Jl. Percetakan Negara 29, DKI Jakarta.
                             </span>
                         </div>
-                        <div className="mt-8 inline-flex justify-center items-center space-x-2 text-gray-50 text-xl bg-amber-500 rounded-full px-8 py-4">
+                        <div className="mt-8 inline-flex justify-center items-center space-x-2 text-white text-xl bg-amber-400 rounded-full px-8 py-4">
                             <MdLocationPin />
                             <span>Kunjungi via Gmaps</span>
                         </div>

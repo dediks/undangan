@@ -50,7 +50,7 @@ export default function CountingDown({ data }) {
                                 day={day}
                                 month={month}
                                 year={year}
-                                className="mx-auto mt-10 text-lg px-4 py-2 bg-gray-600/60 rounded-lg text-white"
+                                className="mx-auto mt-10 text-lg px-4 py-2 bg-gray-600 rounded-lg text-white"
                             />
                         </div>
                     )}

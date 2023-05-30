@@ -3,12 +3,12 @@ import { FaInstagram } from "react-icons/fa";
 
 const LiveStreaming = () => {
     return (
-        <section className="p-4 mt-16 h-min">
+        <section className="p-4 md:px-12 mt-16 h-min">
             <h1 className="font-hazelnuts text-center text-4xl">
                 Live Streaming
             </h1>
 
-            <div className="relative w-full h-full py-10 mt-10 text-center rounded-xl shadow-2xl">
+            <div className="relative w-full h-full py-10 mt-10 md:mt-16 text-center rounded-xl shadow-2xl">
                 <div className="w-full h-full rounded-xl">
                     <span className="font-hand text-4xl font-semibold text-amber-500">
                         The wedding of
@@ -23,7 +23,7 @@ const LiveStreaming = () => {
                             @naim
                         </span>
                     </div>
-                    <button className="mt-10 items-center inline-flex space-x-2 text-gray-100 text-2xl rounded-lg px-4 py-3 bg-gradient-to-b from-purple-700 to-orange-400">
+                    <button className="mt-10 items-center inline-flex space-x-2 text-gray-50 text-2xl rounded-lg px-4 py-3 bg-gradient-to-b from-purple-700 to-orange-500">
                         <FaInstagram className="w-6 h-6 text-gray-50" />
                         <span>Live Instagram</span>
                     </button>

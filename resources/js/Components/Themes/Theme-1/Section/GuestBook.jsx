@@ -7,6 +7,7 @@ import { useForm, usePage } from "@inertiajs/react";
 import React from "react";
 import { HiOutlineClock } from "react-icons/hi";
 import { MdVerified, MdWhatsapp } from "react-icons/md";
+import WhatsappForm from "./WhatsappForm";
 
 const GuestBook = () => {
     const invitationData = usePage().props.data;
@@ -143,69 +144,7 @@ const GuestBook = () => {
                         })}
                 </div>
             </div>
-            <div className="mt-10 p-4 flex flex-col space-y-4">
-                <div>
-                    <InputLabel htmlFor="name_for_wa" value="Nama" />
-                    <TextInput
-                        id="name_for_wa"
-                        className="mt-1 block w-full"
-                        value={data.name ?? ""}
-                        onChange={(e) => setData("name", e.target.value)}
-                        required
-                        isFocused
-                        autoComplete="name"
-                        placeholder="Nama"
-                    />
-
-                    <InputError className="mt-2" message={errors.name} />
-                </div>
-                <div>
-                    <InputLabel htmlFor="comment_for_wa" value="Ucapan" />
-                    <textarea
-                        id="comment_for_wa"
-                        className="mt-1 block w-full"
-                        value={data.comment ?? ""}
-                        onChange={(e) => setData("comment", e.target.value)}
-                        required
-                        autoComplete="comment_for_wa"
-                        placeholder="Ucapan"
-                    ></textarea>
-
-                    <InputError className="mt-2" message={errors.comment} />
-                </div>
-                <div>
-                    <InputLabel
-                        htmlFor="will_attend_for_wa"
-                        value="Konfirmasi Kehadiran"
-                    />
-                    <SelectInput
-                        id="will_attend_for_wa"
-                        className="mt-1 block w-full"
-                        selected={data.will_attend}
-                        onChange={(e) => setData("will_attend", e.target.value)}
-                        required
-                        autoComplete="will_attend_for_wa"
-                    >
-                        <option className="text-gray-500" value="">
-                            Konfirmasi Kehadiran
-                        </option>
-                        <option className="text-gray-500" value="1">
-                            Ya
-                        </option>
-                        <option className="text-gray-500" value="0">
-                            Tidak
-                        </option>
-                    </SelectInput>
-
-                    <InputError className="mt-2" message={errors.will_attend} />
-                </div>
-                <div className="w-full text-center">
-                    <button className="mt-5 mx-auto flex space-x-2 items-center px-4 py-2 rounded-2xl bg-green-800 font-bold text-gray-100">
-                        <MdWhatsapp />
-                        <span>Kirim ke Whatsapp</span>
-                    </button>
-                </div>
-            </div>
+            <WhatsappForm />
         </section>
     );
 };

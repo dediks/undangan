@@ -4,17 +4,18 @@ import { MdCalendarMonth } from "react-icons/md";
 
 export const Calendar = ({ data }) => {
     return (
-        <section className="bg-orange-50 py-10">
+        <section className="bg-orange-50 py-10 md:py-24">
             <div className="font-hazelnuts text-2xl text-center text-gray-500">
                 Rangkaian Acara Akan Diselenggarakan
             </div>
             <div className="mt-16 relative flex items-center justify-center">
                 <img
-                    className="w-9/12 absolute"
+                    className="w-9/12 md:w-5/12 h-36 absolute"
                     src="/storage/assets/theme-1/date-border.png"
                 />
-                <span className="font-dream_avenue text-3xl">
-                    Kamis, 25 Mei 2023
+                <span className="px-24 md:px-10 font-dream_avenue text-3xl">
+                    Kamis, 25 <br />
+                    Mei 2023
                 </span>
             </div>
             <div className="mt-20 text-center">
