@@ -36,8 +36,10 @@ const Couple = ({ data }) => {
                     <span>Tuban</span>
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
-                    <div className="font-dream_avenue text-8xl">Naim</div>
-                    <div className="font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
+                    <div className="font-dream_avenue  md:text-8xl text-7xl text-center">
+                        Naim
+                    </div>
+                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
                         M. Ainun Naim
                     </div>
                 </div>
@@ -85,8 +87,10 @@ const Couple = ({ data }) => {
                     <span>Banten</span>
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
-                    <div className="font-dream_avenue text-8xl">Luyyina</div>
-                    <div className="font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
+                    <div className="font-dream_avenue md:text-8xl text-7xl text-center">
+                        Luyyina
+                    </div>
+                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
                         Luyyina Mujahidah Atsaury, S.E
                     </div>
                 </div>

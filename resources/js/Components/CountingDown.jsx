@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import AddToCalendarButton from "./AddToCalendarButton";
 import CountdownTimer from "./CountDownTimer";
 import { scrollMotionVariants } from "@/Libs/motion";
+import { motion } from "framer-motion";
 import { useCountdown } from "@/Hooks/useCountdown";
 
 const month_in_number = {

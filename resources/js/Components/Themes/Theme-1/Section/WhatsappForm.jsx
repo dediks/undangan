@@ -36,7 +36,6 @@ const WhatsappForm = () => {
                     value={data.name ?? ""}
                     onChange={(e) => setData({ ...data, name: e.target.value })}
                     required
-                    isFocused
                     autoComplete="name"
                     placeholder="Nama"
                 />

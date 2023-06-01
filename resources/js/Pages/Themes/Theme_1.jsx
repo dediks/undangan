@@ -9,6 +9,7 @@ import GuestBook from "@/Components/Themes/Theme-1/Section/GuestBook";
 import Intro from "@/Components/Themes/Theme-1/Section/Intro";
 import LiveStreaming from "@/Components/Themes/Theme-1/Section/LiveStreaming";
 import useAudio from "@/Hooks/useAudio";
+import { Head } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import {
@@ -20,6 +21,7 @@ import {
 
 const Themes_1 = ({ data }) => {
     const cover = data.cover;
+    console.log(data);
 
     const url = "/storage/assets/song/asmalibrasi.mp3";
     const [playing, toggle] = useAudio(url);
@@ -163,6 +165,9 @@ const Themes_1 = ({ data }) => {
     ];
     return (
         <>
+            <Head>
+                <title>{`${data.bride_nickname} & ${data.groom_nickname}`}</title>
+            </Head>
             {showCover && (
                 <Cover
                     setShowCover={setShowCover}

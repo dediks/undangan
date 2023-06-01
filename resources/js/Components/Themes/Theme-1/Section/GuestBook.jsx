@@ -59,7 +59,6 @@ const GuestBook = () => {
                             value={data.name ?? ""}
                             onChange={(e) => setData("name", e.target.value)}
                             required
-                            isFocused
                             autoComplete="name"
                             placeholder="Nama"
                         />
