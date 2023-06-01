@@ -14,6 +14,7 @@ class LoadInvitationController extends Controller
 
         if ($request->query('to')) {
             $guest = $invitation->guests()->where('nickname', $request->query('to'))->firstOrFail();
+            $invitation->to = $guest;
         }
 
         return Inertia::render('Themes/' . $invitation->theme_id, ["data" => $invitation]);

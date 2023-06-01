@@ -33,7 +33,7 @@ const Couple = ({ data }) => {
                 </div>
                 <div className="flex space-x-2 items-center text-xl mt-8">
                     <MdLocationPin className="text-amber-500 " />
-                    <span>Jakarta</span>
+                    <span>Tuban</span>
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
                     <div className="font-dream_avenue text-8xl">Naim</div>
@@ -45,21 +45,24 @@ const Couple = ({ data }) => {
                     <div>Putri Pertama Dari Keluarga</div>
                     <div className="">
                         <span>Bapak </span>
-                        <span className="font-bold">Rek Nagahs</span>
+                        <span className="font-bold">M. Muchtar</span>
                         <span> &amp; Ibu </span>
-                        <span className="font-bold">Sqo Kraseel</span>
+                        <span className="font-bold">Siti Muntamah</span>
                     </div>
                 </div>
                 <div className="mt-10 flex space-x-3 items-center justify-center">
-                    <a className="p-2 bg-amber-500 rounded-full text-gray-200">
+                    <a
+                        href="https://instagram.com/nm.ainun?igshid=OGQ5ZDc2ODk2ZA=="
+                        className="p-2 bg-amber-500 rounded-full text-gray-200"
+                    >
                         <FaInstagram className="w-6 h-6" />
                     </a>
-                    <a className="p-2 bg-amber-500 rounded-full text-gray-200">
+                    {/* <a className="p-2 bg-amber-500 rounded-full text-gray-200">
                         <MdFacebook className="w-6 h-6" />
                     </a>
                     <a className="p-2 bg-amber-500 rounded-full text-gray-200">
                         <FaTwitter className="w-6 h-6" />
-                    </a>
+                    </a> */}
                 </div>
                 <img
                     src="/storage/assets/theme-1/and.png"
@@ -79,33 +82,36 @@ const Couple = ({ data }) => {
                 </div>
                 <div className="flex space-x-2 items-center text-xl mt-8">
                     <MdLocationPin className="text-amber-500 " />
-                    <span>Jakarta</span>
+                    <span>Banten</span>
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
-                    <div className="font-dream_avenue text-8xl">Naim</div>
+                    <div className="font-dream_avenue text-8xl">Luyyina</div>
                     <div className="font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
-                        M. Ainun Naim
+                        Luyyina Mujahidah Atsaury, S.E
                     </div>
                 </div>
                 <div className="text-center text-amber-600 text-xl mt-6">
-                    <div>Putri Pertama Dari Keluarga</div>
+                    <div>Putri Ketika Dari Keluarga</div>
                     <div className="">
                         <span>Bapak </span>
-                        <span className="font-bold">Rek Nagahs</span>
+                        <span className="font-bold">Drs. Yaya Dayana</span>
                         <span> &amp; Ibu </span>
-                        <span className="font-bold">Sqo Kraseel</span>
+                        <span className="font-bold">Ibu Dede Maryati</span>
                     </div>
                 </div>
                 <div className="mt-10 flex space-x-3 items-center justify-center">
-                    <a className="p-2 bg-amber-500 rounded-full text-gray-200">
+                    <a
+                        href="https://instagram.com/luyyinatsa?igshid=MzRlODBiNWFlZA=="
+                        className="p-2 bg-amber-500 rounded-full text-gray-200"
+                    >
                         <FaInstagram className="w-6 h-6 text-gray-50" />
                     </a>
-                    <a className="p-2 bg-amber-500 rounded-full text-gray-200">
+                    {/* <a className="p-2 bg-amber-500 rounded-full text-gray-200">
                         <MdFacebook className="w-6 h-6 text-gray-50" />
                     </a>
                     <a className="p-2 bg-amber-500 rounded-full text-gray-200">
                         <FaTwitter className="w-6 h-6 text-gray-50" />
-                    </a>
+                    </a> */}
                 </div>
             </div>
         </section>

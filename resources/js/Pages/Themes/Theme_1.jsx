@@ -225,7 +225,7 @@ const Themes_1 = ({ data }) => {
                     <section className="text-center mt-16">
                         <img
                             src="/storage/assets/theme-1/sun.png"
-                            className="w-4/12 mx-auto"
+                            className="w-4/12 mx-auto md:w-2/12 md:h-24"
                         />
                         <div className="text-center font-dream_avenue text-4xl px-16 mt-10">
                             Kami Yang Berbahagia

@@ -1,13 +1,17 @@
+import useQueryParams from "@/Hooks/useQueryParams";
 import { usePage } from "@inertiajs/react";
 import React from "react";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 
 const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
     const cover = usePage().props.data.cover;
+    const guest = usePage().props.data.to;
+
+    console.log(guest);
 
     return (
         <section
-            className={`z-50 w-full bg-cover bg-center min-h-screen bg-slate-400 flex justify-center items-center`}
+            className={`z-50 relative w-full bg-cover bg-center min-h-screen bg-slate-900 flex justify-center items-center`}
             style={{
                 backgroundImage: `url(/storage/images/${cover.background_image})`,
             }}
@@ -34,12 +38,15 @@ const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
                     </div>
                 </div>
                 <div>
-                    <div className="text-gray-100 border border-neutral-400 py-4 rounded-lg">
-                        <div>Teruntuk :</div>
-                        <div className="md:mt-5 md:text-3xl text-2xl font-hazelnuts">
-                            Dedik Sugiharto
+                    {guest && (
+                        <div className="text-gray-100 border border-neutral-400 py-4 rounded-lg">
+                            <div>Teruntuk :</div>
+                            <div className="md:mt-5 md:text-3xl text-2xl font-hazelnuts">
+                                Dedik Sugiharto
+                            </div>
                         </div>
-                    </div>
+                    )}
+
                     <a
                         onClick={() => {
                             setShowCover(false);

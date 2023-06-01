@@ -1,8 +1,8 @@
+import useDate from "@/Hooks/useDate";
 import React from "react";
 import { MdLocationPin } from "react-icons/md";
 
 const Events = ({ data }) => {
-    console.log(data);
     const events = data.event;
     return (
         <section className="px-4 flex flex-col space-y-8 md:space-y-16 md:px-16 md:py-24">
@@ -28,7 +28,7 @@ const Events = ({ data }) => {
                         />
                         <div className="text-center flex flex-col space-y-2">
                             <p className="text-3xl font-hazelnuts font-semibold">
-                                Kamis, 25 Mei 2023
+                                {useDate(event.start).date}
                             </p>
                             <span className="text-amber-600 font-medium">
                                 08.00 WIB - Selesai
@@ -40,10 +40,11 @@ const Events = ({ data }) => {
                         />
                         <div className="text-center flex flex-col space-y-2">
                             <p className="text-3xl font-hazelnuts font-semibold">
-                                Masjid Agung Jakarta
+                                Graha Mutiara Asri
                             </p>
                             <span className="text-amber-600 font-medium">
-                                Jl. Percetakan Negara 29, DKI Jakarta.
+                                Jl. Lingkar Selatan No.KM 05, Karangasem, Kec.
+                                Cibeber, Kota Cilegon, Banten
                             </span>
                         </div>
                         <div className="mt-8 inline-flex justify-center items-center space-x-2 text-white text-xl bg-amber-400 rounded-full px-8 py-4">

@@ -36,9 +36,9 @@ const Intro = () => {
                     <span className="">&</span>
                     <span className="">Luyyina</span>
                 </div>
-                <div className="mt-6 relative mx-auto flex items-center justify-center">
+                <div className="mt-6 md:mt-10 relative mx-auto flex items-center justify-center">
                     <img
-                        className="absolute h-10"
+                        className="absolute h-10 md:h-12 w-9/12 md:w-5/12"
                         src="/storage/assets/theme-1/border-3.png"
                     />
                     <div className="rounded-3xl py-2 text-xl flex">

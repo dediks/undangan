@@ -14,8 +14,8 @@ export const Calendar = ({ data }) => {
                     src="/storage/assets/theme-1/date-border.png"
                 />
                 <span className="px-24 md:px-10 font-dream_avenue text-3xl">
-                    Kamis, 25 <br />
-                    Mei 2023
+                    Minggu, 2 <br />
+                    Juli 2023
                 </span>
             </div>
             <div className="mt-20 text-center">
