@@ -2,7 +2,7 @@ import Accordion from "@/Components/Accordion";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import BrideGroomFormSection from "./Partials/BrideGroomFormSection";
-import EventSection from "./Partials/EventSection";
+import EventSection from "../Dashboard/Partials/EventSection";
 
 export default function Show({ auth }) {
     const invitation = usePage().props.invitation;
