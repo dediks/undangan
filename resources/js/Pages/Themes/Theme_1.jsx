@@ -4,6 +4,7 @@ import { Calendar } from "@/Components/Themes/Theme-1/Section/Calendar";
 import Couple from "@/Components/Themes/Theme-1/Section/Couple";
 import Cover from "@/Components/Themes/Theme-1/Section/Cover";
 import Events from "@/Components/Themes/Theme-1/Section/Events";
+import Footer from "@/Components/Themes/Theme-1/Section/Footer";
 import Gift from "@/Components/Themes/Theme-1/Section/Gift";
 import GuestBook from "@/Components/Themes/Theme-1/Section/GuestBook";
 import Intro from "@/Components/Themes/Theme-1/Section/Intro";
@@ -42,127 +43,6 @@ const Themes_1 = ({ data }) => {
             );
     }, []);
 
-    const images = [
-        {
-            src: "https://placekitten.com/1024/768?image=2",
-            thumbnail: "https://placekitten.com/80/60?image=2",
-            width: "1024",
-            height: "768",
-            title: "1",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=2",
-            thumbnail: "https://placekitten.com/80/60?image=2",
-            width: "1024",
-            height: "768",
-            title: "1",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-        {
-            src: "https://placekitten.com/1024/768?image=1",
-            thumbnail: "https://placekitten.com/80/60?image=1",
-            width: "1024",
-            height: "768",
-            title: "2",
-        },
-    ];
     return (
         <>
             <Head>
@@ -221,84 +101,13 @@ const Themes_1 = ({ data }) => {
                             Galeri Kami
                         </h1>
                         <div className="w-full h-full mt-10">
-                            <ImageGallery images={images} />
+                            <ImageGallery />
                         </div>
                     </section>
 
                     {/* <Gift /> */}
                     <GuestBook />
-                    <section className="text-center mt-16">
-                        <img
-                            src="/storage/assets/theme-1/sun.png"
-                            className="w-4/12 mx-auto md:w-2/12 md:h-24"
-                        />
-                        <div className="text-center font-dream_avenue text-4xl px-16 mt-10">
-                            Kami Yang Berbahagia
-                        </div>
-                        <div className="p-4">
-                            <div className="mt-10 flex flex-col space-y-3">
-                                <div className="font-hand text-4xl">
-                                    Keluarga besar
-                                </div>
-                                <div className="font-hazelnuts">
-                                    Mempelai Wanita
-                                </div>
-                                <div className="text-amber-700">
-                                    Bapak{" "}
-                                    <span className="font-hazelnuts font-bold">
-                                        anu
-                                    </span>{" "}
-                                    dan{" "}
-                                    <span className="font-hazelnuts font-bold">
-                                        Ibu ono
-                                    </span>
-                                </div>
-                            </div>
-                            <img
-                                src="/storage/assets/theme-1/and.png"
-                                className="mt-12 -rotate-12 mx-auto"
-                            />
-                            <div className="mt-10 flex flex-col space-y-3">
-                                <div className="font-hand text-4xl">
-                                    Keluarga besar
-                                </div>
-                                <div className="font-hazelnuts">
-                                    Mempelai Wanita
-                                </div>
-                                <div className="text-amber-700">
-                                    Bapak{" "}
-                                    <span className="font-hazelnuts font-bold">
-                                        anu
-                                    </span>{" "}
-                                    dan{" "}
-                                    <span className="font-hazelnuts font-bold">
-                                        Ibu ono
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mt-10 relative w-full">
-                            <div
-                                className="bottom-0 w-full h-3/4 absolute bg-gradient-to-t from-black to-transparent
-                     "
-                            />
-                            <img
-                                className=""
-                                src="/storage/images/01gzy3p4hezt977je9dsrdnh2y/cover/cover.webp"
-                            />
-                            <div className="flex flex-col items-center space-y-3 justify-center w-full text-xl z-50 absolute bottom-24 text-gray-500">
-                                <span className="font-hazelnuts text-gray-200">
-                                    ourmarry.com
-                                </span>
-                                <a
-                                    className=""
-                                    href="https://wa.me/+6281553010422"
-                                >
-                                    <MdWhatsapp className="text-green-500" />
-                                </a>
-                            </div>
-                        </div>
-                    </section>
+                    <Footer />
                 </div>
             )}
         </>

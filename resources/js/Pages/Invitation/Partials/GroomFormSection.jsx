@@ -106,7 +106,13 @@ export default function GroomFormSection({ data, errors, setData, progress }) {
                     }
                     required
                     autoComplete="groom_as_child_position"
-                />
+                >
+                    <option value={1}>Pertama</option>
+                    <option value={2}>Kedua</option>
+                    <option value={3}>Ketiga</option>
+                    <option value={4}>Keempat</option>
+                    <option value={5}>Kelima</option>
+                </SelectInput>
 
                 <InputError
                     className="mt-2"

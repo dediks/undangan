@@ -12,8 +12,6 @@ import WhatsappForm from "./WhatsappForm";
 const GuestBook = () => {
     const invitationData = usePage().props.data;
 
-    console.log(invitationData);
-
     const {
         data,
         setData,
@@ -49,7 +47,7 @@ const GuestBook = () => {
             </div>
             <div className="mt-10 border border-gray-100 p-4 bg-amber-50 ">
                 <div className="text-base font-bold text-center py-4">
-                    17 Ucapan
+                    {invitationData.guests.length} Ucapan
                 </div>
                 <form onSubmit={submit} className="flex flex-col space-y-4">
                     <div>
@@ -126,7 +124,9 @@ const GuestBook = () => {
                                     <div className="w-11/12 flex flex-col">
                                         <div className="font-bold text-lg flex space-x-2 items-center">
                                             <span>{guest.nickname}</span>
-                                            <MdVerified className="text-blue-400" />
+                                            {guest.will_attend == "yes" && (
+                                                <MdVerified className="text-blue-400" />
+                                            )}
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <span className="text-gray-500 text-sm">

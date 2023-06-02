@@ -50,6 +50,11 @@ class Invitation extends Model
         return $this->hasOne(CoverSection::class);
     }
 
+    public function galleries()
+    {
+        return $this->hasMany(ImageGallery::class);
+    }
+
     public function event()
     {
         return $this->hasMany(Event::class);

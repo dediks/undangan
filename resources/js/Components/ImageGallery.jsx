@@ -1,8 +1,11 @@
+import { usePage } from "@inertiajs/react";
 import "photoswipe/dist/photoswipe.css";
 import React from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = () => {
+    const images = usePage().props.data.galleries;
+
     const smallItemStyles = {
         cursor: "pointer",
         objectFit: "cover",
@@ -37,19 +40,19 @@ const ImageGallery = ({ images }) => {
                 {images.map((image, index) => (
                     <Item
                         key={index}
-                        original={image.src}
-                        thumbnail={image.thumbnail}
+                        original={image.image_url}
+                        thumbnail={image.image_url}
                         width={image.width}
                         height={image.height}
-                        title={image.title}
+                        title={image.alt}
                     >
                         {({ ref, open }) => (
                             <div className={`w-full mb-3`}>
                                 <img
                                     className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded opacity-75 hover:opacity-100`}
                                     ref={ref}
-                                    src={image.thumbnail}
-                                    alt={image.title}
+                                    src={image.image_url}
+                                    alt={image.alt}
                                     onClick={open}
                                     style={smallItemStyles}
                                 />

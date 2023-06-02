@@ -3,6 +3,8 @@ import { MdLocationPin, MdFacebook } from "react-icons/md";
 import { FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Couple = ({ data }) => {
+    console.log("couple", data);
+
     const cover = data.cover;
     return (
         <section className="flex justify-center items-center mt-28 px-3 py-10">
@@ -28,7 +30,7 @@ const Couple = ({ data }) => {
                     />
                     <img
                         className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 rounded-t-full rounded-b-full"
-                        src={`/storage/images/${cover.background_image}`}
+                        src={`/storage/images/01gzy3p4hezt977je9dsrdnh2y/groom_photo.webp`}
                     />
                 </div>
                 <div className="flex space-x-2 items-center text-xl mt-8">
@@ -39,7 +41,7 @@ const Couple = ({ data }) => {
                     <div className="font-dream_avenue  md:text-8xl text-7xl text-center">
                         Naim
                     </div>
-                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
+                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-xl sm:text-2xl bg-amber-100 text-gray-600 font-semibold">
                         M. Ainun Naim
                     </div>
                 </div>
@@ -79,7 +81,7 @@ const Couple = ({ data }) => {
                     />
                     <img
                         className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 rounded-t-full rounded-b-full"
-                        src={`/storage/images/${cover.background_image}`}
+                        src={`/storage/images/01gzy3p4hezt977je9dsrdnh2y/bride_photo.webp`}
                     />
                 </div>
                 <div className="flex space-x-2 items-center text-xl mt-8">
@@ -90,12 +92,12 @@ const Couple = ({ data }) => {
                     <div className="font-dream_avenue md:text-8xl text-7xl text-center">
                         Luyyina
                     </div>
-                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-2xl bg-amber-100 text-gray-600 font-semibold">
+                    <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-xl sm:text-2xl bg-amber-100 text-gray-600 font-semibold">
                         Luyyina Mujahidah Atsaury, S.E
                     </div>
                 </div>
                 <div className="text-center text-amber-600 text-xl mt-6">
-                    <div>Putri Ketika Dari Keluarga</div>
+                    <div>Putri Ketiga Dari Keluarga</div>
                     <div className="">
                         <span>Bapak </span>
                         <span className="font-bold">Drs. Yaya Dayana</span>
