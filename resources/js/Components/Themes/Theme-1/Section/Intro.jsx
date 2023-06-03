@@ -31,21 +31,30 @@ const Intro = () => {
                     <h1 className="md:mt-6 mt-4  md:text-5xl font-bold text-yellow-500 font-hand text-4xl text-center">
                         The Wedding of
                     </h1>
-                    <div className="rounded-b-full md:py-6 mx-auto mt-6 relative flex justify-center items-center md:w-2/6 md:h-2/6  w-4/6 h-4/6">
-                        <img
-                            className="absolute z-2 w-11/12 h-full aspect-square"
-                            src={`/storage/assets/theme-1/border-1.gif`}
-                        />
-                        <img
-                            className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 md:w-9/12 aspect-square rounded-t-full rounded-b-2xl md:rounded-b-3xl"
-                            src={`/storage/images/01gzy3p4hezt977je9dsrdnh2y/intro/intro.webp`}
-                        />
-                    </div>
-                    <div className="text-center text-4xl flex justify-center space-x-2 mt-6 font-dream_avenue">
-                        <span className="">{data.groom_nickname}</span>
-                        <span className="">&</span>
-                        <span className="">{data.bride_nickname}</span>
-                    </div>
+                    <motion.div
+                        className="w-full"
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ once: true, amount: 0.8 }}
+                    >
+                        <motion.div variants={scrollMotionVariants}>
+                            <div className="rounded-b-full md:py-6 mx-auto mt-6 relative flex justify-center items-center md:w-2/6 md:h-2/6  w-4/6 h-4/6">
+                                <img
+                                    className="absolute z-2 w-11/12 h-full aspect-square"
+                                    src={`/storage/assets/theme-1/border-1.gif`}
+                                />
+                                <img
+                                    className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 md:w-9/12 aspect-square rounded-t-full rounded-b-2xl md:rounded-b-3xl"
+                                    src={`/storage/images/${data?.id}/intro/intro.webp`}
+                                />
+                            </div>
+                            <div className="text-center text-4xl flex justify-center space-x-2 mt-6 font-dream_avenue">
+                                <span className="">{data.groom_nickname}</span>
+                                <span className="">&</span>
+                                <span className="">{data.bride_nickname}</span>
+                            </div>
+                        </motion.div>
+                    </motion.div>
                     <div className="mt-6 md:mt-10 relative mx-auto flex items-center justify-center">
                         <img
                             className="absolute h-10 md:h-12 w-9/12 md:w-4/12"

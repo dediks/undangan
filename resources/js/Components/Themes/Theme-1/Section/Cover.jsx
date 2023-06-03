@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import { FaEnvelopeOpenText } from "react-icons/fa";
+import { coverVariants } from "@/Libs/motion";
 
 const show = {
     opacity: 1,
@@ -25,22 +26,21 @@ const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
     const [isVisible, setIsVisible] = useState(true);
 
     return (
-        <AnimatePresence>
-            <motion.div
-                key="cover"
-                className="w-full"
-                initial={{ y: 300, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -300, opacity: 0 }}
-            >
-                <section
-                    className={`z-50 relative w-full bg-cover bg-center min-h-screen bg-slate-900 flex justify-center items-center`}
-                    style={{
-                        backgroundImage: `url(/storage/images/${cover.background_image})`,
-                    }}
+        <section
+            className={`z-50 relative w-full bg-cover bg-center min-h-screen bg-slate-900 flex justify-center items-center`}
+            style={{
+                backgroundImage: `url(/storage/images/${cover.background_image})`,
+            }}
+        >
+            <div className="absolute bg-slate-800 w-full h-full opacity-50"></div>
+            <div className="text-center relative">
+                <motion.div
+                    className="w-full"
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0.8 }}
                 >
-                    <div className="absolute bg-slate-800 w-full h-full opacity-50"></div>
-                    <div className="text-center relative">
+                    <motion.div variants={coverVariants}>
                         <div
                             className="mb-10 w-full text-center py-4 px-2 flex-col space-y-2
             "
@@ -84,10 +84,10 @@ const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
                                 <span>Buka Undangan</span>
                             </a>
                         </div>
-                    </div>
-                </section>
-            </motion.div>
-        </AnimatePresence>
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
     );
 };
 

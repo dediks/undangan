@@ -2,14 +2,21 @@ import useAudio from "@/Hooks/useAudio";
 import React from "react";
 import { MdMusicNote } from "react-icons/md";
 
-const MusicButton = ({ toggle, className }) => {
+const MusicButton = ({ toggle, isPlaying, className }) => {
+    console.log("is Playing", isPlaying);
     return (
         <section className={className}>
             <button
                 onClick={toggle}
-                className="animate-waving p-2 md:p-4 shadow-lg rounded-full bg-orange-200"
+                className={`${
+                    isPlaying ? "ring-1 ring-green-500" : "ring-2 ring-red-300"
+                } p-2 md:p-4 shadow-lg rounded-full bg-orange-200/60`}
             >
-                <MdMusicNote className="animate-waving-hand" />
+                <MdMusicNote
+                    className={`${
+                        isPlaying ? "animate-waving-hand" : ""
+                    } text-black`}
+                />
             </button>
         </section>
     );
