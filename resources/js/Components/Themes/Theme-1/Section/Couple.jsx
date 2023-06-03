@@ -36,7 +36,7 @@ const Couple = ({ data }) => {
                             />
                             <img
                                 className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 rounded-t-full rounded-b-full"
-                                src={`/storage/images/01gzy3p4hezt977je9dsrdnh2y/groom_photo.webp`}
+                                src={`/storage/images/${data?.id}/groom_photo.webp`}
                             />
                         </div>
                     </motion.div>
@@ -97,7 +97,7 @@ const Couple = ({ data }) => {
                             />
                             <img
                                 className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 rounded-t-full rounded-b-full"
-                                src={`/storage/images/01gzy3p4hezt977je9dsrdnh2y/bride_photo.webp`}
+                                src={`/storage/images/${data?.id}/bride_photo.webp`}
                             />
                         </div>
                     </motion.div>
