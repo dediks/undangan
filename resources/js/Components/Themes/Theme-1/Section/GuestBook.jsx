@@ -135,7 +135,11 @@ const GuestBook = () => {
                         return (
                             <div key={index} className="w-full flex space-x-3">
                                 <div className="w-10 p-2 flex items-center justify-center font-bold self-start rounded-full bg-red-800 opacity-50 text-gray-50">
-                                    {guest.fullname.charAt(0).toUpperCase()}
+                                    {guest.fullname
+                                        ? guest.fullname.charAt(0).toUpperCase()
+                                        : guest.nickname
+                                              .charAt(0)
+                                              .toUpperCase()}
                                 </div>
                                 <div className="w-11/12 flex flex-col">
                                     <div className="font-bold text-lg flex space-x-2 items-center">
