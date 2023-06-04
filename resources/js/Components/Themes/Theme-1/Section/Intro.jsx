@@ -3,6 +3,7 @@ import { usePage } from "@inertiajs/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { motion } from "framer-motion";
 import { scrollMotionVariants } from "@/Libs/motion";
+import useDate from "@/Hooks/useDate";
 
 const intro = { hidden: { opacity: 0 } };
 const item = { hidden: { x: -10, opacity: 0 } };
@@ -38,13 +39,13 @@ const Intro = () => {
                         viewport={{ once: true, amount: 0.8 }}
                     >
                         <motion.div variants={scrollMotionVariants}>
-                            <div className="rounded-b-full md:py-6 mx-auto mt-6 relative flex justify-center items-center md:w-2/6 md:h-2/6  w-4/6 h-4/6">
+                            <div className="rounded-b-full md:py-1 mx-auto mt-6 relative flex justify-center items-center md:w-2/6 md:h-2/6  w-4/6 h-4/6">
                                 <img
-                                    className="absolute z-2 w-11/12 h-full aspect-square"
+                                    className="absolute z-2 w-10/12 h-full aspect-square"
                                     src={`/storage/assets/theme-1/border-1.gif`}
                                 />
                                 <img
-                                    className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 md:w-9/12 aspect-square rounded-t-full rounded-b-2xl md:rounded-b-3xl"
+                                    className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-9/12 md:w-9/12 aspect-square rounded-t-full rounded-b-2xl md:rounded-b-3xl"
                                     src={`/storage/images/${data?.id}/intro/intro.webp`}
                                 />
                             </div>
@@ -61,8 +62,7 @@ const Intro = () => {
                             src="/storage/assets/theme-1/border-3.png"
                         />
                         <div className="rounded-3xl py-2 text-xl flex">
-                            <span>Minggu</span>
-                            <span>, 2 Juli 2023</span>
+                            {useDate(data.event[0].start).date}
                         </div>
                     </div>
                     <div className="text-neutral-600 text-center font-hazelnuts my-6 px-16">

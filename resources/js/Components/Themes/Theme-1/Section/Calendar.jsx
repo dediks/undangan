@@ -1,4 +1,5 @@
 import CountingDown from "@/Components/CountingDown";
+import useDate from "@/Hooks/useDate";
 import React from "react";
 import { MdCalendarMonth } from "react-icons/md";
 
@@ -14,8 +15,7 @@ export const Calendar = ({ data }) => {
                     src="/storage/assets/theme-1/date-border.png"
                 />
                 <span className="px-24 md:px-10 font-dream_avenue text-3xl">
-                    Minggu, 2 <br />
-                    Juli 2023
+                    {useDate(data.event[0].start).date}
                 </span>
             </div>
             <div className="mt-20 text-center">

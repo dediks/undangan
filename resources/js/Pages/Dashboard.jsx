@@ -75,6 +75,12 @@ export default function Dashboard(props) {
                             >
                                 Data Acara
                             </Link>
+                            <Link
+                                href="/invitation/guests"
+                                className="w-1/2 p-4 flex justify-center items-center sm:p-8 text-center font-semibold bg-slate-200 shadow sm:rounded-lg"
+                            >
+                                Data Tamu
+                            </Link>
                         </div>
                         <div className="px-4 border mx-6"></div>
                         <div className="flex space-x-10 p-6 text-gray-900">

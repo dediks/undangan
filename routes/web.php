@@ -33,6 +33,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('event/create', [EventController::class, 'create']);
         Route::post('/event', [EventController::class, 'store']);
 
+        Route::get('guests', [GuestController::class, 'index']);
+        Route::post('/{invitationId}/guest', [GuestController::class, 'store']);
+        Route::get('/{invitationId}/guest/create', [GuestController::class, 'create']);
+
         Route::post('bridegroom', [InvitationController::class, 'store']);
         Route::get('bridegroom/create', [InvitationController::class, 'create']);
         Route::get('bridegroom/{bridegroom}/edit', [InvitationController::class, 'edit']);
@@ -61,5 +65,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::post('/guestbook/{invitationId}', [GuestController::class, 'store']);
+Route::post('/guestbook/{invitationId}', [GuestController::class, 'storeComment']);
 Route::get('/{couple}', LoadInvitationController::class);

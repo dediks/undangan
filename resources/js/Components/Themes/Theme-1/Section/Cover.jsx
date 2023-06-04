@@ -65,7 +65,10 @@ const Cover = ({ setShowCover, toggle, setIsFullscreen }) => {
                                 <div className="text-gray-100 border border-neutral-400 py-4 rounded-lg">
                                     <div>Teruntuk :</div>
                                     <div className="md:mt-5 md:text-3xl text-2xl font-hazelnuts">
-                                        Dedik Sugiharto
+                                        {guest.fullname == "" ||
+                                        guest.fullname != null
+                                            ? guest.fullname.toUpperCase()
+                                            : guest.nickname.toUpperCase()}
                                     </div>
                                 </div>
                             )}

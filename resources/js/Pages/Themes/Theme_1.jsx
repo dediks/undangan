@@ -11,21 +11,13 @@ import GuestBook from "@/Components/Themes/Theme-1/Section/GuestBook";
 import Intro from "@/Components/Themes/Theme-1/Section/Intro";
 import LiveStreaming from "@/Components/Themes/Theme-1/Section/LiveStreaming";
 import Quote from "@/Components/Themes/Theme-1/Section/Quote";
+import WhatsappForm from "@/Components/Themes/Theme-1/Section/WhatsappForm";
 import useAudio from "@/Hooks/useAudio";
 import { Head } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
-import { FaInstagram } from "react-icons/fa";
-import {
-    MdCopyAll,
-    MdCreditCard,
-    MdKeyboardArrowDown,
-    MdWhatsapp,
-} from "react-icons/md";
+import { ToastContainer } from "react-toastify";
 
 const Themes_1 = ({ data }) => {
-    const cover = data.cover;
-    console.log(data);
-
     const url = "/storage/assets/song/asmalibrasi.mp3";
     const [playing, toggle] = useAudio(url);
     const [showCover, setShowCover] = useState(true);
@@ -50,6 +42,9 @@ const Themes_1 = ({ data }) => {
             <Head>
                 <title>{`${data.bride_nickname} & ${data.groom_nickname}`}</title>
             </Head>
+            <div>
+                <ToastContainer autoClose={true} draggable={false} />
+            </div>
             {showCover && (
                 <Cover
                     setShowCover={setShowCover}
@@ -58,7 +53,7 @@ const Themes_1 = ({ data }) => {
                 />
             )}
             {!showCover && (
-                <div className="bg-white min-h-screen w-full relative">
+                <div className="bg-white min-h-screen w-full relative md:p-8">
                     <MusicButton
                         toggle={toggle}
                         isPlaying={playing}
@@ -70,7 +65,7 @@ const Themes_1 = ({ data }) => {
                     <Calendar data={data} />
                     <Events data={data} />
                     <GMaps />
-                    <LiveStreaming />
+                    {/* <LiveStreaming /> */}
                     <section className="md:mt-12 p-4 md:px-12 mt-10">
                         <h1 className="font-hazelnuts text-center text-4xl">
                             Galeri Kami
@@ -82,6 +77,7 @@ const Themes_1 = ({ data }) => {
 
                     {/* <Gift /> */}
                     <GuestBook />
+                    <WhatsappForm />
                     <Footer />
                 </div>
             )}

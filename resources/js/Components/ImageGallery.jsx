@@ -49,7 +49,7 @@ const ImageGallery = () => {
                         {({ ref, open }) => (
                             <div className={`w-full mb-3`}>
                                 <img
-                                    className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded opacity-75 hover:opacity-100`}
+                                    className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded hover:opacity-100`}
                                     ref={ref}
                                     src={image.image_url}
                                     alt={image.alt}

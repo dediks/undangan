@@ -30,12 +30,21 @@ class Guest extends Model
         return date('m/d/Y', strtotime($this->attributes['created_at']));
     }
 
+    private function getUpdatedAtValue()
+    {
+        return date('m/d/Y', strtotime($this->attributes['updated_at']));
+    }
+
     public function getDates()
     {
         return ['created_at', 'updated_at'];
     }
 
     public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date)->diffForHumans();
+    }
+    public function getUpdatedAtAttribute($date)
     {
         return Carbon::parse($date)->diffForHumans();
     }

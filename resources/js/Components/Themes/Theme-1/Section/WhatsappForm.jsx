@@ -8,6 +8,7 @@ import { usePage } from "@inertiajs/react";
 
 const WhatsappForm = () => {
     const invitationData = usePage().props.data;
+    console.log("phone number : ", invitationData.phone_number);
 
     const [data, setData] = useState({
         name: "",
@@ -20,10 +21,15 @@ const WhatsappForm = () => {
         const will_attend = data.will_attend;
         const name = data.name;
 
-        const url = `https://wa.me/send/?phone=${invitationData.phone_number}&text=Buat+pasangan+pengantin+baru...%0D%0A%0D%0ADari%3A%0D%0A*${name}*+dan+${will_attend}%0D%0A%0D%0ADoa+dan+harapanku+untuk+kalian%3A%0D%0A${message}&type=phone_number&app_absent=0`;
+        let a = `Halo, saya ${name}. ${message}. Saya ${will_attend}`;
 
-        // const url = `https://wa.me/${invitationData.phone_number}?text=${message}`;
-        window.location.replace(url);
+        console.log(message);
+
+        const url = `https://wa.me/${
+            invitationData.phone_number
+        }?text=${encodeURI(a)}`;
+
+        window.location.href = url;
     };
 
     return (
