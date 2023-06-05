@@ -34,7 +34,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/event', [EventController::class, 'store']);
 
         Route::get('guests', [GuestController::class, 'index']);
+        Route::get('/guest/{guestId}/edit', [GuestController::class, 'edit']);
         Route::post('/{invitationId}/guest', [GuestController::class, 'store']);
+        Route::put('/{invitationId}/guests/{guestId}', [GuestController::class, 'update']);
         Route::get('/{invitationId}/guest/create', [GuestController::class, 'create']);
 
         Route::post('bridegroom', [InvitationController::class, 'store']);

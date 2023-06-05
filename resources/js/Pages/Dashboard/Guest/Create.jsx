@@ -1,4 +1,4 @@
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
 import EventSection from "../Partials/EventSection";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import useToast from "@/Hooks/useToast";
@@ -39,7 +39,7 @@ export default function Create({ auth, guest = null }) {
 
         if (guest) {
             router.post(
-                `/invitation/${invitationID}/${guest["id"]}`,
+                `/invitation/${invitationId}/guests/${guest["id"]}`,
                 {
                     _method: "put",
                     ...data,
@@ -68,7 +68,7 @@ export default function Create({ auth, guest = null }) {
             auth={auth}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Tambah Tamu
+                    {guest ? "Edit Data Tamu" : "Tambah Tamu"}
                 </h2>
             }
         >

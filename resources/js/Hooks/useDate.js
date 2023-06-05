@@ -1,5 +1,10 @@
 const useDate = (date_in_string) => {
-    const date_obj = new Date(date_in_string);
+    let t = date_in_string.split(/[- :]/);
+
+    // Apply each element to the Date function
+    let d = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+    let date_obj = new Date(d);
+
     const [day, month, date, year, hour, minutes, seconds] = [
         date_obj.getDay(),
         date_obj.getMonth(),

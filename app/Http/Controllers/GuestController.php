@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\StoreGuestRequest;
+use App\Http\Requests\UpdateGuestRequest;
 use App\Models\Guest;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
@@ -40,6 +41,30 @@ class GuestController extends Controller
 
             return back();
         } catch (\Throwable $th) {
+        }
+    }
+
+    public function edit($guestId)
+    {
+        $guest = Guest::find($guestId);
+
+        return Inertia::render('Dashboard/Guest/Create', ['guest' => $guest]);
+    }
+
+    public function update(UpdateGuestRequest $updateGuestRequest)
+    {
+        $validated = $updateGuestRequest->safe();
+        $invitationId = $updateGuestRequest->invitationId;
+        $guestId = $updateGuestRequest->guestId;
+
+        try {
+            $guest = Guest::findOrFail($guestId);
+            $guest->update($validated->toArray());
+
+            return back()->with('message', 'Update berhasil');
+        } catch (\Throwable $th) {
+            throw $th;
+            return back()->with('message', 'Update Gagal');
         }
     }
 

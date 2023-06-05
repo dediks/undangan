@@ -9,7 +9,7 @@ export const Calendar = ({ data }) => {
             <div className="font-hazelnuts text-2xl text-center text-gray-500">
                 Rangkaian Acara Akan Diselenggarakan
             </div>
-            <div className="mt-16 relative flex items-center justify-center">
+            <div className="text-center mt-16 relative flex items-center justify-center">
                 <img
                     className="w-9/12 md:w-5/12 h-36 absolute"
                     src="/storage/assets/theme-1/date-border.png"

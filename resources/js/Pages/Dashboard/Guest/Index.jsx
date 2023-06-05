@@ -65,7 +65,7 @@ const Index = ({ auth, guests }) => {
                                         </td>
                                         <td className="text-center px-2 py-4">
                                             <a
-                                                href="#"
+                                                href={`/invitation/guest/${data.id}/edit`}
                                                 className="text-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                             >
                                                 Edit

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { coverVariants, scrollMotionVariants } from "@/Libs/motion";
 
 const Couple = ({ data }) => {
-    const cover = data.cover;
+    console.log("Couple", data);
     return (
         <section className="flex justify-center items-center mt-28 px-3 py-10">
             <div className="flex flex-col items-center justify-center">
@@ -29,7 +29,7 @@ const Couple = ({ data }) => {
                     viewport={{ once: true, amount: 0.8 }}
                 >
                     <motion.div variants={scrollMotionVariants}>
-                        <div className="mt-6 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
+                        <div className="mx-auto mt-6 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
                             <img
                                 className="absolute z-2 w-11/12 h-full aspect-square"
                                 src={`/storage/assets/theme-1/border-2.gif`}
@@ -47,19 +47,23 @@ const Couple = ({ data }) => {
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
                     <div className="font-dream_avenue  md:text-8xl text-7xl text-center">
-                        Naim
+                        {data.groom_nickname ?? "Groom Nickname"}
                     </div>
                     <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-xl sm:text-2xl bg-amber-100 text-gray-600 font-semibold">
-                        M. Ainun Naim
+                        {data.groom_fullname ?? "Groom Fullname"}
                     </div>
                 </div>
                 <div className="text-center text-amber-600 text-xl mt-6">
-                    <div>Putri Pertama Dari Keluarga</div>
+                    <div>Putra Pertama Dari Keluarga</div>
                     <div className="">
                         <span>Bapak </span>
-                        <span className="font-bold">M. Muchtar</span>
+                        <span className="font-bold">
+                            {data.groom_father ?? "Groom Father Name"}
+                        </span>
                         <span> &amp; Ibu </span>
-                        <span className="font-bold">Siti Muntamah</span>
+                        <span className="font-bold">
+                            {data.groom_mother ?? "Groom Mother Name"}
+                        </span>
                     </div>
                 </div>
                 <div className="mt-10 flex space-x-3 items-center justify-center">
@@ -90,14 +94,14 @@ const Couple = ({ data }) => {
                     viewport={{ once: true, amount: 0.8 }}
                 >
                     <motion.div variants={scrollMotionVariants}>
-                        <div className="mt-6 md:mt-12 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
+                        <div className="mx-auto mt-6 md:mt-12 relative flex justify-center items-center md:w-8/12 w-11/12 h-full">
                             <img
                                 className="absolute z-2 w-11/12 h-full aspect-square"
                                 src={`/storage/assets/theme-1/border-2.gif`}
                             />
                             <img
                                 className="z-1 p-3 sm:p-2 md:p-3 bg-center object-cover w-10/12 rounded-t-full rounded-b-full"
-                                src={`/storage/images/${data?.id}/bride_photo.webp`}
+                                src={`/storage/images/${data?.bride_photo}`}
                             />
                         </div>
                     </motion.div>
@@ -108,19 +112,23 @@ const Couple = ({ data }) => {
                 </div>
                 <div className="flex flex-col space-y-6 mt-6">
                     <div className="font-dream_avenue md:text-8xl text-7xl text-center">
-                        Luyyina
+                        {data.bride_nickname ?? "Bride Nickname"}
                     </div>
                     <div className="text-center font-hazelnuts rounded-lg px-4 py-2 text-xl sm:text-2xl bg-amber-100 text-gray-600 font-semibold">
-                        Luyyina Mujahidah Atsaury, S.E
+                        {data.bride_fullname ?? "Bride Fullname"}
                     </div>
                 </div>
                 <div className="text-center text-amber-600 text-xl mt-6">
                     <div>Putri Ketiga Dari Keluarga</div>
                     <div className="">
                         <span>Bapak </span>
-                        <span className="font-bold">Drs. Yaya Dayana</span>
+                        <span className="font-bold">
+                            {data.bride_father ?? "Bride Father Name"}
+                        </span>
                         <span> &amp; Ibu </span>
-                        <span className="font-bold">Ibu Dede Maryati</span>
+                        <span className="font-bold">
+                            {data.bride_mother ?? "Bride Mother Name"}
+                        </span>
                     </div>
                 </div>
                 <div className="mt-10 flex space-x-3 items-center justify-center">
