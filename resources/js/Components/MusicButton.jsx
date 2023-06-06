@@ -9,7 +9,9 @@ const MusicButton = ({ toggle, isPlaying, className }) => {
             <button
                 onClick={toggle}
                 className={`${
-                    isPlaying ? "ring-1 ring-green-500" : "ring-2 ring-red-300"
+                    isPlaying
+                        ? "ring-1 ring-green-500 animate-pulse"
+                        : "ring-2 ring-red-300"
                 } p-2 md:p-4 shadow-lg rounded-full bg-orange-200/60`}
             >
                 <MdMusicNote

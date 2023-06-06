@@ -80,7 +80,7 @@ export default function Create({ auth, guest = null }) {
                             <div>
                                 <InputLabel
                                     htmlFor="nickname"
-                                    value="Nama Pendek"
+                                    value="Identifier"
                                 />
 
                                 <TextInput

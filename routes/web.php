@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/{invitationId}/guest', [GuestController::class, 'store']);
         Route::put('/{invitationId}/guests/{guestId}', [GuestController::class, 'update']);
         Route::get('/{invitationId}/guest/create', [GuestController::class, 'create']);
+        Route::delete('/guests/{guestId}', [GuestController::class, 'destroy']);
 
         Route::post('bridegroom', [InvitationController::class, 'store']);
         Route::get('bridegroom/create', [InvitationController::class, 'create']);

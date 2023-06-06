@@ -13,7 +13,7 @@ class LoadInvitationController extends Controller
         $invitation = Invitation::where('couple_id', $couple)->with('cover')->with('event')->with('guests')->with('galleries')->firstOrFail();
 
         if ($request->query('to')) {
-            $guest = $invitation->guests()->where('nickname', $request->query('to'))->firstOrFail();
+            $guest = $invitation->guests()->where('nickname', $request->query('to'))->first();
             $invitation->to = $guest;
         }
 

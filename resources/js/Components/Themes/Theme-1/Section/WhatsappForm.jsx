@@ -92,7 +92,7 @@ const WhatsappForm = () => {
             <div className="w-full text-center">
                 <button
                     onClick={handleClick}
-                    className="mt-5 mx-auto flex space-x-2 items-center px-4 py-2 rounded-2xl bg-green-800 font-bold text-gray-100"
+                    className="hover:bg-green-700 mt-5 mx-auto flex space-x-2 items-center px-4 py-2 rounded-2xl bg-green-800 font-bold text-gray-100"
                 >
                     <MdWhatsapp />
                     <span>Kirim ke Whatsapp</span>

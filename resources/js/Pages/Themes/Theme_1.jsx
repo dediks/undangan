@@ -53,7 +53,7 @@ const Themes_1 = ({ data }) => {
                 />
             )}
             {!showCover && (
-                <div className="bg-white min-h-screen w-full relative md:p-8">
+                <div className="bg-white min-h-screen w-full relative md:p-8 md:rounded-lg">
                     <MusicButton
                         toggle={toggle}
                         isPlaying={playing}
@@ -77,7 +77,6 @@ const Themes_1 = ({ data }) => {
 
                     {/* <Gift /> */}
                     <GuestBook />
-                    <WhatsappForm />
                     <Footer />
                 </div>
             )}

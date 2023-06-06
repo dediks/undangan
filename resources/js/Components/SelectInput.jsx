@@ -19,8 +19,6 @@ export default forwardRef(function SelectInput(
         }
     }, []);
 
-    const options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
     return (
         <select name={name} className={className} {...props} ref={input}>
             {children}

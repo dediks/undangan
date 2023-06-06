@@ -34,14 +34,25 @@ class GuestController extends Controller
 
             $invitation = Invitation::findOrFail($invitationId);
 
+            $nickname = $validated->nickname;
+            $nickname = preg_replace('/\s+/', '', $nickname);
+            $nickname = preg_replace('/&/', '%26', $nickname);
+
             $invitation->guests()->create([
-                "nickname" => $validated->nickname,
+                "nickname" => $nickname,
                 "fullname" => $validated->fullname,
             ]);
 
             return back();
         } catch (\Throwable $th) {
         }
+    }
+
+    public function destroy($guestId)
+    {
+        $guest = Guest::find($guestId)->delete();
+
+        return back()->with('message', 'Tamu berhasil dihapus');
     }
 
     public function edit($guestId)

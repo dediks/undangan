@@ -11,13 +11,13 @@ class Event extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = [
-        'title',
-        'start',
-        'end',
-        'location',
-        'description'
-    ];
+protected $fillable = [
+    'title',
+    'start',
+    'end',
+    'location',
+    'description'
+];
 
     public function invitation()
     {
