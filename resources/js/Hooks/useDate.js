@@ -84,7 +84,7 @@ const useDate = (date_in_string) => {
 
     return {
         date: `${day_in_word}, ${date} ${month_in_word} ${year}`,
-        time: `${hour}:${minutes}`,
+        time: `${hour > 9 ? hour: '0'+hour }:${minutes > 9 ? minutes :'0'+minutes }`,
     };
 };
 

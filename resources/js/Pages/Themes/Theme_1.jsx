@@ -57,7 +57,7 @@ const Themes_1 = ({ data }) => {
                     <MusicButton
                         toggle={toggle}
                         isPlaying={playing}
-                        className={"bottom-3 md:bottom-5 left-2 fixed z-50"}
+                        className={"bottom-4 md:bottom-5 left-2 fixed z-50"}
                     />
                     <Intro />
                     <Quote />

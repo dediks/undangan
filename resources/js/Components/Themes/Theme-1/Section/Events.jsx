@@ -30,7 +30,7 @@ const Events = ({ data }) => {
                                     {useDate(event.start).date}
                                 </p>
                                 <span className="text-amber-600 font-medium text-lg">
-                                    08.00 WIB - Selesai
+                                {useDate(event.start).time} - Selesai
                                 </span>
                             </div>
                         </div>

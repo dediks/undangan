@@ -27,7 +27,7 @@ const Couple = ({ data }) => {
                             className=""
                             initial="offscreen"
                             whileInView="onscreen"
-                            viewport={{ once: true, amount: 0.1 }}
+                            viewport={{ once: true, amount: 0.4 }}
                             variants={scrollMotionVariants}
                         >
                             <div className="md:w-6/12 w-11/12 mx-auto mt-6 md:mt-12 relative flex justify-center items-center h-full aspect-[3/4]">
@@ -91,7 +91,7 @@ const Couple = ({ data }) => {
                         <motion.div
                             initial="offscreen"
                             whileInView="onscreen"
-                            viewport={{ once: true, amount: 0.1 }}
+                            viewport={{ once: true, amount: 0.4 }}
                             variants={scrollMotionVariants}
                         >
                             <div className="w-11/12 md:w-6/12 mx-auto mt-6 md:mt-12 relative flex justify-center items-center h-full aspect-[3/4]">

@@ -47,14 +47,12 @@ export default function AddToCalendarButton({
         "" +
         date_target;
 
-    console.log(dates);
-
     const full_url = `${
-        google_calendar_url + "Naim"
+        google_calendar_url + "Na'im"
     }%20&%20${"Luyyina"}&details=${"Cirebon"},%20${day}%20${month}%20${year}%20${"alamat lengkap"}&dates=${dates}&location=${"https://maplink.com"}`;
 
     return (
-        <button className="mt-8 inline-flex justify-center items-center space-x-2 text-gray-100 text-xl bg-amber-500 rounded-full px-8 py-4">
+        <button className="bg-pink-800/40  hover:bg-pink-800/60 mt-8 inline-flex justify-center items-center space-x-2 text-gray-100 text-xl rounded-full px-8 py-4">
             <a
                 className="flex items-center space-x-2"
                 target="_blank"

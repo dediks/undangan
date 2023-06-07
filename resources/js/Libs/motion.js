@@ -28,7 +28,7 @@ export const coverVariants = {
         opacity: 1,
         scale: 1,
         transition: {
-            duration: 0.9,
+            duration: 1.67``,
             delay: 0.1,
             ease: [0, 0.71, 0.2, 1.01],
         },

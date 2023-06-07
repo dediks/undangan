@@ -8,7 +8,6 @@ import { usePage } from "@inertiajs/react";
 
 const WhatsappForm = () => {
     const invitationData = usePage().props.data;
-    console.log("phone number : ", invitationData.phone_number);
 
     const [data, setData] = useState({
         name: "",

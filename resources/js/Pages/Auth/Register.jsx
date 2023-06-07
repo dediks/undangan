@@ -32,7 +32,6 @@ export default function Register() {
                 : event.target.value
         );
 
-        console.log(data.user_type);
     };
 
     const submit = (e) => {

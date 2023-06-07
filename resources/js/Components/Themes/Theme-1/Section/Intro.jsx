@@ -2,7 +2,7 @@ import React from "react";
 import { usePage } from "@inertiajs/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { motion } from "framer-motion";
-import { scrollMotionVariants } from "@/Libs/motion";
+import { coverVariants } from "@/Libs/motion";
 import useDate from "@/Hooks/useDate";
 
 const Intro = () => {
@@ -28,7 +28,10 @@ const Intro = () => {
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0.6 }}
-                    variants={scrollMotionVariants}
+                    transition={{
+                        duration: 10
+                      }}
+                    variants={coverVariants}
                 >
                     <div className="rounded-b-full md:py-1 mx-auto mt-6 relative flex justify-center items-center md:w-2/6 md:h-2/6  w-4/6 h-4/6">
                         <img
