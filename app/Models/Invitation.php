@@ -27,7 +27,9 @@ class Invitation extends Model
         "groom_as_child_position",
         'groom_photo',
         'bride_photo',
-        'couple_id'
+        'couple_id',
+        'bride_domicile',
+        'groom_domicile'
     ];
 
     protected static function booted(): void

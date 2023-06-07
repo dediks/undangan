@@ -11,6 +11,7 @@ use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\Section\CoverController;
 use App\Http\Controllers\AjaxInvitationController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LoadInvitationController;
 
 
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('invitation')->group(function () {
+        Route::get('/{invitationId}/links', [LinkController::class, 'index']);
+
         Route::get('events', [EventController::class, 'index']);
         Route::get('events/create', [EventController::class, 'create']);
         Route::post('/events', [EventController::class, 'store']);

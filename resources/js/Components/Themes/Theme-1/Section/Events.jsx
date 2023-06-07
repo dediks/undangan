@@ -3,7 +3,7 @@ import React from "react";
 import { MdLocationPin } from "react-icons/md";
 
 const Events = ({ data }) => {
-    const events = data.event;
+    const events = data.events;
     return (
         <section className="p-8 justify-center xl:space-x-16 flex flex-col space-y-5 md:space-y-0 md:flex-row md:space-x-5">
             {events.map((event, key) => (
@@ -30,7 +30,7 @@ const Events = ({ data }) => {
                                     {useDate(event.start).date}
                                 </p>
                                 <span className="text-amber-600 font-medium text-lg">
-                                {useDate(event.start).time} - Selesai
+                                    {useDate(event.start).time} - Selesai
                                 </span>
                             </div>
                         </div>

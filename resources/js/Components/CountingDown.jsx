@@ -20,7 +20,7 @@ const month_in_number = {
 };
 
 export default function CountingDown({ data }) {
-    let dateTime = data.event[0]?.start?.split(" ");
+    let dateTime = data.events[0]?.start?.split(" ");
     let date = dateTime[0].split("-");
     let time = dateTime[1];
     let day = date[2];

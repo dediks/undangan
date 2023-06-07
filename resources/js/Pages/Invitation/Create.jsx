@@ -21,7 +21,7 @@ export default function Create({ auth, mustVerifyEmail, status }) {
                             Data Mempelai
                         </div>
                     </Link>
-                    <Link href="/invitation/event/create">
+                    <Link href="/invitation/events/create">
                         <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                             Data Acara
                         </div>

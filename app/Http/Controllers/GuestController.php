@@ -36,7 +36,6 @@ class GuestController extends Controller
 
             $nickname = $validated->nickname;
             $nickname = preg_replace('/\s+/', '', $nickname);
-            $nickname = preg_replace('/&/', '%26', $nickname);
 
             $invitation->guests()->create([
                 "nickname" => $nickname,

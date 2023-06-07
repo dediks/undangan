@@ -43,7 +43,7 @@ const Couple = ({ data }) => {
                         </motion.div>
                         <div className="w-full justify-center flex space-x-2 items-center text-xl mt-8">
                             <MdLocationPin className="text-amber-500 " />
-                            <span>Tuban</span>
+                            <span>{data.groom_domicile}</span>
                         </div>
                         <div className="flex flex-col justify-center items-center space-y-6 mt-6">
                             <div className="font-dream_avenue  md:text-8xl text-7xl text-center">
@@ -108,7 +108,7 @@ const Couple = ({ data }) => {
 
                         <div className="w-full justify-center flex space-x-2 items-center text-xl mt-8">
                             <MdLocationPin className="text-amber-500 " />
-                            <span>Banten</span>
+                            <span>{data.bride_domicile}</span>
                         </div>
                         <div className="flex flex-col justify-center items-center space-y-6 mt-6">
                             <div className="font-dream_avenue md:text-8xl text-7xl text-center">

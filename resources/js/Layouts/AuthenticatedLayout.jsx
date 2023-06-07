@@ -29,24 +29,31 @@ export default function Authenticated({ auth, header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
-
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
-                                    Dashboards
+                                    Dashboard
                                 </NavLink>
                             </div>
                         </div>
-
-                        <div className="hidden sm:flex sm:items-center sm:ml-6">
+                        <div className="flex space-x-2 items-center justify-end w-full">
                             <Link
-                                href={invitation?.couple_id}
-                                className="rounded border-2 px-2 py-1 cursor-pointer hover:bg-gray-300 text-sm"
+                                href={`/invitation/${invitation?.id}/links`}
+                                className="rounded border-2 px-2 py-0 md:py-1 cursor-pointer hover:bg-neutral-100 hover:text-gray-700 text-sm"
+                            >
+                                Get All Links
+                            </Link>
+                            <a
+                                href={`/${invitation?.couple_id}`}
+                                target="_blank"
+                                className="rounded border-2 px-2 py-0 md:py-1 cursor-pointer hover:bg-neutral-100 hover:text-gray-700 text-sm"
                             >
                                 Preview Undangan
-                            </Link>
+                            </a>
+                        </div>
+                        <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -90,7 +97,6 @@ export default function Authenticated({ auth, header, children }) {
                                 </Dropdown>
                             </div>
                         </div>
-
                         <div className="-mr-2 flex items-center sm:hidden">
                             <button
                                 onClick={() =>
@@ -145,7 +151,7 @@ export default function Authenticated({ auth, header, children }) {
                             href={route("dashboard")}
                             active={route().current("dashboard")}
                         >
-                            Dashboards
+                            Dashboard
                         </ResponsiveNavLink>
                     </div>
 

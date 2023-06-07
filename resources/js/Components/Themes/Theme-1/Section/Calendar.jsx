@@ -23,7 +23,7 @@ export const Calendar = ({ data }) => {
                         src="/storage/assets/theme-1/date-border.png"
                     />
                     <span className="px-24 md:px-10 font-dream_avenue text-3xl xl:text-4xl">
-                        {useDate(data.event[0].start).date}
+                        {useDate(data.events[0].start).date}
                     </span>
                 </div>
             </motion.div>
