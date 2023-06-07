@@ -70,7 +70,7 @@ export default function Dashboard(props) {
                                 Data Mempelai
                             </Link>
                             <Link
-                                href="/invitation/event/create"
+                                href="/invitation/events"
                                 className="w-1/2 p-4 flex justify-center items-center sm:p-8 text-center font-semibold bg-slate-200 shadow sm:rounded-lg"
                             >
                                 Data Acara

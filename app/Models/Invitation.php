@@ -55,7 +55,7 @@ class Invitation extends Model
         return $this->hasMany(ImageGallery::class);
     }
 
-    public function event()
+    public function events()
     {
         return $this->hasMany(Event::class);
     }

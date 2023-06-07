@@ -17,8 +17,10 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Event/Index');
+        $events = auth()->user()->invitations()->first()->events()->get();
+        return Inertia::render('Dashboard/Event/Index', ["events" => $events]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,14 +46,14 @@ class EventController extends Controller
 
         $data = ['description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
 
-        $event = auth()->user()->invitations()->first()->event()->create($data);
-        dd($event);
+        try {
+            $event = auth()->user()->invitations()->first()->events()->create($data);
 
-        dd($a->isoFormat('dddd, D MMMM Y'));
-        $date = Carbon::createFromIsoFormat('dddd, D MMMM Y',  $validated->start);
-
-        // dd($validated->start->isoFormat('dddd, D MMMM Y'));
-        dd($date);
+            return back()->with('message', 'Event berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        return back()->with('message', 'Event gagal ditambahkan');
     }
 
     /**
@@ -71,9 +73,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit($eventId)
     {
-        //
+        $event = Event::find($eventId);
+
+        return Inertia::render('Dashboard/Event/Create', ['event' => $event]);
     }
 
     /**
@@ -83,9 +87,26 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(UpdateEventRequest $updateEventRequest)
     {
-        //
+        $validated = $updateEventRequest->safe();
+        $invitationId = $updateEventRequest->invitationId;
+        $eventId = $updateEventRequest->eventId;
+
+        $start = Carbon::parse($validated->start)->setTimezone('Asia/Jakarta');
+        $end = Carbon::parse($validated->end)->setTimezone('Asia/Jakarta');
+
+        $data = ['description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
+
+        try {
+            $event = Event::findOrFail($eventId);
+            $event->update($data);
+
+            return back()->with('message', 'Update berhasil');
+        } catch (\Throwable $th) {
+            throw $th;
+            return back()->with('message', 'Update Gagal');
+        }
     }
 
     /**
@@ -94,8 +115,11 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+
+    public function destroy($eventId)
     {
-        //
+        $event = Event::find($eventId)->delete();
+
+        return back()->with('message', 'Tamu berhasil dihapus');
     }
 }

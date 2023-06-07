@@ -1,4 +1,4 @@
-import { Head, useForm } from "@inertiajs/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
 import EventSection from "../Partials/EventSection";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import useToast from "@/Hooks/useToast";
@@ -12,8 +12,16 @@ import { Transition } from "@headlessui/react";
 import id from "date-fns/locale/id";
 
 export default function Create({ auth, event = null }) {
+    const invitationId = usePage().props.invitation.id;
+
     const eventData = event
-        ? event
+        ? {
+              title: event.title,
+              start: new Date(event.start),
+              end: new Date(event.end),
+              location: event.location,
+              description: event.description,
+          }
         : {
               title: "",
               start: new Date(),
@@ -33,23 +41,22 @@ export default function Create({ auth, event = null }) {
         recentlySuccessful,
     } = useForm(eventData);
 
+    console.log("event", data);
+
     const showToast = useToast();
 
     const submit = (e) => {
         e.preventDefault();
 
-        console.log(data.start.toISOString());
-
         if (event) {
             router.post(
-                `/evemt/${event["id"]}`,
+                `/invitation/${invitationId}/events/${event["id"]}`,
                 {
                     _method: "put",
                     ...data,
                 },
                 {
                     onSuccess: (res) => {
-                        // console.log("heeeeeee");
                         showToast("berhasil", {
                             type: "success",
                             position: "top-right",
