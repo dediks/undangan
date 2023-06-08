@@ -33,8 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/{invitationId}/links', [LinkController::class, 'index']);
 
         Route::get('events', [EventController::class, 'index']);
-        Route::get('events/create', [EventController::class, 'create']);
-        Route::post('/events', [EventController::class, 'store']);
+        Route::get('/{invitationId}/events/create', [EventController::class, 'create']);
+        Route::post('/{invitationId}/events', [EventController::class, 'store']);
         Route::delete('/events/{eventId}', [EventController::class, 'destroy']);
         Route::get('/events/{eventId}/edit', [EventController::class, 'edit']);
         Route::put('/{invitationId}/events/{eventId}', [EventController::class, 'update']);

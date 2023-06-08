@@ -38,7 +38,7 @@ const Generate = ({ auth, identifier }) => {
                                                     identifier
                                                 );
                                             }}
-                                            className=" text-black hover:border-gray-500 border-2 hover:border-2 border-black hover:bg-blue-50 hover:text-black rounded-xl px-2 py-1"
+                                            className=" text-gray-400 hover:border-gray-500 border-2 hover:border-2 border-gray-400 hover:bg-blue-50 hover:text-black rounded-lg px-2 py-1"
                                         >
                                             Copy All Link
                                         </button>

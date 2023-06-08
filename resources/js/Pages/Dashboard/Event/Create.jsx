@@ -41,15 +41,13 @@ export default function Create({ auth, event = null }) {
         recentlySuccessful,
     } = useForm(eventData);
 
-    console.log("event", data);
-
     const showToast = useToast();
 
     const submit = (e) => {
         e.preventDefault();
 
         if (event) {
-            router.post(
+            put(
                 `/invitation/${invitationId}/events/${event["id"]}`,
                 {
                     _method: "put",
@@ -69,7 +67,7 @@ export default function Create({ auth, event = null }) {
                 }
             );
         } else {
-            post("/invitation/event");
+            post(`/invitation/${invitationId}/events`);
         }
     };
 
@@ -118,7 +116,7 @@ export default function Create({ auth, event = null }) {
                                 />
                                 <DatePicker
                                     id="start_date_time"
-                                    className="mt-4 border border-gray-300 text-gray-600 rounded"
+                                    className="w-full mt-4 border border-gray-300 text-gray-600 rounded"
                                     selected={data.start}
                                     onChange={(date) => {
                                         setData("start", date);
@@ -144,7 +142,7 @@ export default function Create({ auth, event = null }) {
                                 />
                                 <DatePicker
                                     id="finish_date_time"
-                                    className="mt-4 border border-gray-300 text-gray-600 rounded"
+                                    className="w-full mt-4 border border-gray-300 text-gray-600 rounded"
                                     selected={data.end}
                                     onChange={(date) => setData("end", date)}
                                     showTimeSelect

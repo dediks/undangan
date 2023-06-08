@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Models\Invitation;
 use Carbon\Carbon;
 use Inertia\Inertia;
 
@@ -38,7 +39,7 @@ class EventController extends Controller
      * @param  \App\Http\Requests\StoreEventRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEventRequest $request)
+    public function store(StoreEventRequest $request, $invitationId)
     {
         $validated = $request->safe();
         $start = Carbon::parse($validated->start)->setTimezone('Asia/Jakarta');
@@ -47,7 +48,7 @@ class EventController extends Controller
         $data = ['description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
 
         try {
-            $event = auth()->user()->invitations()->first()->events()->create($data);
+            $event = Invitation::findOrFail($invitationId)->events()->create($data);
 
             return back()->with('message', 'Event berhasil ditambahkan');
         } catch (\Throwable $th) {
