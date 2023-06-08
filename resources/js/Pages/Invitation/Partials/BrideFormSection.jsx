@@ -92,6 +92,24 @@ export default function BrideFormSection({ data, errors, setData, progress }) {
             </div>
             <div>
                 <InputLabel
+                    htmlFor="bride_domicile"
+                    value="Domisili Mempelai Wanita"
+                />
+
+                <TextInput
+                    id="bride_domicile"
+                    className="mt-1 block w-full"
+                    value={data.bride_domicile ?? ""}
+                    onChange={(e) => setData("bride_domicile", e.target.value)}
+                    required
+                    isFocused
+                    autoComplete="bride_domicile"
+                />
+
+                <InputError className="mt-2" message={errors.bride_domicile} />
+            </div>
+            <div>
+                <InputLabel
                     htmlFor="bride_as_child_position"
                     value="Putra ke"
                 />

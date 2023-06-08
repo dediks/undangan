@@ -31,6 +31,8 @@ export default function BrideGroomFormSection({
               groom_as_child_position: 0,
               groom_photo: null,
               bride_photo: null,
+              bride_domicile: "",
+              groom_domicile: "",
           };
 
     const {

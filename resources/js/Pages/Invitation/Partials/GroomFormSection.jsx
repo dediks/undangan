@@ -90,7 +90,25 @@ export default function GroomFormSection({ data, errors, setData, progress }) {
                     autoComplete="groom_mother"
                 />
 
-                <InputError className="mt-2" message={errors.bride_mother} />
+                <InputError className="mt-2" message={errors.groom_mother} />
+            </div>
+            <div>
+                <InputLabel
+                    htmlFor="groom_domicile"
+                    value="Domisili Mempelai Pria"
+                />
+
+                <TextInput
+                    id="groom_domicile"
+                    className="mt-1 block w-full"
+                    value={data.groom_domicile ?? ""}
+                    onChange={(e) => setData("groom_domicile", e.target.value)}
+                    required
+                    isFocused
+                    autoComplete="groom_domicile"
+                />
+
+                <InputError className="mt-2" message={errors.groom_domicile} />
             </div>
             <div>
                 <InputLabel
