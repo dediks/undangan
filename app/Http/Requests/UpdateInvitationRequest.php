@@ -37,6 +37,8 @@ class UpdateInvitationRequest extends FormRequest
             "bride_mother" => ['required'],
             "groom_mother" => ['required'],
             "groom_father" => ['required'],
+            "groom_domicile" => ['required'],
+            "bride_domicile" => ['required'],
             "bride_as_child_position" => ['required'],
             "groom_as_child_position" => ['required'],
             'bride_photo' => [
