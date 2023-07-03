@@ -1,5 +1,4 @@
 import { Head, router, useForm, usePage } from "@inertiajs/react";
-import EventSection from "../Partials/EventSection";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import useToast from "@/Hooks/useToast";
 import TextInput from "@/Components/TextInput";
@@ -21,6 +20,7 @@ export default function Create({ auth, event = null }) {
               end: new Date(event.end),
               location: event.location,
               description: event.description,
+              map_link: event.map_link,
           }
         : {
               title: "",
@@ -28,6 +28,7 @@ export default function Create({ auth, event = null }) {
               end: new Date(),
               locaton: "",
               description: "",
+              map_link: "",
           };
 
     const {
@@ -55,6 +56,7 @@ export default function Create({ auth, event = null }) {
                 },
                 {
                     onSuccess: (res) => {
+                        console.log(res);
                         showToast("berhasil", {
                             type: "success",
                             position: "top-right",
@@ -195,6 +197,29 @@ export default function Create({ auth, event = null }) {
                                 <InputError
                                     className="mt-2"
                                     message={errors.description}
+                                />
+                            </div>
+                            <div>
+                                <InputLabel
+                                    htmlFor="map_link"
+                                    value="Map Link"
+                                />
+                                <TextInput
+                                    id="map_link"
+                                    className="mt-1 block w-full"
+                                    value={data.map_link ?? ""}
+                                    onChange={(e) =>
+                                        setData("map_link", e.target.value)
+                                    }
+                                    required
+                                    isFocused
+                                    autoComplete="map_link"
+                                    placeholder="Masukkan map link"
+                                />
+
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.map_link}
                                 />
                             </div>
                             <div className="mt-8 flex items-center gap-4">

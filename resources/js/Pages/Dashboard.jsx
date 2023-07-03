@@ -4,12 +4,16 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import useToast from "@/Hooks/useToast";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Switch } from "@headlessui/react";
 import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
 export default function Dashboard(props) {
-    const { invitation } = props;
+    const { invitation, section } = props;
     const [coupleId, setCoupleId] = useState(invitation?.couple_id ?? "");
+    const [enabled, setEnabled] = useState(false);
+
+    const [sectionStatus, setSectionStatus] = useState(section);
 
     const showToast = useToast();
 
@@ -87,19 +91,73 @@ export default function Dashboard(props) {
                             <div className="bg-white font-semibold py-2 px-3">
                                 Section
                             </div>
-                            <div className="flex space-x-3 p-2 border">
+                            <div className="grid grid-cols-3 p-2 border gap-2">
                                 <Link
                                     href={`/invitation/${invitation.id}/cover`}
-                                    className="bg-slate-100 rounded-xl w-full p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
                                 >
                                     Cover
                                 </Link>
                                 <Link
-                                    href={"#"}
-                                    className="bg-slate-100 rounded-xl w-full p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                    href={`/invitation/${invitation.id}/intro`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
                                 >
                                     Intro
                                 </Link>
+                                <Link
+                                    href={`/invitation/${invitation.id}/gmap`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Gmap
+                                </Link>
+                                <Link
+                                    href={`/invitation/${invitation.id}/galleries`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Galleries
+                                </Link>
+                                <Link
+                                    href={"#"}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Music
+                                </Link>
+                                {sectionStatus["whatsappForm"] && (
+                                    <div className="relative border rounded-lg border-gray-800">
+                                        <Link
+                                            href={"#"}
+                                            className="rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                        >
+                                            Whatsapp Form
+                                        </Link>
+                                        <Switch
+                                            checked={
+                                                sectionStatus["whatsappForm"]
+                                                    .show
+                                            }
+                                            onChange={setEnabled}
+                                            className={`${
+                                                sectionStatus["whatsappForm"]
+                                                    .show
+                                                    ? "bg-blue-600"
+                                                    : "bg-gray-200"
+                                            } absolute top-2 right-2 inline-flex h-6 w-11 items-center rounded-full`}
+                                        >
+                                            <span className="sr-only">
+                                                Enable Whatsapp Form
+                                            </span>
+                                            <span
+                                                className={`${
+                                                    sectionStatus[
+                                                        "whatsappForm"
+                                                    ].show
+                                                        ? "translate-x-6"
+                                                        : "translate-x-1"
+                                                } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+                                            />
+                                        </Switch>
+                                    </div>
+                                )}
                             </div>
                             {/* <Link
                             href="/invitation/section/cover"

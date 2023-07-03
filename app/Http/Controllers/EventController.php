@@ -91,13 +91,14 @@ class EventController extends Controller
     public function update(UpdateEventRequest $updateEventRequest)
     {
         $validated = $updateEventRequest->safe();
+
         $invitationId = $updateEventRequest->invitationId;
         $eventId = $updateEventRequest->eventId;
 
         $start = Carbon::parse($validated->start)->setTimezone('Asia/Jakarta');
         $end = Carbon::parse($validated->end)->setTimezone('Asia/Jakarta');
 
-        $data = ['description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
+        $data = ['map_link' => $validated->map_link, 'description' => $validated->description, "title" => $validated->title, 'location' => $validated->location, "start" => $start, "end" => $end];
 
         try {
             $event = Event::findOrFail($eventId);

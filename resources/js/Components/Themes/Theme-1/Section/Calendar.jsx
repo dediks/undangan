@@ -23,7 +23,9 @@ export const Calendar = ({ data }) => {
                         src="/storage/assets/theme-1/date-border.png"
                     />
                     <span className="px-24 md:px-10 font-dream_avenue text-3xl xl:text-4xl">
-                        {useDate(data.events[0].start).date}
+                        {data.events[0]?.start
+                            ? useDate(data.events[0].start).date
+                            : ""}
                     </span>
                 </div>
             </motion.div>
@@ -31,7 +33,7 @@ export const Calendar = ({ data }) => {
                 <div className="text-2xl text-center font-hazelnuts">
                     Hitung Mundur Acara Resepsi
                 </div>
-                <CountingDown data={data} />
+                {data.events[0] && <CountingDown data={data} />}
             </div>
         </section>
     );

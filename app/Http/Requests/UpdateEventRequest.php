@@ -29,6 +29,7 @@ class UpdateEventRequest extends FormRequest
             "start" => ['date'],
             "end" => ['date'],
             "description" => [''],
+            "map_link" => [''],
         ];
     }
 }

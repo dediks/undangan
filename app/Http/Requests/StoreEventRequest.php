@@ -29,6 +29,7 @@ class StoreEventRequest extends FormRequest
             "start" => ['date'],
             "end" => ['date'],
             "description" => [''],
+            "map_link" => [''],
         ];
     }
     // public function rules()

@@ -42,18 +42,21 @@ const Events = ({ data }) => {
                             />
                             <div className="mt-8 text-center flex flex-col space-y-2">
                                 <p className="text-3xl text-gray-500 font-hazelnuts font-semibold">
-                                    Graha Mutiara Asri
+                                    {event.location}
                                 </p>
                                 <span className="text-amber-700/50 text-lg font-semibold py-4 px-2 md:px-8">
-                                    Jl. Lingkar Selatan No.KM 05, Karangasem,
-                                    Kec. Cibeber, Kota Cilegon, Banten
+                                    {event.description}
                                 </span>
                             </div>
                         </div>
-                        <button className="bg-pink-800/40  hover:bg-pink-800/60 z-2 mx-auto inline-flex justify-center items-center space-x-2 text-gray-50 font-bold text-xl rounded-full px-8 py-4">
+                        <a
+                            href={event.map_link}
+                            target="_blank"
+                            className="bg-pink-800/40  hover:bg-pink-800/60 z-2 mx-auto inline-flex justify-center items-center space-x-2 text-gray-50 font-bold text-xl rounded-full px-8 py-4"
+                        >
                             <MdLocationPin />
                             <span>Kunjungi via Gmaps</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             ))}

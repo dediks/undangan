@@ -8,12 +8,15 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvitationController;
-use App\Http\Controllers\Section\CoverController;
 use App\Http\Controllers\AjaxInvitationController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LoadInvitationController;
 
+use App\Http\Controllers\Section\CoverController;
+use App\Http\Controllers\Section\IntroController;
+use App\Http\Controllers\Section\GalleryController;
+use App\Http\Controllers\Section\GmapController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -56,6 +59,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::group(['namespace' => 'App\Http\Controllers\Section'], function () {
             Route::get('{invitationId}/cover', [CoverController::class, 'edit']);
             Route::put('cover/{id}', [CoverController::class, 'update']);
+
+            Route::get('{invitationId}/intro', [IntroController::class, 'edit']);
+            Route::put('intro/{id}', [IntroController::class, 'update']);
+            Route::post('{invitationId}/intro', [IntroController::class, 'store']);
+
+            Route::get('{invitationId}/gmap', [GmapController::class, 'edit']);
+            Route::put('gmap/{id}', [GmapController::class, 'update']);
+            Route::post('{invitationId}/gmap', [GmapController::class, 'store']);
+
+            Route::get('{invitationId}/galleries', [GalleryController::class, 'index']);
+            Route::get('/{invitationId}/galleries/create', [GalleryController::class, 'create']);
+            Route::put('galleries/{id}', [GalleryController::class, 'update']);
+            Route::post('{invitationId}/galleries', [GalleryController::class, 'store']);
+            Route::delete('/galleries/{galleryId}', [GalleryController::class, 'destroy']);
         });
     });
 

@@ -8,8 +8,6 @@ import useDate from "@/Hooks/useDate";
 const Intro = () => {
     const data = usePage().props.data;
 
-    console.log("iNTOR", data);
-
     return (
         <section
             className="bg-cover md:py-10 w-full min-h-screen flex justify-center items-center px-3 md:rounded-t-xl"
@@ -57,7 +55,9 @@ const Intro = () => {
                         src="/storage/assets/theme-1/border-3.png"
                     />
                     <div className="rounded-3xl py-2 text-xl flex xl:text-2xl">
-                        {useDate(data?.events[0]?.start).date}
+                        {data?.events[0]?.start
+                            ? useDate(data.events[0].start).date
+                            : "Belum di atur"}
                     </div>
                 </div>
                 <div className="text-neutral-600 text-center font-hazelnuts my-6 px-16 xl:text-lg">

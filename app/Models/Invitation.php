@@ -52,6 +52,26 @@ class Invitation extends Model
         return $this->hasOne(CoverSection::class);
     }
 
+    public function intro()
+    {
+        return $this->hasOne(IntroSection::class);
+    }
+
+    public function gmap()
+    {
+        return $this->hasOne(GmapSection::class);
+    }
+
+    public function gallery()
+    {
+        return $this->hasOne(GallerySection::class);
+    }
+
+    public function whatsappForm()
+    {
+        return $this->hasOne(WhatsappFormSection::class);
+    }
+
     public function galleries()
     {
         return $this->hasMany(ImageGallery::class);

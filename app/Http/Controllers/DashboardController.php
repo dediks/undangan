@@ -10,10 +10,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $coupleId = Auth::user()->invitations()->first();
+        $invitation = Auth::user()->invitations()->with(['whatsappForm'])->first();
 
-        // dd($coupleId);
-
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', ['section' => $invitation->getRelations()]);
     }
 }
