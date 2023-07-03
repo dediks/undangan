@@ -1,8 +1,6 @@
-import Accordion from "@/Components/Accordion";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, usePage } from "@inertiajs/react";
 import BrideGroomFormSection from "./Partials/BrideGroomFormSection";
-import EventSection from "../Dashboard/Partials/EventSection";
 
 export default function Show({ auth }) {
     const invitation = usePage().props.invitation;
@@ -23,7 +21,7 @@ export default function Show({ auth }) {
                         <BrideGroomFormSection invitation={invitation} />
                     </div>
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <EventSection />
+                        {/* <EventSection /> */}
                     </div>
                 </div>
             </div>
