@@ -1,5 +1,4 @@
 import { Head, router, useForm, usePage } from "@inertiajs/react";
-import EventSection from "../Partials/EventSection";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import useToast from "@/Hooks/useToast";
 import TextInput from "@/Components/TextInput";
