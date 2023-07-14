@@ -186,7 +186,7 @@ const GuestBook = () => {
                 </div>
             </section>
             <hr className="md:py-8 border-b-2 " />
-            <WhatsappForm />
+            {/* <WhatsappForm /> */}
         </div>
     );
 };

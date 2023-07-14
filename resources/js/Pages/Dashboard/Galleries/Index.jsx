@@ -23,10 +23,13 @@ const Index = ({ auth, images }) => {
             auth={auth}
             header={
                 <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        List Image Gallery
-                    </h2>
-                    {images.length <= 10 && (
+                    <div>
+                        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                            List Image Gallery
+                        </h2>
+                        <span>Maksimum hanya dapat mengunggah 10 gambar</span>
+                    </div>
+                    {images.length <= 9 && (
                         <a
                             href={`/invitation/${invitation_id}/galleries/create`}
                             className="px-4 py-2 bg-blue-600 rounded-lg text-gray-50"
@@ -43,6 +46,9 @@ const Index = ({ auth, images }) => {
                     <table className="table-auto w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
+                                <th className="w-10 text-center">
+                                    No
+                                </th>
                                 <th
                                     scope="col"
                                     className="text-center px-2 py-3"
@@ -65,11 +71,12 @@ const Index = ({ auth, images }) => {
                         </thead>
                         <tbody>
                             {images.length > 0 ? (
-                                images.map((data) => (
+                                images.map((data, index) => (
                                     <tr
                                         key={data.id}
                                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                                     >
+                                        <th className="w-10 text-center">{++index}</th>
                                         <th
                                             scope="row"
                                             className="flex items-center justify-center text-center px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"

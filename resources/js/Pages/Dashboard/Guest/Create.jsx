@@ -21,7 +21,7 @@ export default function Create({ auth, guest = null }) {
         data,
         setData,
         post,
-        put,
+        reset,
         errors,
         processing,
         progress,
@@ -55,7 +55,21 @@ export default function Create({ auth, guest = null }) {
                 }
             );
         } else {
-            post(`/invitation/${invitationId}/guest`);
+            post(`/invitation/${invitationId}/guest`, {
+                onSuccess: (res) => {
+                    // console.log("heeeeeee");
+                    showToast("berhasil", {
+                        type: "success",
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+
+                    reset('nickname', 'fullname')
+                },
+                onError: (errors) => {
+                    console.log(errors);
+                },
+            });
         }
     };
 
