@@ -25,6 +25,8 @@ class UpdateCoverSectionRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'string',
+            'date' => 'string',
             'background_image' => [
                 Rule::excludeIf(gettype($this->background_image) == 'string' || gettype($this->background_image) == "NULL")
             ],

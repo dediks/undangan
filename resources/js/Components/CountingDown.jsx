@@ -37,7 +37,7 @@ export default function CountingDown({ data }) {
                 className="w-full"
                 initial="offscreen"
                 whileInView="onscreen"
-                viewport={{ once: true, amount: 0.8 }}
+                    viewport={{ once: true, amount: 0.8 }}
             >
                 <motion.div variants={scrollMotionVariants}>
                     <div className="flex space-x-5 justify-center mt-5">

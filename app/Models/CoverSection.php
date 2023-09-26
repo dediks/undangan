@@ -12,6 +12,7 @@ class CoverSection extends Model
     protected $fillable = [
         'title',
         'background_image',
+        'date'
     ];
 
     public function invitation()

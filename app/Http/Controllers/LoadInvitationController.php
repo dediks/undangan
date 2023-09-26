@@ -10,7 +10,7 @@ class LoadInvitationController extends Controller
 {
     public function __invoke(Request $request, $couple)
     {
-        $invitation = Invitation::where('couple_id', $couple)->with(['cover', 'galleries', 'gmap', 'events', 'whatsappForm'])->with(['guests' => function ($query) {
+        $invitation = Invitation::where('couple_id', $couple)->with(['cover', 'intro', 'galleries', 'gmap', 'events', 'whatsappForm'])->with(['guests' => function ($query) {
             $query->where('message', '!=', '');
         }])->firstOrFail();
 

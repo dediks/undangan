@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCoverSectionRequest;
+use App\Http\Requests\UpdateGmapRequest;
 use App\Models\CoverSection;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
@@ -15,9 +16,12 @@ class CoverController extends Controller
 {
     public function edit($invitationId)
     {
-        $cover = Invitation::find($invitationId)->cover;
+        $invitation = Invitation::findOrFail($invitationId);
 
-        return Inertia::render('Invitation/Section/Cover', ['coverData' => $cover]);
+        $cover = $invitation->cover;
+        $events = $invitation->events;
+
+        return Inertia::render('Invitation/Section/CoverSection', ['coverData' => $cover, 'events' => $events]);
     }
 
     public function update(UpdateCoverSectionRequest $request, $coverId)

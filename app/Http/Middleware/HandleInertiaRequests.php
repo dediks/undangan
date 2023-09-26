@@ -36,7 +36,7 @@ class HandleInertiaRequests extends Middleware
                     ? $request->user()->only('id', 'name', 'email')
                     : null,
             ],
-            'invitation' => $request->user()?->invitations()->first()?->only(['id', 'couple_id']),
+            'invitation' => $request->user()?->invitations()->first()?->only(['id', 'couple_id', 'theme_id']),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

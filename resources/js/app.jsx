@@ -4,9 +4,19 @@ import "filepond/dist/filepond.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
 
+import NProgress from "nprogress";
+
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+
+NProgress.configure({
+    easing: "ease",
+    speed: 500,
+    showSpinner: true,
+    template:
+        '<div class="" role="bar"><div class="peg"></div></div><div class="spinner bg-blue-100 min-h-screen min-w-full z-[99] fixed flex items-center justify-center" role="spinner"><div class="animate-pulse mx-auto text-center w-20 h-20 md:w-40 md:h-40 shadow-inner rounded-full border-2 border-blue-400 ring-red-600 p-10 flex items-center justify-center text-sm">Sedang dimuat..</div></div>',
+});
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "OURMARRY";
@@ -20,10 +30,9 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
+        NProgress.start();
         root.render(<App {...props} />);
+        NProgress.done();
     },
-    progress: {
-        color: "#4B5563",
-    },
+    progress: false,
 });

@@ -51,7 +51,8 @@ class RegisteredUserController extends Controller
         if ($validated["user_type"] == 'user') {
             $invitation = $user->invitations()->create(
                 [
-                    'couple_id' => $validated['couple_id']
+                    'couple_id' => $validated['couple_id'],
+                    'theme_id' => 'Theme_id'
                 ]
             );
         }

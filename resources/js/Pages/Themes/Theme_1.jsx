@@ -12,6 +12,7 @@ import Intro from "@/Components/Themes/Theme-1/Section/Intro";
 import LiveStreaming from "@/Components/Themes/Theme-1/Section/LiveStreaming";
 import Quote from "@/Components/Themes/Theme-1/Section/Quote";
 import WhatsappForm from "@/Components/Themes/Theme-1/Section/WhatsappForm";
+import Title from "@/Components/Title";
 import useAudio from "@/Hooks/useAudio";
 import { Head } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
@@ -40,7 +41,10 @@ const Themes_1 = ({ data }) => {
     return (
         <>
             <Head>
-                <title>{`${data.bride_nickname} & ${data.groom_nickname}`}</title>
+                <Title
+                    brideNickname={data.bride_nickname}
+                    groomNickname={data.groom_nickname}
+                />
             </Head>
             <div>
                 <ToastContainer autoClose={true} draggable={false} />

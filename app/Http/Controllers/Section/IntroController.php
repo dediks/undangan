@@ -10,6 +10,7 @@ use App\Models\IntroSection;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -18,8 +19,11 @@ class IntroController extends Controller
     public function edit($invitationId)
     {
         $intro = Invitation::find($invitationId)->intro;
+        $json = File::get(resource_path('themes/theme_1.json'));
 
-        return Inertia::render('Invitation/Section/Intro', ['introData' => $intro]);
+        $schema = json_decode($json, true);
+
+        return Inertia::render('Invitation/Section/IntroSection', ['introData' => $intro, 'schema' => $schema]);
     }
 
     public function store(StoreIntroSectionRequest $request)
