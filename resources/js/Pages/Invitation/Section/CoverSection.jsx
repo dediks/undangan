@@ -19,14 +19,19 @@ let CoverTheme = () => {
 };
 
 const getCoverTheme = (theme_id) => {
+    console.log("loaddddd");
     switch (theme_id) {
         case "Theme_1":
             CoverTheme = lazy(() =>
-                import(`@/Components/Themes/Theme-1/Section/Cover`)
+                delayForDemo(
+                    import(`@/Components/Themes/Theme-1/Section/Cover`)
+                )
             );
         case "Theme_2":
             CoverTheme = lazy(() =>
-                import(`@/Components/Themes/Theme_2/Section/Cover`)
+                delayForDemo(
+                    import(`@/Components/Themes/Theme_2/Section/Cover`)
+                )
             );
     }
 };
@@ -34,6 +39,7 @@ const getCoverTheme = (theme_id) => {
 const CoverSection = ({ auth, invitation, coverData, isPreview = false }) => {
     const { data, setData, errors, processing, recentlySuccessful } =
         useForm(coverData);
+    const [showPreview, setShowPreview] = useState(false);
 
     const showToast = useToast();
 
@@ -64,6 +70,13 @@ const CoverSection = ({ auth, invitation, coverData, isPreview = false }) => {
         }
     };
 
+    const loadPreview = (e) => {
+        e.preventDefault();
+
+        getCoverTheme("Theme_2");
+        setShowPreview(true);
+    };
+
     useEffect(() => {
         getCoverTheme("Theme_2");
     }, []);
@@ -72,9 +85,11 @@ const CoverSection = ({ auth, invitation, coverData, isPreview = false }) => {
         <AuthenticatedLayout
             auth={auth}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Edit Section Cover
-                </h2>
+                <div className="flex items-center justify-between">
+                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                        Edit Section Cover
+                    </h2>
+                </div>
             }
         >
             <Head title="Edit Section Cover" />
@@ -175,16 +190,43 @@ const CoverSection = ({ auth, invitation, coverData, isPreview = false }) => {
                         </div>
                     </form>
                 </div>
-                <div className="md:w-4/12 p-4 bg-white shadow-xl">
-                    <div className="relative rounded-md aspect-[9/16] bg-black">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <CoverTheme data={data} />
-                        </Suspense>
+
+                <div className="md:w-4/12 p-4 bg-white shadow-xl md:max-h-[844px] relative">
+                    <div className="md:min-w-full relative">
+                        <div className="flex flex-col overflow-hidden rounded-md relative min-w-full min-h-full aspect-[9/16]">
+                            {showPreview ? (
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <CoverTheme
+                                        data={{
+                                            cover: data,
+                                            bridegroom: {
+                                                bride: data.bride_nickname,
+                                                groom: data.groom_nickname,
+                                            },
+                                        }}
+                                        isPreview={true}
+                                    />
+                                </Suspense>
+                            ) : (
+                                <button
+                                    onClick={loadPreview}
+                                    className="mx-auto text-gray-900 mt-10 px-4 py-2 border border-gray-800"
+                                >
+                                    Load Preview
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
         </AuthenticatedLayout>
     );
 };
+
+function delayForDemo(promise) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+    }).then(() => promise);
+}
 
 export default CoverSection;

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Invitation extends Model
 {
@@ -37,6 +38,11 @@ class Invitation extends Model
         //laravel scope
     }
 
+    public function music(): BelongsTo
+    {
+        return $this->belongsTo(Music::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -45,6 +51,16 @@ class Invitation extends Model
     public function guests()
     {
         return $this->hasMany(Guest::class);
+    }
+
+    public function quoteSection()
+    {
+        return $this->hasOne(QuoteSection::class);
+    }
+
+    public function couple()
+    {
+        return $this->hasOne(CoupleSection::class);
     }
 
     public function cover()
@@ -81,6 +97,23 @@ class Invitation extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    public function storySection()
+    {
+        return $this->hasOne(StorySection::class, 'invitation_id', 'id');
+    }
+
+    public function guestBookSection()
+    {
+        return $this->hasOne(GuestBookSection::class, 'invitation_id', 'id');
+    }
+
+    public function stories()
+    {
+        return $this->hasMany(Story::class);
+    }
+
+
 
     protected static function boot()
     {

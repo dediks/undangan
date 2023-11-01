@@ -80,6 +80,12 @@ export default function Dashboard(props) {
                                 Data Acara
                             </Link>
                             <Link
+                                href="/invitation/stories"
+                                className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
+                            >
+                                Data Stories
+                            </Link>
+                            <Link
                                 href="/invitation/guests"
                                 className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
                             >
@@ -105,10 +111,22 @@ export default function Dashboard(props) {
                                     Intro
                                 </Link>
                                 <Link
+                                    href={`/invitation/${invitation.id}/quotes`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Quote
+                                </Link>
+                                <Link
                                     href={`/invitation/${invitation.id}/gmap`}
                                     className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
                                 >
                                     Gmap
+                                </Link>
+                                <Link
+                                    href={`/invitation/${invitation.id}/stories`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Stories
                                 </Link>
                                 <Link
                                     href={`/invitation/${invitation.id}/galleries`}
@@ -117,7 +135,7 @@ export default function Dashboard(props) {
                                     Galleries
                                 </Link>
                                 <Link
-                                    href={"#"}
+                                    href={`/invitation/${invitation.id}/music`}
                                     className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
                                 >
                                     Music
@@ -159,12 +177,6 @@ export default function Dashboard(props) {
                                     </div>
                                 )}
                             </div>
-                            {/* <Link
-                            href="/invitation/section/cover"
-                            className="w-1/2 p-4 flex justify-center items-center sm:p-8 text-center font-semibold bg-slate-200 shadow sm:rounded-lg"
-                        >
-                            Quote
-                        </Link> */}
                         </div>
                     </div>
                 </div>

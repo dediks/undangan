@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('music_sections', function (Blueprint $table) {
+        Schema::create('musics', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('url')->nullable();

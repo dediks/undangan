@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class IntroCoverSectionRequest extends FormRequest
+class UpdateIntroSectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,7 @@ class IntroCoverSectionRequest extends FormRequest
     {
         return [
             'title' => '',
+            'attributes' => '',
             'image' => [
                 Rule::excludeIf(gettype($this->image) == 'string' || gettype($this->image) == "NULL")
             ],

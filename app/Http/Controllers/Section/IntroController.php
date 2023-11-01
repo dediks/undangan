@@ -4,26 +4,62 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreIntroSectionRequest;
-use App\Http\Requests\UpdateCoverSectionRequest;
-use App\Models\CoverSection;
+use App\Http\Requests\UpdateIntroSectionRequest;
 use App\Models\IntroSection;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Inertia\Inertia;
 
 class IntroController extends Controller
 {
     public function edit($invitationId)
     {
-        $intro = Invitation::find($invitationId)->intro;
-        $json = File::get(resource_path('themes/theme_1.json'));
+        $invitation = Invitation::findOrFail($invitationId);
 
+        $bridegroom = [
+            'bride' => $invitation->bride_nickname,
+            'groom' => $invitation->groom_nickname,
+        ];
+
+        if ($invitation->events) {
+            $invitation->load(['events:id,title,start,end,invitation_id']);
+        }
+
+        if ($invitation->intro) {
+            $invitation->load(
+                ['intro:id,invitation_id,title,show,image' => [
+                    'attributes' => function (Builder $query) {
+                        $query->select('id', 'attributable_id', 'attribute_name', 'value');
+                    }
+                ]]
+            );
+        }
+
+        $events = $invitation->events->toArray();
+        // dd($events);
+        $introData = $invitation->intro->attributesToArray();
+        // dd($introData);
+        $introAttributes = $invitation->intro->attributes->toArray();
+        // dd($introAttributes);
+
+        $theme_id = auth()->user()->invitations()->first('theme_id')['theme_id'];
+
+        $json = File::get(resource_path('themes/' . $theme_id . '.json'));
         $schema = json_decode($json, true);
 
-        return Inertia::render('Invitation/Section/IntroSection', ['introData' => $intro, 'schema' => $schema]);
+        foreach ($schema as $a) {
+            if ($a["collectionName"] == 'intros') {
+                $schema = $a;
+            }
+        }
+
+        // dd($schema);
+
+        return Inertia::render('Invitation/Section/IntroSection', ['introData' => $introData, 'attributes' => $introAttributes, 'events' => $events, 'bridegroom' => $bridegroom, 'schema' => $schema]);
     }
 
     public function store(StoreIntroSectionRequest $request)
@@ -56,15 +92,16 @@ class IntroController extends Controller
         }
     }
 
-    public function update(UpdateCoverSectionRequest $request, $introId)
+    public function update(UpdateIntroSectionRequest $request, $introId)
     {
         $validated_file = $request->safe()->only(['image']);
-        $validated_data = $request->safe()->except(['image']);
+        $validated_data = $request->safe()->except(['image', 'attributes']);
+        $list_attributes = $request->safe()->only('attributes');
 
         try {
             DB::beginTransaction();
 
-            $intro = IntroSection::find($introId);
+            $intro = IntroSection::findOrFail($introId);
 
             if (!empty($validated_file)) {
                 if ($intro->image != null || $intro->image != "") {
@@ -81,6 +118,12 @@ class IntroController extends Controller
             }
 
             $intro->update($validated_data);
+
+            if ($list_attributes) {
+                foreach ($list_attributes['attributes'] as $key => $attr) {
+                    $intro->attributes()->where('attribute_name', $attr['attribute_name'])->update(['value' => $attr["value"]]);
+                }
+            }
 
             DB::commit();
 

@@ -28,14 +28,13 @@ const getDate = (full_date) => {
     let d = new Date(t[0], t[1] - 1, t[2]);
     let date_obj = new Date(d);
 
-    console.log(date_obj);
-
-    return [
-        date_obj.getDay(),
-        date_obj.getMonth(),
-        date_obj.getDate(),
-        date_obj.getFullYear(),
-    ];
+    return {
+        day: date_obj.getDay(),
+        month: date_obj.getMonth(),
+        date: date_obj.getDate(),
+        year: date_obj.getFullYear(),
+        time: `${t[3]}:${t[4]}`,
+    };
 };
 
 // 2023-09-16 to Sabtu, 16 September 2023
@@ -44,9 +43,19 @@ const getDateInWord = (plain_date) => {
         return "";
     }
 
-    const [day, month, date, year] = getDate(plain_date);
+    const { day, month, date, year } = getDate(plain_date);
 
     return `${getDayInWord(day)}, ${date} ${getMonthInWord(month)} ${year}`;
+};
+
+const getTimeInWord = (plain_date) => {
+    if (plain_date == null) {
+        return "";
+    }
+
+    const { time } = getDate(plain_date);
+
+    return `${time}`;
 };
 
 //10 to November, 0 to Januari
@@ -99,6 +108,19 @@ const getDayInWord = (day) => {
     }
 };
 
-export { getDateInWord };
+const getTime = (data) => {
+    let dateTime = data.split(" ");
+    let date = dateTime[0].split("-");
+    let time = dateTime[1];
+    let day = date[2];
+    let month = date[1];
+    let year = date[0];
+
+    const target_date = new Date(`${month}/${day}/${year}`).getTime();
+
+    return target_date;
+};
+
+export { getDateInWord, getTime, getTimeInWord };
 
 export default getDate;

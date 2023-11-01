@@ -1,23 +1,31 @@
-import useAudio from "@/Hooks/useAudio";
 import React from "react";
-import { MdMusicNote } from "react-icons/md";
+import useAudio from "@/Hooks/useAudio";
+import {
+    MdMusicNote,
+    MdOutlineQueueMusic,
+    MdPause,
+    MdPlayArrow,
+    MdPlayDisabled,
+    MdQueueMusic,
+} from "react-icons/md";
 
-const MusicButton = ({ toggle, isPlaying, className }) => {
+const MusicButton = ({ playing, toggle, className, url }) => {
+    console.log("playing", playing);
     return (
         <section className={className}>
             <button
                 onClick={toggle}
-                className={`${
-                    isPlaying
-                        ? "ring-1 ring-pink-500 animate-pulse"
-                        : "ring-2 ring-red-300"
-                } p-2 md:p-4 shadow-lg rounded-full bg-orange-200/60`}
+                className={`${playing ? "animate-pulse" : ""} p-2 md:p-4`}
             >
-                <MdMusicNote
-                    className={`${
-                        isPlaying ? "animate-waving-hand" : ""
-                    } text-black`}
-                />
+                {playing ? (
+                    <MdPause />
+                ) : (
+                    <MdPlayArrow
+                        className={`${
+                            playing ? "animate-waving-hand" : ""
+                        } text-black`}
+                    />
+                )}
             </button>
         </section>
     );

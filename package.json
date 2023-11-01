@@ -32,6 +32,8 @@
         "react-filepond": "^7.1.2",
         "react-icons": "^4.8.0",
         "react-photoswipe-gallery": "^2.2.7",
-        "react-toastify": "^9.1.2"
+        "react-slick": "^0.29.0",
+        "react-toastify": "^9.1.2",
+        "slick-carousel": "^1.8.1"
     }
 }

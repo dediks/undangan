@@ -1,34 +1,18 @@
+import useToast from "@/Hooks/useToast";
 import FileInput from "@/Components/FileInput";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
+import { Transition, RadioGroup } from "@headlessui/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import UploadImagePreview from "@/Components/UploadImagePreview";
-import useToast from "@/Hooks/useToast";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Transition } from "@headlessui/react";
 import { Head, router, useForm, usePage } from "@inertiajs/react";
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import getData from "@/Helpers/getData";
 
-let IntroTheme = () => {
-    return (
-        <div className="text-red-800 bg-white min-h-full flex justify-center items-center">
-            Sedang Memuat...
-        </div>
-    );
-};
-
-const getIntroTheme = (theme_id) => {
-    switch (theme_id) {
-        case "Theme_1":
-            IntroTheme = lazy(() =>
-                import(`@/Components/Themes/Theme-1/Section/Intro`)
-            );
-        case "Theme_2":
-            IntroTheme = lazy(() =>
-                import(`@/Components/Themes/Theme_2/Section/Intro`)
-            );
-    }
-};
+let IntroTheme = lazy(() =>
+    import(`@/Components/Themes/Theme_2/Section/Intro`)
+);
 
 const getFormInput = (type) => {
     switch (type) {
@@ -49,36 +33,49 @@ const getFormInput = (type) => {
     }
 };
 
-const IntroSection = ({ auth, invitation, introData, schema }) => {
-    const dataIntro = introData
-        ? introData
-        : {
-              image: "",
-              title: "",
-          };
-
-    const { data, setData, post, put, errors, processing, recentlySuccessful } =
-        useForm(dataIntro);
-
+const IntroSection = ({
+    auth,
+    invitation,
+    attributes,
+    events,
+    introData,
+    bridegroom,
+    schema,
+}) => {
     const showToast = useToast();
 
-    useEffect(() => {
-        getIntroTheme("Theme_2");
-    }, []);
+    const { data, setData, post, errors, processing, recentlySuccessful } =
+        useForm(introData);
+
+    console.log("attributes", attributes);
+
+    const [selectedEvent, setSelectedEvent] = useState(
+        getData(
+            events,
+            "id",
+            getData(attributes, "attribute_name", "selected_event").value
+        ).id
+    );
+
+    console.log("Schema", schema);
+
+    const [introAttribute, setIntroAttribute] = useState(attributes);
+
+    console.log("iontor attribute", introAttribute);
 
     const submit = (e) => {
         e.preventDefault();
 
         if (invitation && introData) {
-            put(
-                `/invitation/intro/${dataIntro["id"]}`,
+            router.post(
+                `/invitation/intro/${introData["id"]}`,
                 {
                     _method: "put",
                     ...data,
                 },
                 {
                     onSuccess: (res) => {
-                        console.log(res);
+                        // console.log(res);
                         showToast("berhasil", {
                             type: "success",
                             position: "top-right",
@@ -168,8 +165,7 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
                                                 case "boolean":
                                                     //radio button
                                                     break;
-                                                case "image":
-                                                    console.log(attribute[0]);
+                                                case "file":
                                                     return (
                                                         <div
                                                             key={attribute[0]}
@@ -184,7 +180,7 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
                                                             <UploadImagePreview
                                                                 selectedFile={
                                                                     data[
-                                                                        "image"
+                                                                        attribute[0]
                                                                     ]
                                                                 }
                                                             />
@@ -197,23 +193,22 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
                                                                     e
                                                                 ) => {
                                                                     setData(
-                                                                        data[
-                                                                            attribute[0]
-                                                                        ],
+                                                                        attribute[0],
                                                                         e.target
                                                                             .files[0]
                                                                     );
                                                                 }}
                                                                 isFocused
+                                                                autoComplete={
+                                                                    attribute[0]
+                                                                }
                                                             />
 
                                                             <InputError
                                                                 className="mt-2"
                                                                 message={
                                                                     errors[
-                                                                        data[
-                                                                            attribute[0]
-                                                                        ]
+                                                                        attribute[0]
                                                                     ]
                                                                 }
                                                             />
@@ -224,6 +219,130 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
                                                     break;
                                                 case "relation":
                                                     break;
+                                                case "radio":
+                                                    return (
+                                                        <div
+                                                            className="w-full flex flex-col space-y-2"
+                                                            key={attribute[0]}
+                                                        >
+                                                            <InputLabel
+                                                                htmlFor={
+                                                                    attribute[0]
+                                                                }
+                                                                value={
+                                                                    attribute[1]
+                                                                        .displayName
+                                                                }
+                                                            />
+                                                            <div className="w-full max-w-md">
+                                                                <RadioGroup
+                                                                    value={
+                                                                        selectedEvent
+                                                                    }
+                                                                    onChange={(
+                                                                        e
+                                                                    ) => {
+                                                                        console.log(
+                                                                            "eee",
+                                                                            e
+                                                                        );
+                                                                        setData(
+                                                                            "attributes",
+                                                                            [
+                                                                                {
+                                                                                    attribute_name:
+                                                                                        "selected_event",
+                                                                                    value: e,
+                                                                                },
+                                                                            ]
+                                                                        );
+                                                                        setSelectedEvent(
+                                                                            e
+                                                                        );
+
+                                                                        setIntroAttribute(
+                                                                            [
+                                                                                {
+                                                                                    attribute_name:
+                                                                                        "selected_event",
+                                                                                    value: e,
+                                                                                },
+                                                                            ]
+                                                                        );
+                                                                    }}
+                                                                >
+                                                                    <div className="space-y-2">
+                                                                        {Object.values(
+                                                                            events
+                                                                        ).map(
+                                                                            (
+                                                                                event,
+                                                                                key
+                                                                            ) => {
+                                                                                return (
+                                                                                    <RadioGroup.Option
+                                                                                        key={
+                                                                                            event.id
+                                                                                        }
+                                                                                        value={
+                                                                                            event.id
+                                                                                        }
+                                                                                        className={({
+                                                                                            active,
+                                                                                            checked,
+                                                                                        }) =>
+                                                                                            `${
+                                                                                                active
+                                                                                                    ? "ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300"
+                                                                                                    : ""
+                                                                                            }
+                                                                    ${
+                                                                        checked
+                                                                            ? "bg-sky-900 bg-opacity-75 text-white"
+                                                                            : "bg-white"
+                                                                    }
+                                                                      relative flex cursor-pointer rounded-lg px-5 py-2 shadow-md focus:outline-none`
+                                                                                        }
+                                                                                    >
+                                                                                        {({
+                                                                                            active,
+                                                                                            checked,
+                                                                                        }) => (
+                                                                                            <>
+                                                                                                <div className="flex w-full items-center justify-between">
+                                                                                                    <div className="flex items-center">
+                                                                                                        <div className="text-sm">
+                                                                                                            <RadioGroup.Label
+                                                                                                                as="p"
+                                                                                                                className={`font-medium  ${
+                                                                                                                    checked
+                                                                                                                        ? "text-white"
+                                                                                                                        : "text-gray-900"
+                                                                                                                }`}
+                                                                                                            >
+                                                                                                                {
+                                                                                                                    event.title
+                                                                                                                }
+                                                                                                            </RadioGroup.Label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    {checked && (
+                                                                                                        <div className="shrink-0 text-white">
+                                                                                                            <CheckIcon className="h-6 w-6" />
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </div>
+                                                                                            </>
+                                                                                        )}
+                                                                                    </RadioGroup.Option>
+                                                                                );
+                                                                            }
+                                                                        )}
+                                                                    </div>
+                                                                </RadioGroup>
+                                                            </div>
+                                                        </div>
+                                                    );
                                             }
                                         }
                                     )}
@@ -255,10 +374,18 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
                         </div>
                     </form>
                 </div>
-                <div className="md:w-4/12 p-4 bg-white shadow-xl">
-                    <div className="relative rounded-md aspect-[9/16] bg-black">
+                <div className="md:w-4/12 p-4 bg-white shadow-xl min-w-[390px] relative min-h-[844px]">
+                    <div className="overflow-hidden relative rounded-md w-full h-full aspect-[9/16] bg-black">
                         <Suspense fallback={<div>Loading...</div>}>
-                            <IntroTheme data={data} isPreview={true} />
+                            <IntroTheme
+                                data={{
+                                    intro: data,
+                                    bridegroom: bridegroom,
+                                    events: events,
+                                }}
+                                isPreview={true}
+                                attributes={introAttribute}
+                            />
                         </Suspense>
                     </div>
                 </div>
@@ -266,5 +393,20 @@ const IntroSection = ({ auth, invitation, introData, schema }) => {
         </AuthenticatedLayout>
     );
 };
+
+function CheckIcon(props) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" {...props}>
+            <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
+            <path
+                d="M7 13l3 3 7-7"
+                stroke="#fff"
+                strokeWidth={1.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    );
+}
 
 export default IntroSection;

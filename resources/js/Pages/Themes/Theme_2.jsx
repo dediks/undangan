@@ -2,16 +2,63 @@ import Intro from "@/Components/Themes/Theme_2/Section/Intro";
 import Cover from "@/Components/Themes/Theme_2/Section/Cover";
 import getTitle from "@/Helpers/getTitle";
 import { Head } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
-import { BsFillChatSquareQuoteFill, BsInstagram } from "react-icons/bs";
+import { motion } from "framer-motion";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import Couple from "@/Components/Themes/Theme_2/Section/Couple";
+import Quotes from "@/Components/Themes/Theme_2/Section/Quotes";
+import Event from "@/Components/Themes/Theme_2/Section/Event";
+import Stories from "@/Components/Themes/Theme_2/Section/Stories";
+import ImageGallery from "@/Components/ImageGallery";
+import GuestBook from "@/Components/Themes/Theme_2/Section/GuestBook";
+import WhatsappForm from "@/Components/Themes/Theme_2/Section/WhatsappForm";
+import Gift from "@/Components/Themes/Theme-1/Section/Gift";
+import Footer from "@/Components/Themes/Theme_2/Section/Footer";
+import clsx from "clsx";
+import MusicButton from "@/Components/MusicButton";
+import useAudio from "@/Hooks/useAudio";
+import useFullscreen from "@/Hooks/useFullscreen";
+
+const cardVariants = {
+    offscreen: {
+        y: 300,
+    },
+    onscreen: {
+        y: 50,
+        rotate: -10,
+        transition: {
+            type: "spring",
+            bounce: 0.4,
+            duration: 0.8,
+        },
+    },
+};
 
 const Themes_2 = ({ data, isPreview = false }) => {
     const [showCover, setShowCover] = useState(true);
-    const [isFullscreen, setIsFullscreen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [playing, toggle] = useAudio(data.music.url);
 
+    const [fullscreen, setFullscreen] = useFullscreen();
+
+    const handleOpenCover = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            document.body.requestFullscreen();
+            setFullscreen(true);
+            toggle();
+            setShowCover(false);
+            setLoading(false);
+        }, 2000);
+    };
+
+    // console.log("data theme2", data);
     return (
-        <>
+        <div
+            className={clsx(
+                !showCover ? "md:p-1 2xl:p-6 rounded-lg md:bg-gray-100" : ""
+            )}
+        >
             <Head>
                 <title head-key={data.id}>
                     {getTitle(data.bride_nickname, data.groom_nickname)}
@@ -19,68 +66,93 @@ const Themes_2 = ({ data, isPreview = false }) => {
             </Head>
 
             <Cover
+                loading={loading}
                 cover={{
                     showCover,
-                    setShowCover,
+                    handleOpenCover,
                 }}
-                data={data.cover}
-                setIsFullscreen={setIsFullscreen}
+                data={{
+                    cover: data.cover,
+                    bridegroom: {
+                        bride: data.bride_nickname,
+                        groom: data.groom_nickname,
+                    },
+                }}
             />
             {!showCover && (
-                <div className="bg-gray-50 md:px-2 md:pb-2">
-                    <Intro data={data.intro} />
-                    <section className="min-h-[650px] lg:min-h-[1400px] relative bg-pink-100 p-3 lg:p-16 md:p-10 flex flex-col">
-                        <div className="text-center flex flex-col justify-center items-center py-6">
-                            <BsFillChatSquareQuoteFill className="text-4xl opacity-60 text-center" />
-                            <p className="font-serif text-base sm:text-2xl text-black text-center leading-6 sm:leading-8 mt-5">
-                                Yang terpenting dalam membuat pernikahan yang
-                                bahagia bukanlah seberapa cocok anda berdua,
-                                tetapi bagaimana anda menghadapi ketidakcocokan.
-                                Pernikahan yang hebat bukanlah ketika pasanagan
-                                yang nsempurna bersatu. Pernikahan yang hebat
-                                adalah ketika pasangan yang tidak sempurna
-                                belajar untuk menikmati perbedaan mereka."
-                            </p>
-                        </div>
-                        <div className="relative md:p-16">
-                            <div className="aspect-video relative bg-white p-0.5 shadow-xl">
-                                <div
-                                    className="bg-cover h-full"
-                                    style={{
-                                        backgroundImage: `url(
-                                "https://www.theknot.com/tk-media/images/61e409ea-f4d7-4c33-9cd8-fca030b93abb~rs_768.h"
-                            )`,
-                                    }}
-                                ></div>
-                            </div>
-                            <div className="left-0 right-0 flex md:relative absolute w-full -bottom-16 space-x-2 md:space-x-8">
-                                <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
-                                    <div
-                                        className="p-1 bg-cover h-full"
-                                        style={{
-                                            backgroundImage: `url(
-                                "https://www.theknot.com/tk-media/images/61e409ea-f4d7-4c33-9cd8-fca030b93abb~rs_768.h"
-                            )`,
-                                        }}
-                                    ></div>
-                                </div>
-                                <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
-                                    <div
-                                        className="p-1 bg-cover h-full"
-                                        style={{
-                                            backgroundImage: `url(
-                                "https://www.theknot.com/tk-media/images/61e409ea-f4d7-4c33-9cd8-fca030b93abb~rs_768.h"
-                            )`,
-                                        }}
-                                    ></div>
-                                </div>
+                <motion.div
+                    className="bg-gray-50 md:mt-0 md:shadow-t-3xl"
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0.8 }}
+                >
+                    <MusicButton
+                        toggle={toggle}
+                        playing={playing}
+                        className={
+                            "bg-gray-200/80 bottom-4 md:bottom-5 left-5 fixed z-50 rounded-full border-2 border-gray-300 hover:border-2 hover:bg-white hover:border-white"
+                        }
+                    />
+                    {data.intro && data.intro.attributes.length > 0 && (
+                        <Intro
+                            data={{
+                                intro: data.intro,
+                                bridegroom: {
+                                    bride: data.bride_nickname,
+                                    groom: data.groom_nickname,
+                                },
+                                events: data.events,
+                            }}
+                            attributes={data?.intro?.attributes}
+                            isCoverOpen={!showCover}
+                        />
+                    )}
+                    {data.quote_section &&
+                        data.quote_section.attributes.length > 0 && (
+                            <Quotes
+                                data={{
+                                    quote: data.quote_section,
+                                    images: data.galleries,
+                                }}
+                                attributes={data?.quote_section?.attributes}
+                            />
+                        )}
+                    <Couple data={data} />
+                    <Event
+                        data={{
+                            events: data.events,
+                            image_galleries: data.galleries,
+                        }}
+                    />
+                    <Stories
+                        data={data.story_section}
+                        attributes={data.story_section.attributes}
+                    />
+                    <section className="w-full">
+                        <div className="px-8 pt-10 lg:px-32 lg:py-64">
+                            <h1 className="text-xl text-center mb-8 lg:text-3xl xl:text-4xl">
+                                Gallery Pernikahan
+                            </h1>
+                            <div className="w-full lg:mt-32">
+                                <ImageGallery />
                             </div>
                         </div>
                     </section>
-                    <Couple />
-                </div>
+                    {/* <section>
+                        <Gift />
+                    </section> */}
+                    <section>
+                        <WhatsappForm />
+                    </section>
+                    <section>
+                        <GuestBook guest_book={data.guest_book_section} />
+                    </section>
+                    <section>
+                        <Footer />
+                    </section>
+                </motion.div>
             )}
-        </>
+        </div>
     );
 };
 

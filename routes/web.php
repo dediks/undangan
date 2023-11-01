@@ -12,11 +12,15 @@ use App\Http\Controllers\AjaxInvitationController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LoadInvitationController;
-
+use App\Http\Controllers\MusicController;
 use App\Http\Controllers\Section\CoverController;
 use App\Http\Controllers\Section\IntroController;
 use App\Http\Controllers\Section\GalleryController;
 use App\Http\Controllers\Section\GmapController;
+use App\Http\Controllers\Section\QuoteController;
+use App\Http\Controllers\StoryController;
+use App\Http\Controllers\Section\StoryController as StorySectionController;
+use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,6 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('invitation')->group(function () {
         Route::get('/{invitationId}/links', [LinkController::class, 'index']);
+
+        Route::get('stories', [StoryController::class, 'index']);
+        Route::get('/{invitationId}/stories/create', [StoryController::class, 'create']);
+        Route::post('{invitationId}/stories', [StoryController::class, 'store']);
 
         Route::get('events', [EventController::class, 'index']);
         Route::get('/{invitationId}/events/create', [EventController::class, 'create']);
@@ -64,6 +72,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('intro/{id}', [IntroController::class, 'update']);
             Route::post('{invitationId}/intro', [IntroController::class, 'store']);
 
+            Route::get('{invitationId}/quotes', [QuoteController::class, 'edit']);
+            Route::put('intro/{id}', [IntroController::class, 'update']);
+
+            Route::get('{invitationId}/stories', [StorySectionController::class, 'edit']);
+            Route::put('story/{id}', [StorySectionController::class, 'update']);
+
+            Route::get('{invitationId}/quotes', [QuoteController::class, 'edit']);
+            Route::put('quotes/{id}', [IntroController::class, 'update']);
+            Route::post('{invitationId}/quotes', [IntroController::class, 'store']);
+
             Route::get('{invitationId}/gmap', [GmapController::class, 'edit']);
             Route::put('gmap/{id}', [GmapController::class, 'update']);
             Route::post('{invitationId}/gmap', [GmapController::class, 'store']);
@@ -73,9 +91,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('galleries/{id}', [GalleryController::class, 'update']);
             Route::post('{invitationId}/galleries', [GalleryController::class, 'store']);
             Route::delete('/galleries/{galleryId}', [GalleryController::class, 'destroy']);
+
+            Route::post('{invitationId}/music/{musicId}', [MusicController::class, 'store'])->name('music.select');
+            Route::get('{invitationId}/music', [MusicController::class, 'index']);
         });
     });
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,4 +1,5 @@
 import React from "react";
+import { MdCopyAll, MdCreditCard } from "react-icons/md";
 
 const Gift = () => {
     return (

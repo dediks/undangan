@@ -20,7 +20,7 @@ export const coverVariants = {
         scale: 0.5,
         transition: {
             duration: 0.9,
-            delay: 0.1,
+            delay: 0.4,
             ease: [0, 0.71, 0.2, 1.01],
         },
     },
@@ -29,7 +29,7 @@ export const coverVariants = {
         scale: 1,
         transition: {
             duration: 1.67,
-            delay: 0.1,
+            delay: 0.8,
             ease: [0, 0.71, 0.2, 1.01],
         },
     },
