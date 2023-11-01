@@ -15,60 +15,38 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
             </div>
             <div className="relative md:p-16 lg:p-24">
                 <div className="aspect-video relative bg-white p-0.5 shadow-xl">
-                    <div
-                        className="bg-cover h-full bg-center"
-                        style={{
-                            backgroundImage: `url(${
-                                getData(
-                                    data.images,
-                                    "id",
-                                    getData(
-                                        attributes,
-                                        "attribute_name",
-                                        "image_1"
-                                    ).value
-                                ).image_url
-                            }
-        )`,
-                        }}
-                    ></div>
+                    <img
+                        className="w-full md:p-1 h-full object-cover object-center"
+                        height={200}
+                        width={200}
+                        src={
+                            "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_28.webp"
+                        }
+                        loading="lazy"
+                    />
                 </div>
                 <div className="left-0 right-0 flex md:relative absolute w-full -bottom-16 space-x-2 md:space-x-8">
                     <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
-                        <div
-                            className="p-1 bg-cover h-full bg-center"
-                            style={{
-                                backgroundImage: `url(${
-                                    getData(
-                                        data.images,
-                                        "id",
-                                        getData(
-                                            attributes,
-                                            "attribute_name",
-                                            "image_2"
-                                        ).value
-                                    ).image_url
-                                })`,
-                            }}
-                        ></div>
+                        <img
+                            className="w-full md:p-1 h-full object-cover object-center"
+                            height={200}
+                            width={200}
+                            src={
+                                "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_24.webp"
+                            }
+                            loading="lazy"
+                        />
                     </div>
                     <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
-                        <div
-                            className="p-1 bg-cover h-full bg-center"
-                            style={{
-                                backgroundImage: `url(${
-                                    getData(
-                                        data.images,
-                                        "id",
-                                        getData(
-                                            attributes,
-                                            "attribute_name",
-                                            "image_3"
-                                        ).value
-                                    ).image_url
-                                })`,
-                            }}
-                        ></div>
+                        <img
+                            className="w-full md:p-1 h-full object-cover object-center"
+                            height={200}
+                            width={200}
+                            src={
+                                "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_28.webp"
+                            }
+                            loading="lazy"
+                        />
                     </div>
                 </div>
             </div>

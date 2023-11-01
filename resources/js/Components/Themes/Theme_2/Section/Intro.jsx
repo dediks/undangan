@@ -15,6 +15,7 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
 
     useEffect(() => {
         scrollToIntroSection();
+        document.body.requestFullscreen();
     }, [isCoverOpen]);
 
     function scrollToIntroSection() {

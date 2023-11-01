@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('invitations', function (Blueprint $table) {
-            $table->dropColumn('music_url');
+            if (Schema::hasColumn('invitations', 'music_url')) {
+                $table->dropColumn('music_url');
+            }
 
-            $table->foreignId('music_id')->nullable()->constrained('musics')->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('music_id')->nullable()->references('id')->on('music')->cascadeOnUpdate()->nullOnDelete();
         });
     }
 
@@ -28,7 +30,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('invitations', function (Blueprint $table) {
-            $table->string('music_url')->nullable();
+            if (!Schema::hasColumn('invitations', 'music_url')) {
+                $table->string('music_url')->nullable();
+            }
             $table->dropForeign('invitations_music_id_foreign');
         });
     }

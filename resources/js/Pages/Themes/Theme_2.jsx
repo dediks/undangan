@@ -44,12 +44,11 @@ const Themes_2 = ({ data, isPreview = false }) => {
         setLoading(true);
 
         setTimeout(() => {
-            document.body.requestFullscreen();
-            setFullscreen(true);
-            toggle();
+            // toggle();
             setShowCover(false);
-            setLoading(false);
-        }, 2000);
+            setFullscreen(true);
+            // setLoading(false);
+        }, 1000);
     };
 
     // console.log("data theme2", data);
