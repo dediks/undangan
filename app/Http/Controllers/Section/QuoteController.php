@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImageGallery;
 use App\Models\Invitation;
 use App\Models\QuoteSection;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class QuoteController extends Controller
         // $invitation = Invitation::with('quoteSection')->findOrFail($invitationId);
 
         // dd($invitation);
+
+        // ImageGallery::all();
 
         return Inertia::render('Invitation/Section/QuoteSection', ['quoteData' => $quote_section]);
     }

@@ -68,28 +68,28 @@ export default function Dashboard(props) {
                             </PrimaryButton>
                         </div>
                         <div className="px-4 border mx-6"></div>
-                        <div className="font-sans flex space-x-3 md:space-x-10 mt-4 md:p-6 text-gray-900">
+                        <div className="mt-4 grid auto-rows-auto grid-flow-row-dense md:grid-cols-3 grid-cols-2 gap-1 font-sans text-gray-900">
                             <Link
                                 href="/invitation/bridegroom/create"
-                                className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight "
                             >
                                 Data Mempelai
                             </Link>
                             <Link
                                 href="/invitation/events"
-                                className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight "
                             >
                                 Data Acara
                             </Link>
                             <Link
                                 href="/invitation/stories"
-                                className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight "
                             >
                                 Data Stories
                             </Link>
                             <Link
                                 href="/invitation/guests"
-                                className="flex justify-center items-center bg-slate-100 hover:bg-slate-200 w-1/2 p-4 sm:p-8 text-center leading-tight "
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight"
                             >
                                 Data Tamu
                             </Link>
@@ -112,11 +112,17 @@ export default function Dashboard(props) {
                                 >
                                     Intro
                                 </Link>
-                                <Link
+                                {/* <Link
                                     href={`/invitation/${invitation.id}/quotes`}
                                     className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
                                 >
-                                    Quote
+                                    Quote 
+                                </Link> */}
+                                <Link
+                                    href={`/invitation/${invitation.id}/couples`}
+                                    className="bg-slate-200 rounded-xl p-4 flex justify-center items-center sm:p-8 sm:rounded-lg"
+                                >
+                                    Couple
                                 </Link>
                                 <Link
                                     href={`/invitation/${invitation.id}/gmap`}

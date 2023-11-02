@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCoupleSectionRequest extends FormRequest
@@ -24,7 +25,10 @@ class StoreCoupleSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['string'],
+            'image' => [
+                Rule::excludeIf(gettype($this->background_image) == 'string' || gettype($this->background_image) == "NULL")
+            ],
         ];
     }
 }

@@ -45,10 +45,10 @@ const Themes_2 = ({ data, isPreview = false }) => {
         setLoading(true);
 
         setTimeout(() => {
-            // toggle();
+            toggle();
             setShowCover(false);
             // setFullscreen(true);
-            // setLoading(false);
+            setLoading(false);
         }, 2000);
     };
 

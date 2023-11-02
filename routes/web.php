@@ -19,6 +19,7 @@ use App\Http\Controllers\Section\GalleryController;
 use App\Http\Controllers\Section\GmapController;
 use App\Http\Controllers\Section\QuoteController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\Section\CoupleController;
 use App\Http\Controllers\Section\StoryController as StorySectionController;
 use Illuminate\Support\Facades\File;
 
@@ -72,14 +73,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('{invitationId}/intro', [IntroController::class, 'edit']);
             Route::put('intro/{id}', [IntroController::class, 'update']);
             Route::post('{invitationId}/intro', [IntroController::class, 'store']);
+            Route::post('{invitationId}/intro', [IntroController::class, 'store']);
 
             Route::get('{invitationId}/quotes', [QuoteController::class, 'edit']);
-            Route::put('intro/{id}', [IntroController::class, 'update']);
+
+            Route::get('{invitationId}/couples', [CoupleController::class, 'edit'])->name('couple.edit');
+            Route::put('{invitationId}/couples/{coupleId}', [CoupleController::class, 'update'])->name('couple.update');
 
             Route::get('{invitationId}/stories', [StorySectionController::class, 'edit']);
             Route::put('story/{id}', [StorySectionController::class, 'update']);
 
-            Route::get('{invitationId}/quotes', [QuoteController::class, 'edit']);
             Route::put('quotes/{id}', [IntroController::class, 'update']);
             Route::post('{invitationId}/quotes', [IntroController::class, 'store']);
 

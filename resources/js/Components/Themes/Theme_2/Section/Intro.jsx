@@ -8,11 +8,11 @@ import AddToCalendarButton from "../AddToCalendarButton";
 import getData from "@/Helpers/getData";
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
     const introSectionRef = useRef(null);
-    const aRef = useRef(null);
+    const isInView = useInView(introSectionRef, { once: true });
 
     useEffect(() => {
         scrollToIntroSection();
@@ -21,15 +21,12 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
     function scrollToIntroSection() {
         introSectionRef.current.scrollIntoView({
             behavior: "smooth",
-            block: "end",
+            block: "start",
             inline: "center",
         });
     }
     return (
         <motion.section
-            transition={{ ease: "easeOut", duration: 2 }}
-            animate={{ y: -100 }}
-            initial={{ y: 0 }}
             ref={introSectionRef}
             style={{
                 backgroundImage: `url(/storage/images/${data.intro.image})`,
@@ -47,12 +44,26 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
                 )}
             >
                 <div className="text-center">
-                    <h1>{data.intro.title}</h1>
-                    <h1 className="py-2 text-2xl font-dream_avenue font-extrabold">
-                        {`${data.bridegroom.bride} & ${data.bridegroom.groom}`}
-                    </h1>
+                    <div
+                        style={{
+                            transform: isInView ? "" : "translateY(-200px)",
+                            opacity: isInView ? 1 : 0,
+                            transition:
+                                "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.2s",
+                        }}
+                    >
+                        <h1>{data.intro.title}</h1>
+                        <h1 className="py-2 text-2xl font-dream_avenue font-extrabold">
+                            {`${data.bridegroom.bride} & ${data.bridegroom.groom}`}
+                        </h1>
+                    </div>
 
                     <p
+                        style={{
+                            opacity: isInView ? 1 : 0,
+                            transition:
+                                "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.8s",
+                        }}
                         className={`md:text-xl ${
                             isPreview
                                 ? "md:px-12 text-xs leading-3"
@@ -66,49 +77,61 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
                         yang bahagia :
                     </p>
                 </div>
-                <div className="text-center font-bold font-mono">
-                    {getData(
-                        data.events,
-                        "id",
-                        getData(attributes, "attribute_name", "selected_event")
-                            .value
-                    ).start
-                        ? getDateInWord(
-                              getData(
-                                  data.events,
-                                  "id",
+                <div
+                    style={{
+                        transform: isInView ? "" : "translateY(200px)",
+                        opacity: isInView ? 1 : 0,
+                        transition:
+                            "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1.2s",
+                    }}
+                >
+                    <div className="text-center font-bold font-mono">
+                        {getData(
+                            data.events,
+                            "id",
+                            getData(
+                                attributes,
+                                "attribute_name",
+                                "selected_event"
+                            ).value
+                        ).start
+                            ? getDateInWord(
                                   getData(
-                                      attributes,
-                                      "attribute_name",
-                                      "selected_event"
-                                  ).value
-                              ).start
-                          )
-                        : "Belum di atur"}
-                </div>
-                <div className="mt-10 flex flex-col items-center space-y-8 lg:space-y-24">
-                    <div className="font-serif flex space-x-8 text-base">
-                        <CountingDown
-                            data={
-                                getData(
-                                    data.events,
-                                    "id",
-                                    getData(
-                                        attributes,
-                                        "attribute_name",
-                                        "selected_event"
-                                    ).value
-                                ).start
-                            }
-                        ></CountingDown>
+                                      data.events,
+                                      "id",
+                                      getData(
+                                          attributes,
+                                          "attribute_name",
+                                          "selected_event"
+                                      ).value
+                                  ).start
+                              )
+                            : "Belum di atur"}
                     </div>
-                    <AddToCalendarButton
-                        className={
-                            "hover:border-blue-100 hover:rounded-2xl hover:bg-black/50 xl:py-2 xl:px-4 2xl:px-16 2xl:py-4 2xl:text-2xl 2xl:mt-20"
-                        }
-                    >
-                        Simpan di kalender
-                    </AddToCalendarButton>
+                    <div className="mt-10 flex flex-col items-center space-y-8 lg:space-y-24">
+                        <div className="font-serif flex space-x-8 text-base">
+                            <CountingDown
+                                data={
+                                    getData(
+                                        data.events,
+                                        "id",
+                                        getData(
+                                            attributes,
+                                            "attribute_name",
+                                            "selected_event"
+                                        ).value
+                                    ).start
+                                }
+                            ></CountingDown>
+                        </div>
+                        <AddToCalendarButton
+                            className={
+                                "hover:border-blue-100 hover:rounded-2xl hover:bg-black/50 xl:py-2 xl:px-4 2xl:px-16 2xl:py-4 2xl:text-2xl 2xl:mt-20"
+                            }
+                        >
+                            Simpan di kalender
+                        </AddToCalendarButton>
+                    </div>
                 </div>
             </div>
         </motion.section>

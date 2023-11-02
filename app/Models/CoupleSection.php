@@ -12,6 +12,11 @@ class CoupleSection extends Model
 
     protected $guarded = [];
 
+    public function invitation()
+    {
+        return $this->belongsTo(Invitation::class);
+    }
+
     public function attributes(): MorphMany
     {
         return $this->morphMany(SectionAttribute::class, 'attributable');

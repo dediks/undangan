@@ -17,10 +17,10 @@ export const scrollMotionVariants = {
 export const coverVariants = {
     offscreen: {
         opacity: 0,
-        scale: 0.5,
+        scale: 0,
         transition: {
-            duration: 0.9,
-            delay: 0.4,
+            duration: 0.2,
+            delay: 0,
             ease: [0, 0.71, 0.2, 1.01],
         },
     },
@@ -28,9 +28,9 @@ export const coverVariants = {
         opacity: 1,
         scale: 1,
         transition: {
-            duration: 1.67,
-            delay: 0.8,
-            ease: [0, 0.71, 0.2, 1.01],
+            duration: 2.67,
+            delay: 0,
+            ease: [0.9, 0.71, 0.2, 1.01],
         },
     },
 };
