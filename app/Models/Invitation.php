@@ -113,6 +113,11 @@ class Invitation extends Model
         return $this->hasMany(Story::class);
     }
 
+    public function gifts()
+    {
+        return $this->hasMany(Gift::class);
+    }
+
 
 
     protected static function boot()

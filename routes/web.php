@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\AjaxInvitationController;
+use App\Http\Controllers\GiftController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LoadInvitationController;
@@ -79,6 +80,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             Route::get('{invitationId}/couples', [CoupleController::class, 'edit'])->name('couple.edit');
             Route::put('{invitationId}/couples/{coupleId}', [CoupleController::class, 'update'])->name('couple.update');
+
+            Route::get('{invitationId}/gifts', [GiftController::class, 'index'])->name('gifts.index');
+            Route::get('{invitationId}/gifts/create', [GiftController::class, 'create'])->name('gifts.create');
+            Route::post('{invitationId}/gifts', [GiftController::class, 'store'])->name('gifts.store');
+            Route::delete('gifts/{giftId}', [GiftController::class, 'destroy'])->name('gifts.destroy');
 
             Route::get('{invitationId}/stories', [StorySectionController::class, 'edit']);
             Route::put('story/{id}', [StorySectionController::class, 'update']);

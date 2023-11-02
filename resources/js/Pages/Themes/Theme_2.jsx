@@ -40,8 +40,9 @@ const Themes_2 = ({ data, isPreview = false }) => {
 
     // const [fullscreen, setFullscreen] = useFullscreen();
 
+    console.log(data);
     const handleOpenCover = () => {
-        document.body.requestFullscreen();
+        // document.body.requestFullscreen();
         setLoading(true);
 
         setTimeout(() => {
@@ -137,10 +138,10 @@ const Themes_2 = ({ data, isPreview = false }) => {
                             </div>
                         </div>
                     </section>
-                    {/* <section>
-                        <Gift />
-                    </section> */}
                     <section>
+                        <Gift data={data.gifts} />
+                    </section>
+                    <section className="bg-slate-100">
                         <WhatsappForm />
                     </section>
                     <section>

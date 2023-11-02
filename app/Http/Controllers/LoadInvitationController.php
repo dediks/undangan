@@ -63,7 +63,8 @@ class LoadInvitationController extends Controller
                     $query->select('id', 'attributable_id', 'attribute_name', 'value');
                 }),
             ],
-            'music:id,url'
+            'music:id,url',
+            'gifts:id,invitation_id,title,address,name,bank,type',
         ]);
 
         $invitationData = $invitation->attributesToArray();

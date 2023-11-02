@@ -82,6 +82,12 @@ export default function Dashboard(props) {
                                 Data Acara
                             </Link>
                             <Link
+                                href="/invitation/{invitationId}/gifts"
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight "
+                            >
+                                Data Gift
+                            </Link>
+                            <Link
                                 href="/invitation/stories"
                                 className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight "
                             >
