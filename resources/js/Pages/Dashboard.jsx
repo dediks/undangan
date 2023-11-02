@@ -21,6 +21,8 @@ export default function Dashboard(props) {
         axios
             .put("invitation/ajax/couple-id/update", {
                 couple_id: coupleId,
+                invitation_id: invitation.id,
+                theme_id: invitation.theme_id,
             })
             .then((res) => {
                 showToast(res.data.message, {

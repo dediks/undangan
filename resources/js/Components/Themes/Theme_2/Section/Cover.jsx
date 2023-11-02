@@ -94,7 +94,11 @@ const Cover = ({
                     )}
 
                     {cover.showCover && (
-                        <button
+                        <motion.button
+                            initial="offscreen"
+                            whileInView="onscreen"
+                            viewport={{ once: true, amount: 0.8 }}
+                            variants={coverVariants}
                             onClick={() => {
                                 cover.handleOpenCover();
                             }}
@@ -115,7 +119,7 @@ const Cover = ({
                                     </span>
                                 </>
                             )}
-                        </button>
+                        </motion.button>
                     )}
                 </div>
             </div>

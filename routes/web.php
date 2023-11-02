@@ -39,9 +39,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('invitation')->group(function () {
         Route::get('/{invitationId}/links', [LinkController::class, 'index']);
 
-        Route::get('stories', [StoryController::class, 'index']);
-        Route::get('/{invitationId}/stories/create', [StoryController::class, 'create']);
-        Route::post('{invitationId}/stories', [StoryController::class, 'store']);
+        Route::get('stories', [StoryController::class, 'index'])->name('stories.index');
+        Route::get('/{invitationId}/stories/create', [StoryController::class, 'create'])->name('stories.create');;
+        Route::post('{invitationId}/stories', [StoryController::class, 'store'])->name('stories.store');;
+        Route::delete('{invitationId}/stories/{storyId}', [StoryController::class, 'destroy'])->name('story.destroy');
 
         Route::get('events', [EventController::class, 'index']);
         Route::get('/{invitationId}/events/create', [EventController::class, 'create']);

@@ -1,12 +1,18 @@
+import Alert from "@/Components/Alert";
+import Modal from "@/Components/Modal";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import React from "react";
-import { useToast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import useToast from "@/Hooks/useToast";
 
 const Index = ({ auth, stories }) => {
     const invitation_id = usePage().props.invitation.id;
+    const [openModal, setOpenModal] = useState(false);
+    const [cofirmDelete, setConfirmDelete] = useState(false);
+    const [selectedStory, setSelectedStory] = useState(null);
 
-    console.log(stories.length <= 9);
+    const showToast = useToast();
+
     const {
         delete: destroy,
         errors,
@@ -15,9 +21,35 @@ const Index = ({ auth, stories }) => {
         recentlySuccessful,
     } = useForm();
 
-    const handleDelete = (imageId) => {
-        destroy(`/invitation/galleries/${imageId}`);
+    const handleDelete = (storyId) => {
+        setSelectedStory(storyId);
+        setOpenModal(true);
     };
+
+    useEffect(() => {
+        if (cofirmDelete && selectedStory) {
+            destroy(
+                route("story.destroy", {
+                    invitationId: invitation_id,
+                    storyId: selectedStory,
+                }),
+                {
+                    onSuccess: (res) => {
+                        console.log(res);
+                        showToast("Berhasil dihapus", {
+                            type: "success",
+                            position: "top-right",
+                            autoClose: 3000,
+                        });
+                        setOpenModal(false);
+                    },
+                    onError: (errors) => {
+                        console.log(errors);
+                    },
+                }
+            );
+        }
+    }, [cofirmDelete]);
 
     return (
         <AuthenticatedLayout
@@ -40,6 +72,36 @@ const Index = ({ auth, stories }) => {
                 </div>
             }
         >
+            <Modal
+                show={openModal}
+                onClose={() => {
+                    setOpenModal(false);
+                }}
+                className="p-4 "
+            >
+                <div className="p-4">Yakin ingin menghapus?</div>
+                <div className="flex space-x-2 justify-end">
+                    <button
+                        type="button"
+                        className="px-4 py-1 border border-gray-600 rounded"
+                        onClick={() => {
+                            setConfirmDelete(false);
+                            setOpenModal(false);
+                        }}
+                    >
+                        Tidak
+                    </button>
+                    <button
+                        type="button"
+                        className="rounded px-4 py-1 bg-blue-500 text-gray-100"
+                        onClick={() => {
+                            setConfirmDelete(true);
+                        }}
+                    >
+                        Iya
+                    </button>
+                </div>
+            </Modal>
             <Head title="Daftar Acara" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 px-2">
@@ -92,40 +154,45 @@ const Index = ({ auth, stories }) => {
                                         <td className="text-center">
                                             {data.title}
                                         </td>
-                                        <td className="text-center">
+                                        <td
+                                            className="text-center"
+                                            width={"30%"}
+                                        >
                                             {data.story}
                                         </td>
                                         <td className="text-center">
                                             {data.date}
                                         </td>
-                                        <td className="">
+                                        <td className="text-center flex justify-center">
                                             {data.image ? (
                                                 <img
                                                     src={`/${data.image}`}
-                                                    className="aspect-auto rounded-md"
-                                                    width={200}
+                                                    className="aspect-auto rounded-md object-center"
+                                                    width={100}
                                                 />
                                             ) : (
                                                 ""
                                             )}
                                         </td>
-                                        <td className="flex justify-center ">
-                                            <a
-                                                onClick={() =>
-                                                    handleDelete(data.id)
-                                                }
-                                                className="align-middle cursor-pointer bg-blue-300 px-2 py-1 text-white rounded-md text-center font-medium dark:text-blue-500 hover:underline"
-                                            >
-                                                Detail
-                                            </a>
-                                            <a
-                                                onClick={() =>
-                                                    handleDelete(data.id)
-                                                }
-                                                className="align-middle cursor-pointer bg-red-300 px-2 py-1 text-white rounded-md text-center font-medium dark:text-blue-500 hover:underline"
-                                            >
-                                                Delete
-                                            </a>
+                                        <td className="">
+                                            <div className="flex justify-center space-x-2 items-center">
+                                                {/* <a
+                                                    onClick={() =>
+                                                        handleDelete(data.id)
+                                                    }
+                                                    className="align-middle cursor-pointer bg-blue-300 px-2 py-1 text-white rounded-md text-center font-medium dark:text-blue-500 hover:underline"
+                                                >
+                                                    Detail
+                                                </a> */}
+                                                <a
+                                                    onClick={(e) =>
+                                                        handleDelete(data.id)
+                                                    }
+                                                    className="align-middle cursor-pointer bg-red-300 px-2 py-1 text-white rounded-md text-center font-medium dark:text-blue-500 hover:underline"
+                                                >
+                                                    Delete
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))

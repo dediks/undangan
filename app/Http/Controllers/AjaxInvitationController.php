@@ -11,10 +11,11 @@ class AjaxInvitationController extends Controller
     public function updateCoupleId(Request $request)
     {
         $incomingCoupleId = $request->couple_id;
+        $invitationId = $request->invitation_id;
+        $themeId = $request->theme_id;
 
-        $invitation = Auth::user()->invitations()->firstOrCreate([
-            'couple_id' => $incomingCoupleId,
-            'theme_id' => 'Theme_1'
+        $invitation = Auth::user()->invitations()->firstOrNew([
+            'id' => $invitationId
         ]);
 
         $invitation->couple_id = $incomingCoupleId;

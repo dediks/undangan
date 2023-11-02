@@ -8,6 +8,7 @@ import AddToCalendarButton from "../AddToCalendarButton";
 import getData from "@/Helpers/getData";
 import { Transition } from "@headlessui/react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
     const introSectionRef = useRef(null);
@@ -15,7 +16,6 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
 
     useEffect(() => {
         scrollToIntroSection();
-        document.body.requestFullscreen();
     }, [isCoverOpen]);
 
     function scrollToIntroSection() {
@@ -26,7 +26,10 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
         });
     }
     return (
-        <section
+        <motion.section
+            transition={{ ease: "easeOut", duration: 2 }}
+            animate={{ y: -100 }}
+            initial={{ y: 0 }}
             ref={introSectionRef}
             style={{
                 backgroundImage: `url(/storage/images/${data.intro.image})`,
@@ -108,7 +111,7 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
                     </AddToCalendarButton>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

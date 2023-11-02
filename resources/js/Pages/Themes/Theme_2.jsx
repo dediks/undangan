@@ -38,20 +38,20 @@ const Themes_2 = ({ data, isPreview = false }) => {
     const [loading, setLoading] = useState(false);
     const [playing, toggle] = useAudio(data.music.url);
 
-    const [fullscreen, setFullscreen] = useFullscreen();
+    // const [fullscreen, setFullscreen] = useFullscreen();
 
     const handleOpenCover = () => {
+        document.body.requestFullscreen();
         setLoading(true);
 
         setTimeout(() => {
             // toggle();
             setShowCover(false);
-            setFullscreen(true);
+            // setFullscreen(true);
             // setLoading(false);
-        }, 1000);
+        }, 2000);
     };
 
-    // console.log("data theme2", data);
     return (
         <div
             className={clsx(
