@@ -8,6 +8,7 @@ import { BsFillEnvelopeOpenFill } from "react-icons/bs";
 import { getDateInWord } from "@/Helpers/getDate";
 import { CgSpinner } from "react-icons/cg";
 import clsx from "clsx";
+import Snowfall from "react-snowfall";
 
 const Cover = ({
     loading,
@@ -126,6 +127,13 @@ const Cover = ({
                         )}
                     </motion.div>
                 </div>
+                <Snowfall
+                    // The color of the snowflake, can be any valid CSS color.
+                    color="#ddd"
+                    // Applied to the canvas element.
+                    // Controls the number of snowflakes that are created (defaults to 150).
+                    snowflakeCount={50}
+                />
             </motion.section>
         </AnimatePresence>
     );
