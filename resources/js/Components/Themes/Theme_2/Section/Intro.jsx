@@ -131,7 +131,12 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
                                 "hover:border-blue-100 hover:rounded-2xl hover:bg-black/50 xl:py-2 xl:px-4 2xl:px-16 2xl:py-4 2xl:text-2xl 2xl:mt-20"
                             }
                         >
-                            Simpan di kalender
+                            <a
+                                target="_"
+                                href="https://www.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+Of+Rika+%26+Tommy&details=Rumah+Mempelai+Wanita&location=https%3A%2F%2Fwww.google.com%2Fmaps%2Fplace%2F6%25C2%25B054%2701.0%2522S%2B112%25C2%25B005%2756.4%2522E%2F%40-6.9002596%2C112.0988652%2C21z%2Fdata%3D%214m4%213m3%218m2%213d-6.9002892%214d112.0989857%3Fentry%3Dttu&dates=20231117T010000Z%2F20231117T100000Z"
+                            >
+                                Simpan di kalender
+                            </a>
                         </AddToCalendarButton>
                     </div>
                 </div>

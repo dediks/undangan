@@ -18,7 +18,7 @@ class Event extends Model
         'end',
         'location',
         'description',
-        'map_link'
+    'map_link'
     ];
 
     public function invitation()
