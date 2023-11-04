@@ -129,7 +129,7 @@ const Themes_2 = ({ data, isPreview = false }) => {
                     />
                     <section className="w-full">
                         <div className="px-8 pt-10 lg:px-32 lg:py-64">
-                            <h1 className="text-xl text-center mb-8 lg:text-3xl xl:text-4xl">
+                            <h1 className="font-hazelnuts text-xl text-center mb-8 lg:text-3xl xl:text-4xl">
                                 Gallery Pernikahan
                             </h1>
                             <div className="w-full lg:mt-32">
@@ -147,14 +147,7 @@ const Themes_2 = ({ data, isPreview = false }) => {
                         <GuestBook guest_book={data.guest_book_section} />
                     </section>
                     <section>
-                        <Footer
-                            data={{
-                                bridegroom: {
-                                    bride: data.bride_nickname,
-                                    groom: data.groom_nickname,
-                                },
-                            }}
-                        />
+                        <Footer />
                     </section>
                 </motion.div>
             )}

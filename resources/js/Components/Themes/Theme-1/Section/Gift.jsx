@@ -15,7 +15,6 @@ function copy() {
 const Gift = ({ data }) => {
     const [show, setShow] = useState(false);
 
-    console.log(data[0].address);
     return (
         <section className="p-4 mt-10">
             <div className="text-center flex flex-col space-y-4">
