@@ -17,20 +17,13 @@ export default function CountingDown({ data, children }) {
     };
 
     return (
-        <motion.div
-            className="w-full"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-        >
-            <motion.div variants={scrollMotionVariants}>
-                {target_date >= getToday() ? (
-                    <CountdownTimer targetDate={target_date} />
-                ) : (
-                    <ExpiredNotice />
-                )}
-            </motion.div>
-        </motion.div>
+        <div>
+            {target_date >= getToday() ? (
+                <CountdownTimer targetDate={target_date} />
+            ) : (
+                <ExpiredNotice />
+            )}
+        </div>
     );
 }
 

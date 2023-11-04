@@ -41,13 +41,14 @@ const Gift = ({ data }) => {
                 <motion.div
                     initial={{
                         opacity: 0,
+                        y: -10,
                     }}
                     animate={{
                         opacity: 1,
+                        y: 0,
                     }}
                     transition={{
-                        duration: 0.8,
-                        easeInOut: [0.97, 0.67, 0.83, 0.67],
+                        duration: 1.2,
                     }}
                     className="mt-10 flex flex-col space-y-8"
                 >

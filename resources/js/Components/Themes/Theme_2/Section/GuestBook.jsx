@@ -8,6 +8,8 @@ import { useForm, usePage } from "@inertiajs/react";
 import { HiOutlineClock } from "react-icons/hi";
 import { BsSendFill } from "react-icons/bs";
 import { MdVerified, MdWhatsapp } from "react-icons/md";
+import { motion } from "framer-motion";
+import { fadeInFastVariants, fadeInVariants } from "@/Libs/motion";
 
 const GuestBook = ({ guest_book }) => {
     const invitationData = usePage().props.data;
@@ -151,7 +153,11 @@ const GuestBook = ({ guest_book }) => {
                     {invitationData.guests.length > 0 &&
                         invitationData.guests.map((guest, index) => {
                             return (
-                                <div
+                                <motion.div
+                                    initial={"offscreen"}
+                                    whileInView={"onscreen"}
+                                    variants={fadeInFastVariants}
+                                    viewport={{ once: true }}
                                     key={index}
                                     className="w-full flex space-x-3"
                                 >
@@ -172,7 +178,7 @@ const GuestBook = ({ guest_book }) => {
                                             <span>{guest.updated_at}</span>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             );
                         })}
                 </div>

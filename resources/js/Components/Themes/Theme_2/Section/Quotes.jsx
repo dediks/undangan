@@ -1,53 +1,157 @@
 import getData from "@/Helpers/getData";
 import { BsFillChatSquareQuoteFill } from "react-icons/bs";
+import { motion, useInView } from "framer-motion";
+import { fadeInVariants } from "@/Libs/motion";
+import { useRef } from "react";
 
 const Quotes = ({ data, attributes, isPreview = false }) => {
-    console.log("quotes data", data);
-    console.log("quotes attributes", attributes);
+    // console.log("quotes data", data);
+    // console.log("quotes attributes", attributes);
 
+    const quoteSectionRef = useRef(null);
+    const imageRef = useRef(null);
+    const imageTwoRef = useRef(null);
+
+    const isInView = useInView(quoteSectionRef, { once: true });
+    const isImageInView = useInView(imageRef, { once: true });
+    const isTwoImageInView = useInView(imageTwoRef, { once: true });
+
+    console.log("quote in view", isInView);
     return (
-        <section className="min-h-[650px] lg:min-h-[1400px] relative bg-gray-200 p-3 lg:p-16 md:p-10 flex flex-col">
+        <section
+            ref={quoteSectionRef}
+            className="min-h-[650px] xl:min-h-[800px] lg:min-h-[1400px] relative bg-gray-200 p-3 lg:p-16 md:p-10"
+        >
             <div className="text-center flex flex-col justify-center items-center py-6 lg:px-36 lg:py-12">
                 <BsFillChatSquareQuoteFill className="text-4xl opacity-60 text-center" />
-                <p className="font-serif text-base sm:text-2xl text-black text-center leading-6 sm:leading-8 mt-5">
+                <motion.div
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0.8 }}
+                    variants={fadeInVariants}
+                    className="font-serif text-base sm:text-2xl text-black text-center leading-6 sm:leading-8 mt-5"
+                >
                     {data?.quote?.quote?.content ?? ""}
-                </p>
+                </motion.div>
             </div>
-            <div className="relative md:p-16 lg:p-24">
-                <div className="aspect-video relative bg-white p-0.5 shadow-xl">
-                    <img
-                        className="w-full md:p-1 h-full object-cover object-center"
-                        height={200}
-                        width={200}
-                        src={
-                            "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_28.webp"
+            <div className="w-full relative lg:p-24">
+                <div ref={imageRef}>
+                    <motion.div
+                        initial={{
+                            y: 30,
+                            opacity: 0,
+                            scale: 0,
+                        }}
+                        animate={
+                            isImageInView && {
+                                scale: 1,
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                    duration: 2.4,
+                                    delay: 0,
+                                    ease: "easeInOut",
+                                },
+                            }
                         }
-                        loading="lazy"
-                    />
+                        className="w-full h-52 md:h-full aspect-video relative bg-white p-0.5 shadow-xl"
+                    >
+                        <img
+                            className="w-full md:p-1 h-full object-cover object-center"
+                            height={200}
+                            width={200}
+                            src={
+                                getData(
+                                    data.images,
+                                    "id",
+                                    getData(
+                                        attributes,
+                                        "attribute_name",
+                                        "image_1"
+                                    ).value
+                                ).image_url
+                            }
+                            loading="lazy"
+                        />
+                        {/* "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_28.webp" */}
+                    </motion.div>
                 </div>
-                <div className="left-0 right-0 flex md:relative absolute w-full -bottom-16 space-x-2 md:space-x-8">
-                    <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
+                <div
+                    ref={imageTwoRef}
+                    className="h-24 md:h-full min-h-min left-0 right-0 flex md:relative absolute w-full -bottom-16 space-x-2 md:space-x-8"
+                >
+                    <motion.div
+                        initial={{
+                            x: -10,
+                            opacity: 0,
+                        }}
+                        animate={
+                            isTwoImageInView && {
+                                x: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: 1,
+                                    delay: 1,
+                                    ease: "easeInOut",
+                                },
+                            }
+                        }
+                        className="shadow-xl h-full w-6/12 aspect-video bg-white rounded-md p-1"
+                    >
                         <img
                             className="w-full md:p-1 h-full object-cover object-center"
                             height={200}
                             width={200}
                             src={
-                                "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_24.webp"
+                                getData(
+                                    data.images,
+                                    "id",
+                                    getData(
+                                        attributes,
+                                        "attribute_name",
+                                        "image_2"
+                                    ).value
+                                ).image_url
                             }
                             loading="lazy"
                         />
-                    </div>
-                    <div className="shadow-xl w-6/12 aspect-video bg-white rounded-md p-1">
+                    </motion.div>
+                    <motion.div
+                        initial={{
+                            x: 10,
+                            opacity: 0,
+                        }}
+                        animate={
+                            isTwoImageInView && {
+                                x: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: 1,
+                                    delay: 1,
+                                    ease: "easeInOut",
+                                },
+                            }
+                        }
+                        className="shadow-xl w-6/12 h-full aspect-video bg-white rounded-md p-1"
+                    >
                         <img
                             className="w-full md:p-1 h-full object-cover object-center"
                             height={200}
                             width={200}
                             src={
-                                "storage/images/01h646epfk2dj7mrmbe6ssvjej/galleries/gallery_28.webp"
+                                getData(
+                                    data.images,
+                                    "id",
+                                    getData(
+                                        attributes,
+                                        "attribute_name",
+                                        "image_3"
+                                    ).value
+                                ).image_url
                             }
                             loading="lazy"
                         />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

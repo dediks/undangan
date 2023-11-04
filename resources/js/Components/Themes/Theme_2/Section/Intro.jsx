@@ -14,6 +14,8 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
     const introSectionRef = useRef(null);
     const isInView = useInView(introSectionRef, { once: true });
 
+    console.log("Intro in view", isInView);
+
     useEffect(() => {
         scrollToIntroSection();
     }, [isCoverOpen]);
@@ -21,7 +23,7 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
     function scrollToIntroSection() {
         introSectionRef.current.scrollIntoView({
             behavior: "smooth",
-            block: "start",
+            block: "end",
             inline: "center",
         });
     }
@@ -32,8 +34,8 @@ const Intro = ({ data, attributes, isPreview = false, isCoverOpen }) => {
                 backgroundImage: `url(/storage/images/${data.intro.image})`,
             }}
             className={clsx(
-                isPreview ? "h-full w-full" : "min-h-screen md:h-[1000px]",
-                "relative transition duration-700 ease-in-out bg-center bg-cover flex items-end"
+                isPreview ? "h-full" : "min-h-screen lg:min-h-[1200px]",
+                "w-full relative bg-center bg-cover flex items-end"
             )}
         >
             <div className="absolute w-full min-h-full bg-black opacity-70"></div>

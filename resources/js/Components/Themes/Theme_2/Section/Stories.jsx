@@ -1,7 +1,17 @@
+import { fadeInVariants } from "@/Libs/motion";
+import { motion } from "framer-motion";
+
 export default function Stories({ data }) {
     const renderStories = data.stories.map((story, idx) => {
         return (
-            <div className="mt-6 rounded-lg" key={idx}>
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                variants={fadeInVariants}
+                viewport={{ once: true, amount: 0.8 }}
+                className="mt-6 rounded-lg"
+                key={idx}
+            >
                 <div className="rounded-lg">
                     <img
                         src={story.image}
@@ -20,7 +30,7 @@ export default function Stories({ data }) {
                 {story.story && (
                     <p className="text-gray-300 mt-10">{story.story}</p>
                 )}
-            </div>
+            </motion.div>
         );
     });
 

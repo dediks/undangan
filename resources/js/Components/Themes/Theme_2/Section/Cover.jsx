@@ -24,27 +24,27 @@ const Cover = ({
     return (
         <AnimatePresence>
             <motion.section
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0, x: 0 }}
                 animate={{ opacity: 1 }}
-                exit={{ translateY: 200 }}
                 style={{
                     backgroundImage: `url(/storage/images/${data.cover.background_image})`,
                 }}
                 className={clsx(
-                    isPreview ? "max-h-screen" : "min-h-screen",
-                    cover?.showCover ? "fixed" : "relative rounded-t-xl",
-                    `rounded-t-3xl w-full z-10 bg-cover bg-no-repeat bg-local bg-center flex flex-col justify-between h-full`
+                    isPreview ? "max-h-screen" : "h-[101vh] min-h-screen",
+                    cover?.showCover ? "fixed" : "relative xl:rounded-t-3xl",
+                    `w-full z-10 bg-cover bg-no-repeat bg-local bg-center flex flex-col justify-between h-full`
                 )}
             >
                 <div
                     className={clsx(
                         isPreview ? "max-h-screen" : "min-h-screen",
+                        cover?.showCover ? "" : `xl:rounded-t-3xl`,
                         `absolute w-full h-full  bg-black/50`
                     )}
                 ></div>
                 <div
                     className={clsx(
-                        isPreview ? "max-h-screen" : "min-h-screen ",
+                        isPreview ? "max-h-screen" : "min-h-screen",
                         `w-full absolute flex items-center flex-col justify-between py-36 md:py-16 xl:py-24 2xl:py-48`
                     )}
                 >

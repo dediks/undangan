@@ -27,7 +27,7 @@ const cardVariants = {
         rotate: -10,
         transition: {
             type: "spring",
-            bounce: 0.4,
+            bounce: 0.1,
             duration: 0.8,
         },
     },
@@ -38,19 +38,18 @@ const Themes_2 = ({ data, isPreview = false }) => {
     const [loading, setLoading] = useState(false);
     const [playing, toggle] = useAudio(data.music.url);
 
-    // const [fullscreen, setFullscreen] = useFullscreen();
+    const [fullscreen, setFullscreen] = useFullscreen();
 
-    console.log(data);
     const handleOpenCover = () => {
-        // document.body.requestFullscreen();
+        document.body.requestFullscreen();
         setLoading(true);
 
         setTimeout(() => {
             toggle();
             setShowCover(false);
-            // setFullscreen(true);
+            setFullscreen(true);
             setLoading(false);
-        }, 2000);
+        }, 3000);
     };
 
     return (

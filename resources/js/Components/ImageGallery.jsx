@@ -2,6 +2,8 @@ import { usePage } from "@inertiajs/react";
 import "photoswipe/dist/photoswipe.css";
 import React from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
+import { motion } from "framer-motion";
+import { fadeInVariants } from "@/Libs/motion";
 
 const ImageGallery = () => {
     const images = usePage().props.data.galleries;
@@ -38,27 +40,35 @@ const ImageGallery = () => {
         <Gallery>
             <div className="columns-2 md:columns-3 gap-3">
                 {images.map((image, index) => (
-                    <Item
+                    <motion.div
                         key={index}
-                        original={image.image_url}
-                        thumbnail={image.image_url}
-                        width={image.width}
-                        height={image.height}
-                        title={image.alt}
+                        initial={"offscreen"}
+                        whileInView={"onscreen"}
+                        variants={fadeInVariants}
+                        viewport={{ once: true }}
                     >
-                        {({ ref, open }) => (
-                            <div className={`w-full mb-3`}>
-                                <img
-                                    className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded hover:opacity-100`}
-                                    ref={ref}
-                                    src={image.image_url}
-                                    alt={image.alt}
-                                    onClick={open}
-                                    style={smallItemStyles}
-                                />
-                            </div>
-                        )}
-                    </Item>
+                        <Item
+                            key={index}
+                            original={image.image_url}
+                            thumbnail={image.image_url}
+                            width={image.width}
+                            height={image.height}
+                            title={image.alt}
+                        >
+                            {({ ref, open }) => (
+                                <div className={`w-full mb-3`}>
+                                    <img
+                                        className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded hover:opacity-100`}
+                                        ref={ref}
+                                        src={image.image_url}
+                                        alt={image.alt}
+                                        onClick={open}
+                                        style={smallItemStyles}
+                                    />
+                                </div>
+                            )}
+                        </Item>
+                    </motion.div>
                 ))}
             </div>
         </Gallery>

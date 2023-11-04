@@ -8,17 +8,18 @@ import {
     MdPlayDisabled,
     MdQueueMusic,
 } from "react-icons/md";
+import clsx from "clsx";
 
 const MusicButton = ({ playing, toggle, className, url }) => {
-    console.log("playing", playing);
+    // console.log("playing", playing);
     return (
-        <section className={className}>
+        <section className={clsx(className)}>
             <button
                 onClick={toggle}
                 className={`${playing ? "animate-pulse" : ""} p-2 md:p-4`}
             >
                 {playing ? (
-                    <MdPause />
+                    <MdPause className="text-black" />
                 ) : (
                     <MdPlayArrow
                         className={`${
