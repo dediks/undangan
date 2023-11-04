@@ -66,10 +66,15 @@ const Couple = ({ data }) => {
                             viewport={{ once: true, amount: 0.8 }}
                             className="mt-8 md:mt-24 md:text-center text-right flex flex-col md:items-center items-end"
                         >
-                            <div className="cursor-pointer hover:rounded-md flex items-center space-x-2 w-fit pb-2 px-2 md:border-2 md:p-2 border-b border-gray-100">
+                            <a
+                                href={
+                                    "https://www.instagram.com/chandra_fariha/"
+                                }
+                                className="cursor-pointer hover:rounded-md flex items-center space-x-2 w-fit pb-2 px-2 md:border-2 md:p-2 border-b border-gray-200"
+                            >
                                 <BsInstagram />
                                 <span>Instagram</span>
-                            </div>
+                            </a>
 
                             <div className="font-arslan text-5xl leading-8 mt-8 md:w-64">
                                 {data.bride_fullname}
@@ -116,7 +121,7 @@ const Couple = ({ data }) => {
                         >
                             <a
                                 href={
-                                    "https://www.instagram.com/chandra_fariha/"
+                                    "https://www.instagram.com/tmy_herd/?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D"
                                 }
                                 className="cursor-pointer hover:rounded-md flex items-center space-x-2 w-fit pb-2 px-2 md:border-2 md:p-2 border-b border-gray-200"
                             >
