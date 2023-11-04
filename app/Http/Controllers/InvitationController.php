@@ -37,7 +37,7 @@ class InvitationController extends Controller
         if (Auth::user()->isUser()) {
             $invitation_data = Auth::user()->invitations()->first();
         };
-
+        // dd($invitation_data);
         return Inertia::render('Invitation/BrideGroomSection/Create', ["invitation_data" => $invitation_data]);
     }
 

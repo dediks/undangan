@@ -111,18 +111,19 @@ export default function BrideFormSection({ data, errors, setData, progress }) {
             <div>
                 <InputLabel
                     htmlFor="bride_as_child_position"
-                    value="Putra ke"
+                    value="Putri ke"
                 />
                 <SelectInput
                     id="bride_as_child_position"
                     className="mt-1 block w-full"
-                    selected={data.bride_as_child_position}
+                    value={data.bride_as_child_position}
                     onChange={(e) =>
                         setData("bride_as_child_position", e.target.value)
                     }
                     required
                     autoComplete="bride_as_child_position"
                 >
+                    <option value={0}>Tunggal</option>
                     <option value={1}>Pertama</option>
                     <option value={2}>Kedua</option>
                     <option value={3}>Ketiga</option>
@@ -136,7 +137,7 @@ export default function BrideFormSection({ data, errors, setData, progress }) {
                 />
             </div>
             <div className="flex flex-col space-y-2">
-                <InputLabel htmlFor="groom_photo" value="Foto mempelai pria" />
+                <InputLabel htmlFor="bride" value="Foto mempelai wanita" />
                 <UploadImagePreview selectedFile={data.bride_photo} />
                 <FileInput
                     id="bride_photo"

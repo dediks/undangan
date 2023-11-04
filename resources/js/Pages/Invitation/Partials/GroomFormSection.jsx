@@ -113,18 +113,19 @@ export default function GroomFormSection({ data, errors, setData, progress }) {
             <div>
                 <InputLabel
                     htmlFor="groom_as_child_position"
-                    value="Putri ke"
+                    value="Putra ke"
                 />
                 <SelectInput
                     id="groom_as_child_position"
                     className="mt-1 block w-full"
-                    selected={data.groom_as_child_position}
+                    value={data.groom_as_child_position}
                     onChange={(e) =>
                         setData("groom_as_child_position", e.target.value)
                     }
                     required
                     autoComplete="groom_as_child_position"
                 >
+                    <option value={0}>Tunggal</option>
                     <option value={1}>Pertama</option>
                     <option value={2}>Kedua</option>
                     <option value={3}>Ketiga</option>

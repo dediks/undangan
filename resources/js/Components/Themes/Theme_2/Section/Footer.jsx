@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 const Footer = ({ bridegroom }) => {
     const data = usePage().props.data;
+    console.log("Footer : ", data);
     return (
         <section
             className="w-full text-gray-300/80 text-center mt-16 lg:mt-32 bg-center bg-cover"
@@ -47,11 +48,11 @@ const Footer = ({ bridegroom }) => {
                     className="mt-10 md:mt-24 text-center justify-center flex items-center mx-auto w-full space-x-3"
                 >
                     <span className="font-hazelnuts text-3xl md:text-5xl">
-                        {bridegroom.bride}
+                        {data.bride_nickname}
                     </span>
                     <span className="">&</span>
                     <span className="font-hazelnuts text-3xl md:text-5xl">
-                        {bridegroom.groom}
+                        {data.groom_nickname}
                     </span>
                 </motion.div>
                 <div className="h-48 md:h-96 mt-64 md:mt-80 flex space-y-10 items-center flex-col w-full text-gray-50">

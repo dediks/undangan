@@ -3,6 +3,20 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { BsInstagram } from "react-icons/bs";
 
+const childPostion = [
+    "tunggal",
+    "pertama",
+    "kedua",
+    "ketiga",
+    "keempat",
+    "kelima",
+    "keenam",
+];
+
+const getChildPostion = (number) => {
+    return childPostion[number];
+};
+
 const Couple = ({ data }) => {
     // console.log("Couple", data);
     const coupleSectionRef = useRef(null);
@@ -61,7 +75,11 @@ const Couple = ({ data }) => {
                                 {data.bride_fullname}
                             </div>
                             <div className="mt-8 leading-3 w-64">
-                                <span className="font-bold">Putri Dari</span>
+                                <span className="font-bold">
+                                    Putri{" "}
+                                    {childPostion[data.bride_as_child_position]}{" "}
+                                    dari
+                                </span>
                                 <div className="leading-4 mt-2">
                                     <span>Bapak</span>
                                     <span> </span>
@@ -111,7 +129,13 @@ const Couple = ({ data }) => {
                                 </div>
                                 <div className="mt-8 leading-3 w-64">
                                     <span className="font-bold">
-                                        Putri Dari
+                                        Putra{" "}
+                                        {
+                                            childPostion[
+                                                data.groom_as_child_position
+                                            ]
+                                        }{" "}
+                                        dari
                                     </span>
                                     <div className="leading-4 mt-2">
                                         <span>Bapak</span>

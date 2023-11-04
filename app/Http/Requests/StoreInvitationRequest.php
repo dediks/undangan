@@ -35,7 +35,7 @@ class StoreInvitationRequest extends FormRequest
             "groom_mother" => [''],
             "groom_father" => [''],
             "bride_as_child_position" => ['required'],
-            "groom_as_child_position" => [],
+            "groom_as_child_position" => ['required'],
             'bride_photo' => [
                 '',
                 File::image()
