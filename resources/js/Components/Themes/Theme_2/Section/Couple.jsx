@@ -25,7 +25,7 @@ const Couple = ({ data }) => {
     return (
         <section
             ref={coupleSectionRef}
-            className="relative bg-gray-200/80 text-gray-100 w-full h-[1800px] md:h-[1200px]"
+            className="relative bg-gray-200/80 text-gray-100 w-full min-h-[1800px] pb-24 md:h-[1200px] bg-black"
         >
             <div
                 style={{
@@ -33,7 +33,7 @@ const Couple = ({ data }) => {
                 }}
                 className="absolute w-full min-h-full bg-center bg-cover"
             ></div>
-            <div className="px-10 md:flex md:flex-col md:space-y-16 md:px-48 absolute w-full h-full bg-center bg-cover md:backdrop-blur-xl bg-black/40 backdrop-blur">
+            <div className="px-10 md:flex md:flex-col md:space-y-16 md:px-48 w-full h-full bg-center bg-cover md:backdrop-blur-xl bg-black/40 backdrop-blur">
                 <div className="text-center xl:pt-20 pt-16">
                     <h1 className="text-3xl xl:text-4xl font-dream_avenue">
                         Bride & Groom
