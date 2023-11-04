@@ -38,13 +38,11 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                 <div ref={imageRef}>
                     <motion.div
                         initial={{
-                            y: 30,
+                            y: -30,
                             opacity: 0,
-                            scale: 0,
                         }}
                         animate={
                             isImageInView && {
-                                scale: 1,
                                 opacity: 1,
                                 y: 0,
                                 transition: {
@@ -82,12 +80,12 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                 >
                     <motion.div
                         initial={{
-                            x: -10,
+                            y: 20,
                             opacity: 0,
                         }}
                         animate={
                             isTwoImageInView && {
-                                x: 0,
+                                y: 0,
                                 opacity: 1,
                                 transition: {
                                     duration: 1,
@@ -118,12 +116,12 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                     </motion.div>
                     <motion.div
                         initial={{
-                            x: 10,
+                            y: 20,
                             opacity: 0,
                         }}
                         animate={
                             isTwoImageInView && {
-                                x: 0,
+                                y: 0,
                                 opacity: 1,
                                 transition: {
                                     duration: 1,

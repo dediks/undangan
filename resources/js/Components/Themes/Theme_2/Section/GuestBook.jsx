@@ -39,6 +39,7 @@ const GuestBook = ({ guest_book }) => {
 
         post(`/guestbook/${invitationData.id}?to=${guest}`, {
             wantsJson: true,
+            preserveScroll: true,
             onSuccess: (res) => {
                 showToast(res.props.flash.message, {
                     type: res.props.flash.status,
