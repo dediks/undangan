@@ -25,15 +25,15 @@ const Couple = ({ data }) => {
     return (
         <section
             ref={coupleSectionRef}
-            className="relative bg-gray-200/80 text-gray-100 w-full min-h-[1800px] pb-24 md:h-[1200px] bg-black"
+            className="relative bg-gray-200/80 text-gray-100 w-full min-h-[1800px] pb-24 md:pb-0 md:min-h-[1200px]"
         >
             <div
                 style={{
                     backgroundImage: `url(storage/images/${data.bride_photo})`,
                 }}
-                className="absolute w-full min-h-full bg-center bg-cover"
+                className="absolute w-full min-h-full bg-center bg-cover left-0 right-0 top-0 bottom-0"
             ></div>
-            <div className="px-10 md:flex md:flex-col md:space-y-16 md:px-48 w-full h-full bg-center bg-cover md:backdrop-blur-xl bg-black/40 backdrop-blur">
+            <div className="px-10 md:flex md:flex-col md:space-y-16 md:px-48 min-h-[1200px] w-full bg-center bg-cover md:backdrop-blur-xl bg-black/40 backdrop-blur">
                 <div className="text-center xl:pt-20 pt-16">
                     <h1 className="text-3xl xl:text-4xl font-dream_avenue">
                         Bride & Groom

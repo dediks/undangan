@@ -6,6 +6,7 @@ export default function UploadImagePreview({
     alt,
     selectedFile,
     setSelectedFile,
+    uploadedImageRef,
     ...props
 }) {
     const [preview, setPreview] = useState();
@@ -38,6 +39,7 @@ export default function UploadImagePreview({
         <div className="shrink-0">
             {selectedFile && (
                 <img
+                    ref={uploadedImageRef}
                     className="h-16 w-16 object-cover rounded-full"
                     src={preview}
                 />

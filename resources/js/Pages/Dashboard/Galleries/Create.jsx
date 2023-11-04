@@ -8,9 +8,38 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import { Transition } from "@headlessui/react";
 import FileInput from "@/Components/FileInput";
 import UploadImagePreview from "@/Components/UploadImagePreview";
+import { useRef } from "react";
+import useImage from "@/Hooks/useImage";
+
+let _URL = window.URL || window.webkitURL;
+
+const getImageDetail = (image) => {
+    let file, img;
+    let width = 0;
+    let height = 0;
+
+    if ((file = image.files[0])) {
+        img = new Image();
+        var objectUrl = _URL.createObjectURL(file);
+        img.onload = function () {
+            width = this.width;
+            height = this.height;
+
+            console.log("height dalam", height);
+            console.log("width dalam", width);
+            _URL.revokeObjectURL(objectUrl);
+        };
+        img.src = objectUrl;
+    }
+    console.log("height", height);
+    console.log("width", width);
+
+    return [width, height];
+};
 
 export default function Create({ auth }) {
     const invitationId = usePage().props.invitation.id;
+    const uploadedImageRef = useRef(null);
 
     const imageData = {
         alt: "",
@@ -29,24 +58,45 @@ export default function Create({ auth }) {
         recentlySuccessful,
     } = useForm(imageData);
 
+    const setWidthHeightData = (target) => {
+        let file, img;
+
+        if ((file = target.files[0])) {
+            img = new Image();
+            let objectUrl = _URL.createObjectURL(file);
+            img.onload = function (e) {
+                setData((data) => ({ ...data, height: this.height }));
+                setData((data) => ({ ...data, width: this.width }));
+
+                _URL.revokeObjectURL(objectUrl);
+            };
+            img.src = objectUrl;
+        }
+    };
+
     const showToast = useToast();
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(`/invitation/${invitationId}/galleries`, {
-            onSuccess: (res) => {
-                console.log(res);
-                showToast("berhasil", {
-                    type: "success",
-                    position: "top-right",
-                    autoClose: 3000,
-                });
-            },
-            onError: (errors) => {
-                console.log(errors);
-            },
-        });
+        post(
+            route("galleries.store", {
+                invitationId: invitationId,
+            }),
+            {
+                onSuccess: (res) => {
+                    console.log("onSuccess", res);
+                    showToast("berhasil", {
+                        type: "success",
+                        position: "top-right",
+                        autoClose: 3000,
+                    });
+                },
+                onError: (errors) => {
+                    console.log("error", errors);
+                },
+            }
+        );
     };
 
     return (
@@ -67,6 +117,7 @@ export default function Create({ auth }) {
                                 <div className="flex flex-col space-y-2">
                                     <InputLabel htmlFor="image" value="Image" />
                                     <UploadImagePreview
+                                        uploadedImageRef={uploadedImageRef}
                                         selectedFile={data.image}
                                     />
                                     <FileInput
@@ -74,6 +125,7 @@ export default function Create({ auth }) {
                                         className="mt-1 block w-full "
                                         onChange={(e) => {
                                             setData("image", e.target.files[0]);
+                                            setWidthHeightData(e.target);
                                         }}
                                         isFocused
                                         autoComplete="image"

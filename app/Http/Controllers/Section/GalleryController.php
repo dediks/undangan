@@ -78,7 +78,7 @@ class GalleryController extends Controller
 
             DB::commit();
 
-            return back()->with('message', "Berhasil disimpan");
+            return to_route('galleries.index', ["invitationId" => $invitation->id])->with('message', "Berhasil disimpan");
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

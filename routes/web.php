@@ -96,11 +96,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('gmap/{id}', [GmapController::class, 'update']);
             Route::post('{invitationId}/gmap', [GmapController::class, 'store']);
 
-            Route::get('{invitationId}/galleries', [GalleryController::class, 'index']);
-            Route::get('/{invitationId}/galleries/create', [GalleryController::class, 'create']);
-            Route::put('galleries/{id}', [GalleryController::class, 'update']);
-            Route::post('{invitationId}/galleries', [GalleryController::class, 'store']);
-            Route::delete('/galleries/{galleryId}', [GalleryController::class, 'destroy']);
+            Route::get('{invitationId}/galleries', [GalleryController::class, 'index'])->name('galleries.index');
+            Route::get('/{invitationId}/galleries/create', [GalleryController::class, 'create'])->name('galleries.create');
+            Route::put('galleries/{id}', [GalleryController::class, 'update'])->name('galleries.update');
+            Route::post('{invitationId}/galleries', [GalleryController::class, 'store'])->name('galleries.store');
+            Route::delete('/galleries/{galleryId}', [GalleryController::class, 'destroy'])->name('galleries.destroy');
 
             Route::post('{invitationId}/music/{musicId}', [MusicController::class, 'store'])->name('music.select');
             Route::get('{invitationId}/music', [MusicController::class, 'index']);
