@@ -9,7 +9,6 @@ import { Transition } from "@headlessui/react";
 import FileInput from "@/Components/FileInput";
 import UploadImagePreview from "@/Components/UploadImagePreview";
 import { useRef } from "react";
-import useImage from "@/Hooks/useImage";
 
 let _URL = window.URL || window.webkitURL;
 
