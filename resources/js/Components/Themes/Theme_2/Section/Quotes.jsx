@@ -34,7 +34,7 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                     {data?.quote?.quote?.content ?? ""}
                 </motion.div>
             </div>
-            <div className="w-full relative lg:p-24">
+            <div className="w-full relative lg:px-24 lg:pb-32 lg:pt-10">
                 <div ref={imageRef}>
                     <motion.div
                         initial={{
@@ -69,7 +69,7 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                                         "attribute_name",
                                         "image_1"
                                     ).value
-                                ).image_url
+                                )?.image_url
                             }
                             loading="lazy"
                         />
@@ -111,7 +111,7 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                                         "attribute_name",
                                         "image_2"
                                     ).value
-                                ).image_url
+                                )?.image_url
                             }
                             loading="lazy"
                         />
@@ -147,7 +147,7 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
                                         "attribute_name",
                                         "image_3"
                                     ).value
-                                ).image_url
+                                )?.image_url
                             }
                             loading="lazy"
                         />

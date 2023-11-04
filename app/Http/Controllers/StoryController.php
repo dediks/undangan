@@ -6,6 +6,7 @@ use App\Models\Story;
 use App\Models\Invitation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreStoryRequest;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class StoryController extends Controller
@@ -24,13 +25,15 @@ class StoryController extends Controller
 
             $path = public_path($story->image);
 
-            $delete = unlink($path);
+            $file = File::exists($path);
 
-            if ($delete) {
-                $story->delete();
+            if ($file) {
+                $delete = unlink($path);
             }
 
-            return back();
+            $story->delete();
+
+            return back()->with('flash', 'Berhasil Menghapus!');
         } catch (\Throwable $th) {
             throw $th;
         }

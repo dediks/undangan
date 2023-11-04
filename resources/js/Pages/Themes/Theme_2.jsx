@@ -147,7 +147,14 @@ const Themes_2 = ({ data, isPreview = false }) => {
                         <GuestBook guest_book={data.guest_book_section} />
                     </section>
                     <section>
-                        <Footer />
+                        <Footer
+                            data={{
+                                bridegroom: {
+                                    bride: data.bride_nickname,
+                                    groom: data.groom_nickname,
+                                },
+                            }}
+                        />
                     </section>
                 </motion.div>
             )}

@@ -1,5 +1,4 @@
 import Alert from "@/Components/Alert";
-import Modal from "@/Components/Modal";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
@@ -7,9 +6,6 @@ import useToast from "@/Hooks/useToast";
 
 const Index = ({ auth, stories }) => {
     const invitation_id = usePage().props.invitation.id;
-    const [openModal, setOpenModal] = useState(false);
-    const [cofirmDelete, setConfirmDelete] = useState(false);
-    const [selectedStory, setSelectedStory] = useState(null);
 
     const showToast = useToast();
 
@@ -22,34 +18,33 @@ const Index = ({ auth, stories }) => {
     } = useForm();
 
     const handleDelete = (storyId) => {
-        setSelectedStory(storyId);
-        setOpenModal(true);
-    };
-
-    useEffect(() => {
-        if (cofirmDelete && selectedStory) {
+        if (storyId) {
             destroy(
-                route("story.destroy", {
+                route("stories.destroy", {
                     invitationId: invitation_id,
-                    storyId: selectedStory,
+                    storyId: storyId,
                 }),
                 {
                     onSuccess: (res) => {
-                        console.log(res);
+                        console.log("delete : ", res);
                         showToast("Berhasil dihapus", {
                             type: "success",
                             position: "top-right",
                             autoClose: 3000,
                         });
-                        setOpenModal(false);
                     },
                     onError: (errors) => {
                         console.log(errors);
                     },
+                    onFinish: (visit) => {
+                        console.log(visit);
+                    },
+                    onBefore: () =>
+                        confirm("Are you sure you want to delete this story?"),
                 }
             );
         }
-    }, [cofirmDelete]);
+    };
 
     return (
         <AuthenticatedLayout
@@ -72,36 +67,6 @@ const Index = ({ auth, stories }) => {
                 </div>
             }
         >
-            <Modal
-                show={openModal}
-                onClose={() => {
-                    setOpenModal(false);
-                }}
-                className="p-4 "
-            >
-                <div className="p-4">Yakin ingin menghapus?</div>
-                <div className="flex space-x-2 justify-end">
-                    <button
-                        type="button"
-                        className="px-4 py-1 border border-gray-600 rounded"
-                        onClick={() => {
-                            setConfirmDelete(false);
-                            setOpenModal(false);
-                        }}
-                    >
-                        Tidak
-                    </button>
-                    <button
-                        type="button"
-                        className="rounded px-4 py-1 bg-blue-500 text-gray-100"
-                        onClick={() => {
-                            setConfirmDelete(true);
-                        }}
-                    >
-                        Iya
-                    </button>
-                </div>
-            </Modal>
             <Head title="Daftar Acara" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 px-2">
