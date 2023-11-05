@@ -8,7 +8,7 @@ export default function Stories({ data }) {
                 initial="offscreen"
                 whileInView="onscreen"
                 variants={fadeInVariants}
-                viewport={{ once: true, amount: 1 }}
+                viewport={{ once: true, amount: 0.5 }}
                 className="mt-6 rounded-lg"
                 key={idx}
             >
