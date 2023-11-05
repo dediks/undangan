@@ -22,7 +22,7 @@ const Cover = ({
     const guest = usePage().props.data?.to;
 
     return (
-        <AnimatePresence>
+        <>
             <motion.section
                 initial={{ opacity: 0, x: 0 }}
                 animate={{ opacity: 1 }}
@@ -135,7 +135,7 @@ const Cover = ({
                     snowflakeCount={50}
                 />
             </motion.section>
-        </AnimatePresence>
+        </>
     );
 };
 

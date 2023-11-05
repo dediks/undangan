@@ -41,7 +41,7 @@ const Themes_2 = ({ data, isPreview = false }) => {
     const [fullscreen, setFullscreen] = useFullscreen();
 
     const handleOpenCover = () => {
-        document.body.requestFullscreen();
+        // document.body.requestFullscreen();
         setLoading(true);
 
         setTimeout(() => {
