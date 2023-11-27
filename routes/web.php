@@ -22,7 +22,7 @@ use App\Http\Controllers\Section\QuoteController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Section\CoupleController;
 use App\Http\Controllers\Section\StoryController as StorySectionController;
-use Illuminate\Support\Facades\File;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,6 +34,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
+
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     });

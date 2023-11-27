@@ -17,11 +17,14 @@ class StoryController extends Controller
     {
         $story_section = StorySection::where('invitation_id', $invitationId)->first();
 
+        // dd("sini");
+
         return Inertia::render('Invitation/Section/StorySection', ['storyData' => $story_section]);
     }
 
     public function update(UpdateStorySectionRequest $request, $storySectionId)
     {
+        // dd("sini");
         $validated_file = $request->safe()->only(['background_image']);
         $validated_data = $request->safe()->except(['background_image']);
 

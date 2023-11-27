@@ -10,9 +10,35 @@ import { Head, router, useForm, usePage } from "@inertiajs/react";
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import getData from "@/Helpers/getData";
 
-let IntroTheme = lazy(() =>
+let IntroTheme2 = lazy(() =>
     import(`@/Components/Themes/Theme_2/Section/Intro`)
 );
+
+let IntroTheme3 = lazy(() =>
+    import(`@/Components/Themes/Theme_3/Section/Intro`)
+);
+
+const MyComponent = (props) => {
+    const { condition, ...otherProps } = props;
+    const SelectedComponent = selectComponent(condition, otherProps);
+
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            {SelectedComponent}
+        </React.Suspense>
+    );
+};
+
+const selectComponent = (condition, props) => {
+    switch (condition) {
+        case "Theme_2":
+            return <IntroTheme2 {...props} />;
+        case "Theme_3":
+            return <IntroTheme3 {...props} />;
+        default:
+            return null; // Or some default component
+    }
+};
 
 const getFormInput = (type) => {
     switch (type) {
@@ -48,13 +74,15 @@ const IntroSection = ({
         useForm(introData);
 
     console.log("attributes", attributes);
+    console.log("invitation", invitation);
 
     const [selectedEvent, setSelectedEvent] = useState(
         getData(
             events,
             "id",
-            getData(attributes, "attribute_name", "selected_event").value
-        ).id
+            getData(attributes, "attribute_name", "selected_event")?.value ??
+                null
+        )?.id
     );
 
     console.log("Schema", schema);
@@ -376,17 +404,16 @@ const IntroSection = ({
                 </div>
                 <div className="md:w-4/12 p-4 bg-white shadow-xl min-w-[390px] relative min-h-[844px]">
                     <div className="overflow-hidden relative rounded-md w-full h-full aspect-[9/16] bg-black">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <IntroTheme
-                                data={{
-                                    intro: data,
-                                    bridegroom: bridegroom,
-                                    events: events,
-                                }}
-                                isPreview={true}
-                                attributes={introAttribute}
-                            />
-                        </Suspense>
+                        <MyComponent
+                            condition={invitation.theme_id}
+                            data={{
+                                intro: data,
+                                bridegroom: bridegroom,
+                                events: events,
+                            }}
+                            isPreview={true}
+                            attributes={introAttribute}
+                        />
                     </div>
                 </div>
             </div>

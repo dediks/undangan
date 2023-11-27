@@ -92,12 +92,12 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
                     <>
                         <DateTimeDisplay
                             value={days}
-                            type={"Hari"}
+                            type={"Days"}
                             isDanger={days <= 3}
                         />
                         <DateTimeDisplay
                             value={hours}
-                            type={"Jam"}
+                            type={"Hours"}
                             isDanger={false}
                         />
                         <DateTimeDisplay
@@ -137,8 +137,41 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
                         />
                     </>
                 );
+            case "Theme_3":
+                return (
+                    <div className="flex md:space-x-4 space-x-2 justify-center py-4">
+                        <div className="px-6  bg-black/50 py-4 text-gray-100 ">
+                            <DateTimeDisplayTheme2
+                                value={days}
+                                type={"Hari"}
+                                isDanger={days <= 3}
+                            />
+                        </div>
+                        <div className="px-6  bg-black/50 py-4 text-gray-100">
+                            <DateTimeDisplayTheme2
+                                value={hours}
+                                type={"Jam"}
+                                isDanger={false}
+                            />
+                        </div>
+                        <div className="px-6  bg-black/50 py-4 text-gray-100">
+                            <DateTimeDisplayTheme2
+                                value={minutes}
+                                type={"Mins"}
+                                isDanger={false}
+                            />
+                        </div>
+                        <div className="px-6 text-gray-100 bg-black/50 py-4">
+                            <DateTimeDisplayTheme2
+                                value={seconds}
+                                type={"Seconds"}
+                                isDanger={false}
+                            />
+                        </div>
+                    </div>
+                );
         }
     };
 
-    return <div className="flex space-x-4">{renderShowCounter()}</div>;
+    return <div>{renderShowCounter()}</div>;
 };

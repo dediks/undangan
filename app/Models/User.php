@@ -50,6 +50,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function scopeExceptAuth($query)
+    {
+        return $query->where('id', '!=', auth()->id());
+    }
+
     public function invitations(): HasMany
     {
         return $this->hasMany(Invitation::class);

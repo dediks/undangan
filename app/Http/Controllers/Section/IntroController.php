@@ -48,6 +48,7 @@ class IntroController extends Controller
 
         $theme_id = auth()->user()->invitations()->first('theme_id')['theme_id'];
 
+        // dd($theme_id);
         $json = File::get(resource_path('themes/' . $theme_id . '.json'));
         $schema = json_decode($json, true);
 

@@ -46,6 +46,7 @@ const ImageGallery = () => {
                         whileInView={"onscreen"}
                         variants={fadeInVariants}
                         viewport={{ once: true }}
+                        className="mb-3 shadow-2xl shadow-black"
                     >
                         <Item
                             key={index}
@@ -56,7 +57,7 @@ const ImageGallery = () => {
                             title={image.alt}
                         >
                             {({ ref, open }) => (
-                                <div className={`w-full mb-3`}>
+                                <div className={`w-full`}>
                                     <img
                                         className={`${spanProp[index]["aspect"]} inset-0 h-full w-full object-cover object-center rounded hover:opacity-100`}
                                         ref={ref}

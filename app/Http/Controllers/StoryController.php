@@ -15,6 +15,8 @@ class StoryController extends Controller
     {
         $stories = auth()->user()->invitations()?->first()->storySection()?->first()->stories;
 
+        // dd("sini");
+
         return Inertia::render('Dashboard/Stories/Index', ["stories" => $stories]);
     }
 
