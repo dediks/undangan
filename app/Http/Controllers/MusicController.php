@@ -16,7 +16,7 @@ class MusicController extends Controller
         $musics = Music::get();
 
         $selected_music = auth()->user()->invitations()->first()->music()->first();
-
+    
         $songs = Storage::disk('public')->files('/assets/song');
 
         return Inertia::render('Dashboard/Music/Index', ["musics" => $musics, 'selected_music' => $selected_music]);

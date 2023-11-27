@@ -80,6 +80,13 @@ const Themes_3 = ({ data, isPreview = false }) => {
             />
             {!showCover && (
                 <div>
+                    <MusicButton
+                        toggle={toggle}
+                        playing={playing}
+                        className={
+                            "bg-gray-200/80 bottom-4 md:bottom-5 left-5 fixed z-50 rounded-full border-2 border-gray-300 hover:border-2 hover:bg-white hover:border-white"
+                        }
+                    />
                     {data.intro && data.intro.attributes.length > 0 && (
                         <Intro
                             data={{

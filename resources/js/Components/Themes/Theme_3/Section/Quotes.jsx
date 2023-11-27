@@ -23,13 +23,13 @@ const Quotes = ({ data, attributes, isPreview = false }) => {
             className=" min-h-[650px] xl:min-h-[800px] lg:min-h-[1400px] relative bg-gradient-to-b from-black to-black/40 bg-black text-red-500 p-3 lg:p-16 md:p-10"
         >
             <div className="text-center flex flex-col justify-center items-center py-6 lg:px-36 lg:py-12 px-5">
-                <BsFillChatSquareQuoteFill className="text-4xl opacity-60 text-center" />
+                <BsFillChatSquareQuoteFill className="text-4xl md:text-6xl opacity-60 text-center" />
                 <motion.div
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{ once: true, amount: 0.8 }}
                     variants={fadeInVariants}
-                    className="font-serif sm:text-2xl text-gray-300 text-center leading-6 sm:leading-8 mt-5"
+                    className="font-serif sm:text-2xl text-gray-300 text-center leading-6 sm:leading-8 mt-5 md:leading-loose md:mt-10"
                 >
                     {data?.quote?.quote?.content ?? ""}
                 </motion.div>

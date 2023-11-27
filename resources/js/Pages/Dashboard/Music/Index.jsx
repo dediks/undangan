@@ -155,8 +155,9 @@ const Index = ({ auth, musics, selected_music }) => {
                                                     }}
                                                     className="cursor-pointer px-2 py-2  rounded-md text-center font-medium dark:text-blue-500 hover:underline"
                                                 >
-                                                    {selectedMusic.id ==
-                                                    data.id ? (
+                                                    {selectedMusic &&
+                                                    selectedMusic.id ==
+                                                        data.id ? (
                                                         <MdRadioButtonChecked />
                                                     ) : (
                                                         <MdRadioButtonUnchecked />

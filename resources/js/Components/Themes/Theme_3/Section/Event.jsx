@@ -41,7 +41,7 @@ export default function Event({ data, attributes, isPreview = false }) {
                     whileInView={"onscreen"}
                     variants={fadeInVariants}
                     viewport={{ once: true }}
-                    className="mt-10 text-center flex flex-col items-center"
+                    className="mt-10 text-center flex flex-col items-center space-y-20"
                 >
                     <FaMapMarkedAlt className="text-4xl" />
                     <div className="flex flex-col mt-2">
