@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('themes', function (Blueprint $table) {
-            $table->json('base_style');
+        Schema::create('sosmeds', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('icon')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,7 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('themes', function (Blueprint $table) {
-        });
+        Schema::dropIfExists('sosmeds');
     }
 };
