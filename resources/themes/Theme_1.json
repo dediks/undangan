@@ -1,0 +1,75 @@
+[
+    {
+        "kind": "singleType",
+        "collectionName": "quotes",
+        "info": {
+            "singularName": "quote",
+            "pluralName": "quotes",
+            "displayName": "Quotes"
+        },
+        "options": {
+            "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+            "show": {
+                "displayName": "Is Show",
+                "type": "boolean",
+                "default": 0
+            },
+            "title": {
+                "type": "text",
+                "default": "",
+                "status": 1,
+                "displayName": "Title"
+            },
+            "backgrouond_image": {
+                "type": "relation",
+                "relation": "oneToOne",
+                "target": "Quote",
+                "displayName": "Quotes"
+            }
+        }
+    },
+    {
+        "kind": "singleType",
+        "collectionName": "intros",
+        "info": {
+            "singularName": "intro",
+            "pluralName": "intros",
+            "displayName": "Intro"
+        },
+        "options": {
+            "draftAndPublish": true
+        },
+        "pluginOptions": {},
+        "attributes": {
+            "show": {
+                "displayName": "Is Show",
+                "type": "boolean",
+                "default": 0
+            },
+            "title": {
+                "type": "text",
+                "default": "Pernikahan",
+                "status": 1,
+                "displayName": "Title"
+            },
+            "quotes": {
+                "type": "relation",
+                "relation": "oneToOne",
+                "target": "Quote",
+                "displayName": "Quotes"
+            },
+            "image": {
+                "type": "file",
+                "displayName": "Background",
+                "default": "image"
+            },
+            "date": {
+                "type": "radio",
+                "displayName": "Date"
+            }
+        }
+    }
+]
