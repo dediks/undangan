@@ -17,7 +17,7 @@ class StoryController extends Controller
 
         // dd("sini");
 
-        return Inertia::render('Dashboard/Stories/Index', ["stories" => $stories]);
+           return Inertia::render('Dashboard/Stories/Index', ["stories" => $stories]);
     }
 
     public function destroy($invitationId, $storyId)

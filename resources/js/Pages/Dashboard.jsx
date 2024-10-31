@@ -94,6 +94,12 @@ export default function Dashboard(props) {
                                 Data Stories
                             </Link>
                             <Link
+                                href="/invitation/sosmeds"
+                                className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight"
+                            >
+                                Data Sosmed
+                            </Link>
+                            <Link
                                 href="/invitation/guests"
                                 className="w-full flex justify-center items-center bg-slate-100 hover:bg-slate-200 p-4 sm:p-8 text-center leading-tight"
                             >

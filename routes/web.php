@@ -22,6 +22,7 @@ use App\Http\Controllers\Section\QuoteController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\Section\CoupleController;
 use App\Http\Controllers\Section\StoryController as StorySectionController;
+use App\Http\Controllers\SosmedController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('invitation')->group(function () {
         Route::get('/{invitationId}/links', [LinkController::class, 'index']);
+
+        Route::get('sosmeds', [SosmedController::class, 'index'])->name('sosmeds.index');
 
         Route::get('stories', [StoryController::class, 'index'])->name('stories.index');
         Route::get('/{invitationId}/stories/create', [StoryController::class, 'create'])->name('stories.create');
